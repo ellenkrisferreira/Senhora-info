@@ -6,871 +6,432 @@
 <title>Senhora da Informática</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-/* ==================== VARIÁVEIS — TEMA CLARO ==================== */
 :root{
-  --gold:#C9A227;
-  --gold-2:#D4AF37;
-  --gold-dark:#8B6914;
-  --gold-darker:#5C4708;
-  --gold-light:#E8D18B;
-  --gold-pale:#FBF6E4;
-  --gold-pale-2:#FDFAF0;
-
-  --bg:#F7F7F8;
-  --card:#FFFFFF;
-  --card-2:#F1F2F4;
-  --bg-2:#F5F5F6;
-  --border:#EAEAEC;
-  --border-2:#DCDDE0;
-
-  --text:#18191B;
-  --text-soft:#6B7280;
-
-  --ok:#16A34A;
-  --ok-bg:#DCFCE7;
-  --erro:#DC2626;
-
+  --gold:#C9A227; --gold-2:#D4AF37; --gold-dark:#8B6914; --gold-darker:#5C4708;
+  --gold-light:#E8D18B; --gold-pale:#FBF6E4; --gold-pale-2:#FDFAF0;
+  --bg:#F7F7F8; --card:#FFFFFF; --card-2:#F1F2F4; --bg-2:#F5F5F6;
+  --border:#EAEAEC; --border-2:#DCDDE0;
+  --text:#18191B; --text-soft:#6B7280;
+  --ok:#16A34A; --ok-bg:#DCFCE7; --erro:#DC2626;
+  --rar-comum:#9CA3AF; --rar-raro:#3B82F6; --rar-epico:#A855F7; --rar-lendario:#F59E0B;
   --shadow-sm:0 1px 2px rgba(0,0,0,0.04);
   --shadow:0 2px 8px rgba(0,0,0,0.06);
   --shadow-gold:0 4px 16px rgba(201,162,39,0.12);
 }
-
-/* ==================== VARIÁVEIS — TEMA ESCURO ==================== */
 body.dark{
-  --gold:#D4AF37;
-  --gold-2:#E5C158;
-  --gold-dark:#E5C158;
-  --gold-darker:#F0D87A;
-  --gold-light:#3A321C;
-  --gold-pale:#221E13;
-  --gold-pale-2:#1A1710;
-
-  --bg:#0D1014;
-  --card:#16191E;
-  --card-2:#1E2229;
-  --bg-2:#1B1F25;
-  --border:#252A31;
-  --border-2:#333A43;
-
-  --text:#E8EAED;
-  --text-soft:#9098A3;
-
-  --ok:#4ADE80;
-  --ok-bg:#14331F;
-  --erro:#F87171;
-
+  --gold:#D4AF37; --gold-2:#E5C158; --gold-dark:#E5C158; --gold-darker:#F0D87A;
+  --gold-light:#3A321C; --gold-pale:#221E13; --gold-pale-2:#1A1710;
+  --bg:#0D1014; --card:#16191E; --card-2:#1E2229; --bg-2:#1B1F25;
+  --border:#252A31; --border-2:#333A43;
+  --text:#E8EAED; --text-soft:#9098A3;
+  --ok:#4ADE80; --ok-bg:#14331F; --erro:#F87171;
+  --rar-comum:#7C8694; --rar-raro:#60A5FA; --rar-epico:#C084FC; --rar-lendario:#FBBF24;
   --shadow-sm:0 1px 2px rgba(0,0,0,0.35);
   --shadow:0 2px 10px rgba(0,0,0,0.4);
   --shadow-gold:0 4px 20px rgba(212,175,55,0.08);
 }
-
-/* ==================== RESET / BASE ==================== */
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{height:100%;}
 body{
   font-family:'Segoe UI',system-ui,-apple-system,'Helvetica Neue',sans-serif;
-  font-size:15px;
-  line-height:1.55;
-  background:var(--bg);
-  color:var(--text);
-  padding:20px 16px;
-  -webkit-font-smoothing:antialiased;
+  font-size:15px; line-height:1.55; background:var(--bg); color:var(--text);
+  padding:20px 16px; -webkit-font-smoothing:antialiased;
   transition:background 0.25s ease,color 0.25s ease;
 }
 .container{max-width:1140px;margin:0 auto;}
 
-/* ==================== HEADER ==================== */
 header{
-  position:relative;
-  text-align:center;
-  padding:28px 70px 24px;
-  background:var(--card);
-  border:1px solid var(--gold-light);
-  border-radius:14px;
-  margin-bottom:20px;
-  box-shadow:var(--shadow-gold);
-  overflow:hidden;
+  position:relative; text-align:center; padding:28px 70px 24px;
+  background:var(--card); border:1px solid var(--gold-light); border-radius:14px;
+  margin-bottom:20px; box-shadow:var(--shadow-gold); overflow:hidden;
 }
 header::before{
-  content:'';
-  position:absolute;
-  top:0;left:0;right:0;
-  height:3px;
+  content:''; position:absolute; top:0;left:0;right:0; height:3px;
   background:linear-gradient(90deg,var(--gold),var(--gold-2),var(--gold-light),var(--gold-2),var(--gold));
 }
 header h1{
-  font-family:Georgia,'Times New Roman',serif;
-  font-size:1.45rem;
-  font-weight:700;
-  letter-spacing:2.5px;
-  color:var(--gold-dark);
-  line-height:1.25;
+  font-family:Georgia,'Times New Roman',serif; font-size:1.45rem; font-weight:700;
+  letter-spacing:2.5px; color:var(--gold-dark); line-height:1.25;
 }
-header .sub{
-  color:var(--text-soft);
-  font-size:0.82rem;
-  font-style:italic;
-  margin-top:6px;
-}
-header .divider{
-  width:48px;
-  height:2px;
-  background:var(--gold-2);
-  margin:10px auto 0;
-  border-radius:1px;
-}
+header .sub{color:var(--text-soft);font-size:0.82rem;font-style:italic;margin-top:6px;}
+header .divider{width:48px;height:2px;background:var(--gold-2);margin:10px auto 0;border-radius:1px;}
 .theme-toggle{
-  position:absolute;
-  top:14px;
-  right:14px;
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  border:1px solid var(--gold-light);
-  background:var(--card);
-  color:var(--text);
-  cursor:pointer;
-  font-size:1rem;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:all 0.2s;
-  line-height:1;
-  padding:0;
+  position:absolute; top:14px; right:14px; width:36px; height:36px; border-radius:50%;
+  border:1px solid var(--gold-light); background:var(--card); color:var(--text);
+  cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center;
+  transition:all 0.2s; line-height:1; padding:0;
 }
-.theme-toggle:hover{
-  border-color:var(--gold-2);
-  background:var(--gold-pale);
-  transform:scale(1.06);
-}
+.theme-toggle:hover{border-color:var(--gold-2);background:var(--gold-pale);transform:scale(1.06);}
 
-/* ==================== TABS ==================== */
-.tabs{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  justify-content:center;
-  margin-bottom:20px;
-}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:20px;}
 .tab{
-  padding:9px 18px;
-  background:var(--card);
-  color:var(--text);
-  border:1px solid var(--border-2);
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:600;
-  font-size:0.84rem;
-  transition:all 0.18s ease;
-  font-family:inherit;
-  letter-spacing:0.2px;
+  padding:9px 18px; background:var(--card); color:var(--text);
+  border:1px solid var(--border-2); border-radius:8px; cursor:pointer;
+  font-weight:600; font-size:0.84rem; transition:all 0.18s ease;
+  font-family:inherit; letter-spacing:0.2px;
 }
-.tab:hover{
-  border-color:var(--gold-2);
-  color:var(--gold-dark);
-}
+.tab:hover{border-color:var(--gold-2);color:var(--gold-dark);}
 .tab.ativo{
   background:linear-gradient(135deg,var(--gold-2),var(--gold));
-  color:#FFFFFF;
-  border-color:var(--gold-dark);
+  color:#FFFFFF; border-color:var(--gold-dark);
   box-shadow:0 3px 10px rgba(201,162,39,0.32);
 }
 body.dark .tab.ativo{color:#1A1408;}
 
-/* ==================== PAINEIS ==================== */
 .painel{display:none;}
 .painel.ativo{display:block;animation:fadeIn 0.25s ease;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
 
-/* ==================== CARDS ==================== */
 .card{
-  background:var(--card);
-  border-radius:12px;
-  padding:20px;
-  margin-bottom:16px;
-  box-shadow:var(--shadow);
-  border:1px solid var(--border);
+  background:var(--card); border-radius:12px; padding:20px; margin-bottom:16px;
+  box-shadow:var(--shadow); border:1px solid var(--border);
 }
 .card h2{
-  color:var(--gold-dark);
-  margin-bottom:14px;
-  font-size:1.02rem;
-  font-weight:700;
-  letter-spacing:0.3px;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  padding-bottom:10px;
-  border-bottom:1px solid var(--gold-light);
+  color:var(--gold-dark); margin-bottom:14px; font-size:1.02rem; font-weight:700;
+  letter-spacing:0.3px; display:flex; align-items:center; gap:8px;
+  padding-bottom:10px; border-bottom:1px solid var(--gold-light);
 }
 
-/* ==================== HUD ==================== */
 .hud{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(115px,1fr));
-  gap:10px;
-  margin-bottom:16px;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(105px,1fr));
+  gap:10px; margin-bottom:16px;
 }
 .hud-item{
-  background:var(--card);
-  border:1px solid var(--gold-light);
-  border-radius:10px;
-  padding:12px 8px;
-  text-align:center;
-  box-shadow:var(--shadow-sm);
+  background:var(--card); border:1px solid var(--gold-light); border-radius:10px;
+  padding:12px 6px; text-align:center; box-shadow:var(--shadow-sm);
   transition:border-color 0.2s;
 }
 .hud-item:hover{border-color:var(--gold-2);}
 .hud-item .num{
-  display:block;
-  font-size:1.35rem;
-  font-weight:800;
-  color:var(--gold-dark);
-  line-height:1.15;
-  letter-spacing:-0.3px;
+  display:block; font-size:1.3rem; font-weight:800; color:var(--gold-dark);
+  line-height:1.15; letter-spacing:-0.3px;
 }
-.hud-item .num.texto{
-  font-size:0.92rem;
-  font-weight:700;
-  letter-spacing:0;
-}
+.hud-item .num.texto{font-size:0.9rem;font-weight:700;letter-spacing:0;}
+.hud-item .num.moeda{color:#B45309;}
+body.dark .hud-item .num.moeda{color:#FBBF24;}
 .hud-item .lbl{
-  font-size:0.66rem;
-  text-transform:uppercase;
-  letter-spacing:0.9px;
-  color:var(--text-soft);
-  font-weight:600;
-  margin-top:4px;
-  display:block;
+  font-size:0.64rem; text-transform:uppercase; letter-spacing:0.9px;
+  color:var(--text-soft); font-weight:600; margin-top:4px; display:block;
 }
 
-/* ==================== BARRA DE XP (NOVO DESIGN) ==================== */
 .xp-display{margin-top:4px;}
-.xp-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:baseline;
-  margin-bottom:8px;
-  gap:10px;
-  flex-wrap:wrap;
-}
-.xp-current{
-  font-size:0.92rem;
-  font-weight:700;
-  color:var(--gold-dark);
-  letter-spacing:0.2px;
-}
-.xp-next{
-  font-size:0.76rem;
-  color:var(--text-soft);
-  font-weight:500;
-}
+.xp-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;gap:10px;flex-wrap:wrap;}
+.xp-current{font-size:0.92rem;font-weight:700;color:var(--gold-dark);letter-spacing:0.2px;}
+.xp-next{font-size:0.76rem;color:var(--text-soft);font-weight:500;}
 .barra-xp{
-  height:10px;
-  background:var(--bg-2);
-  border-radius:6px;
-  overflow:hidden;
-  border:1px solid var(--border);
-  position:relative;
+  height:10px; background:var(--bg-2); border-radius:6px; overflow:hidden;
+  border:1px solid var(--border); position:relative;
 }
 .barra-xp-fill{
-  height:100%;
-  background:linear-gradient(90deg,var(--gold),var(--gold-2),var(--gold-2));
-  transition:width 0.5s cubic-bezier(0.4,0,0.2,1);
-  border-radius:6px;
+  height:100%; background:linear-gradient(90deg,var(--gold),var(--gold-2),var(--gold-2));
+  transition:width 0.5s cubic-bezier(0.4,0,0.2,1); border-radius:6px;
   box-shadow:0 0 8px rgba(212,175,55,0.35);
 }
-.xp-pct{
-  font-size:0.7rem;
-  color:var(--text-soft);
-  margin-top:5px;
-  text-align:right;
-  font-weight:600;
-}
+.xp-pct{font-size:0.7rem;color:var(--text-soft);margin-top:5px;text-align:right;font-weight:600;}
 
-/* ==================== CARGOS ==================== */
 .cargo{
-  background:var(--card);
-  border-radius:12px;
-  margin-bottom:16px;
-  box-shadow:var(--shadow);
-  border:1px solid var(--border);
-  overflow:hidden;
+  background:var(--card); border-radius:12px; margin-bottom:16px;
+  box-shadow:var(--shadow); border:1px solid var(--border); overflow:hidden;
 }
 .cargo-header{
-  padding:18px 20px;
-  background:var(--card);
-  border-bottom:1px solid var(--border);
+  padding:18px 20px; background:var(--card); border-bottom:1px solid var(--border);
   position:relative;
 }
 .cargo-header::before{
-  content:'';
-  position:absolute;
-  left:0;top:0;bottom:0;
-  width:3px;
+  content:''; position:absolute; left:0;top:0;bottom:0; width:3px;
   background:linear-gradient(180deg,var(--gold-2),var(--gold-dark));
 }
 .cargo-header h2{
-  color:var(--gold-dark);
-  font-size:1.02rem;
-  font-weight:700;
-  letter-spacing:0.2px;
-  margin-bottom:4px;
-  border:none;
-  padding:0;
-  display:block;
+  color:var(--gold-dark); font-size:1.02rem; font-weight:700; letter-spacing:0.2px;
+  margin-bottom:4px; border:none; padding:0; display:block;
 }
-.cargo-header .coroa{
-  color:var(--text-soft);
-  font-style:italic;
-  font-size:0.8rem;
-}
-.cargo-header .foco{
-  font-size:0.8rem;
-  color:var(--text-soft);
-  margin-top:6px;
-}
+.cargo-header .coroa{color:var(--text-soft);font-style:italic;font-size:0.8rem;}
+.cargo-header .foco{font-size:0.8rem;color:var(--text-soft);margin-top:6px;}
 .badge-coroa{
-  display:inline-block;
-  background:linear-gradient(135deg,var(--gold-2),var(--gold));
-  color:#FFFFFF;
-  padding:3px 10px;
-  border-radius:11px;
-  font-size:0.64rem;
-  font-weight:700;
-  margin-left:8px;
-  vertical-align:middle;
-  letter-spacing:0.4px;
+  display:inline-block; background:linear-gradient(135deg,var(--gold-2),var(--gold));
+  color:#FFFFFF; padding:3px 10px; border-radius:11px; font-size:0.64rem;
+  font-weight:700; margin-left:8px; vertical-align:middle; letter-spacing:0.4px;
 }
 body.dark .badge-coroa{color:#1A1408;}
 
 .progresso-mini{
-  height:6px;
-  background:var(--bg-2);
-  border-radius:4px;
-  overflow:hidden;
-  margin-top:10px;
-  border:1px solid var(--border);
+  height:6px; background:var(--bg-2); border-radius:4px; overflow:hidden;
+  margin-top:10px; border:1px solid var(--border);
 }
 .progresso-mini-fill{
-  height:100%;
-  background:linear-gradient(90deg,var(--gold),var(--gold-2));
-  transition:width 0.4s ease;
-  border-radius:4px;
+  height:100%; background:linear-gradient(90deg,var(--gold),var(--gold-2));
+  transition:width 0.4s ease; border-radius:4px;
 }
-.progresso-info{
-  font-size:0.76rem;
-  color:var(--text-soft);
-  margin-top:6px;
-  font-weight:500;
-}
+.progresso-info{font-size:0.76rem;color:var(--text-soft);margin-top:6px;font-weight:500;}
 
-/* ==================== CURSOS ==================== */
 .curso{
-  margin:12px 20px;
-  border:1px solid var(--border);
-  border-radius:10px;
-  overflow:hidden;
-  background:var(--card);
+  margin:12px 20px; border:1px solid var(--border); border-radius:10px;
+  overflow:hidden; background:var(--card);
 }
 .curso:last-child{margin-bottom:20px;}
 .curso-header{
-  padding:12px 16px;
-  background:var(--card);
-  cursor:pointer;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-weight:600;
-  color:var(--text);
-  font-size:0.87rem;
-  transition:background 0.15s;
-  gap:10px;
-  user-select:none;
+  padding:12px 16px; background:var(--card); cursor:pointer;
+  display:flex; justify-content:space-between; align-items:center;
+  font-weight:600; color:var(--text); font-size:0.87rem;
+  transition:background 0.15s; gap:10px; user-select:none;
 }
 .curso-header:hover{background:var(--gold-pale-2);}
-.curso-info{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  flex:1;
-  min-width:0;
-}
-.curso-nome{
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-}
+.curso-info{display:flex;align-items:center;gap:8px;flex:1;min-width:0;}
+.curso-nome{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .prog-txt{
-  font-size:0.72rem;
-  color:var(--gold-dark);
-  font-weight:700;
-  white-space:nowrap;
-  background:var(--gold-pale);
-  padding:3px 9px;
-  border-radius:11px;
-  border:1px solid var(--gold-light);
-  letter-spacing:0.2px;
+  font-size:0.72rem; color:var(--gold-dark); font-weight:700; white-space:nowrap;
+  background:var(--gold-pale); padding:3px 9px; border-radius:11px;
+  border:1px solid var(--gold-light); letter-spacing:0.2px;
 }
-.curso-body{
-  display:none;
-  padding:10px;
-  background:var(--bg-2);
-}
+.curso-body{display:none;padding:10px;background:var(--bg-2);}
 .curso-body.aberto{display:block;}
 
-/* ==================== MÓDULOS ==================== */
 .modulo{
-  border-radius:8px;
-  margin-bottom:8px;
-  overflow:hidden;
-  box-shadow:var(--shadow-sm);
-  border:1px solid var(--border);
-  background:var(--card);
+  border-radius:8px; margin-bottom:8px; overflow:hidden; box-shadow:var(--shadow-sm);
+  border:1px solid var(--border); background:var(--card);
 }
 .modulo:last-child{margin-bottom:0;}
 .modulo-header{
-  padding:10px 14px;
-  background:var(--card);
-  cursor:pointer;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-weight:600;
-  font-size:0.83rem;
-  gap:10px;
-  transition:background 0.15s;
-  border-left:3px solid var(--gold-2);
-  user-select:none;
+  padding:10px 14px; background:var(--card); cursor:pointer;
+  display:flex; justify-content:space-between; align-items:center;
+  font-weight:600; font-size:0.83rem; gap:10px;
+  transition:background 0.15s; border-left:3px solid var(--gold-2); user-select:none;
 }
 .modulo-header:hover{background:var(--gold-pale-2);}
 .mod-nome{flex:1;min-width:0;}
 .selo-tag{
-  font-size:0.66rem;
-  background:var(--gold-pale);
-  color:var(--gold-darker);
-  padding:3px 8px;
-  border-radius:10px;
-  white-space:nowrap;
-  border:1px solid var(--gold-light);
-  font-weight:700;
-  letter-spacing:0.2px;
+  font-size:0.66rem; background:var(--gold-pale); color:var(--gold-darker);
+  padding:3px 8px; border-radius:10px; white-space:nowrap;
+  border:1px solid var(--gold-light); font-weight:700; letter-spacing:0.2px;
 }
-.mod-prog{
-  font-size:0.72rem;
-  color:var(--text-soft);
-  white-space:nowrap;
-  font-weight:600;
-}
+.mod-prog{font-size:0.72rem;color:var(--text-soft);white-space:nowrap;font-weight:600;}
 
-/* ==================== AULAS ==================== */
-.aulas-lista{
-  display:none;
-  padding:6px;
-  background:var(--card);
-}
+.aulas-lista{display:none;padding:6px;background:var(--card);}
 .aulas-lista.aberto{display:block;}
 .aula{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:7px 12px;
-  border-radius:6px;
-  margin-bottom:1px;
-  background:var(--card);
-  transition:background 0.15s;
-  border-left:3px solid transparent;
-  font-size:0.84rem;
+  display:flex; align-items:center; gap:10px; padding:7px 12px;
+  border-radius:6px; margin-bottom:1px; background:var(--card);
+  transition:background 0.15s; border-left:3px solid transparent; font-size:0.84rem;
 }
 .aula:hover{background:var(--bg-2);}
-.aula.feita{
-  background:var(--gold-pale);
-  border-left-color:var(--gold-2);
-}
+.aula.feita{background:var(--gold-pale);border-left-color:var(--gold-2);}
 .aula input[type="checkbox"]{
-  width:16px;
-  height:16px;
-  cursor:pointer;
-  accent-color:var(--gold-dark);
-  flex-shrink:0;
-  margin:0;
+  width:16px; height:16px; cursor:pointer; accent-color:var(--gold-dark);
+  flex-shrink:0; margin:0;
 }
-.aula .nome{
-  flex:1;
-  line-height:1.35;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-.aula.feita .nome{
-  color:var(--gold-darker);
-  font-weight:600;
-}
+.aula .nome{flex:1;line-height:1.35;overflow:hidden;text-overflow:ellipsis;}
+.aula.feita .nome{color:var(--gold-darker);font-weight:600;}
 .aula .xp-tag{
-  font-size:0.64rem;
-  background:var(--gold-pale);
-  color:var(--gold-dark);
-  padding:2px 7px;
-  border-radius:8px;
-  font-weight:700;
-  border:1px solid var(--gold-light);
-  flex-shrink:0;
-  letter-spacing:0.2px;
+  font-size:0.64rem; background:var(--gold-pale); color:var(--gold-dark);
+  padding:2px 7px; border-radius:8px; font-weight:700;
+  border:1px solid var(--gold-light); flex-shrink:0; letter-spacing:0.2px;
 }
 
-/* ==================== METAS ==================== */
-.metas-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:16px;
-}
+.metas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
 .meta-card{
-  background:var(--card);
-  border:1px solid var(--gold-light);
-  border-radius:12px;
-  padding:20px;
-  box-shadow:var(--shadow-sm);
-  position:relative;
+  background:var(--card); border:1px solid var(--gold-light); border-radius:12px;
+  padding:20px; box-shadow:var(--shadow-sm); position:relative;
 }
 .meta-card h3{
-  color:var(--gold-dark);
-  font-size:0.96rem;
-  margin-bottom:4px;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-weight:700;
+  color:var(--gold-dark); font-size:0.96rem; margin-bottom:4px;
+  display:flex; align-items:center; gap:8px; font-weight:700;
 }
-.meta-sub{
-  font-size:0.78rem;
-  color:var(--text-soft);
-  margin-bottom:16px;
-}
-.meta-num{
-  display:flex;
-  align-items:baseline;
-  gap:6px;
-  margin-bottom:10px;
-}
-.meta-num .atual{
-  font-size:1.8rem;
-  font-weight:800;
-  color:var(--gold-dark);
-  line-height:1;
-  letter-spacing:-0.5px;
-}
-.meta-num .sep{
-  font-size:1rem;
-  color:var(--text-soft);
-}
-.meta-num .alvo{
-  font-size:1rem;
-  color:var(--text-soft);
-  font-weight:600;
-}
-.meta-num .unid{
-  font-size:0.74rem;
-  color:var(--text-soft);
-  margin-left:4px;
-  font-weight:500;
-}
-.meta-barra{
-  height:8px;
-  background:var(--bg-2);
-  border-radius:5px;
-  overflow:hidden;
-  border:1px solid var(--border);
-}
-.meta-barra-fill{
-  height:100%;
-  background:linear-gradient(90deg,var(--gold),var(--gold-2));
-  transition:width 0.5s ease;
-  border-radius:5px;
-}
-.meta-config{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-top:16px;
-  padding-top:14px;
-  border-top:1px dashed var(--gold-light);
-}
-.meta-config label{
-  font-size:0.76rem;
-  color:var(--text-soft);
-  flex:1;
-}
+.meta-sub{font-size:0.78rem;color:var(--text-soft);margin-bottom:16px;}
+.meta-num{display:flex;align-items:baseline;gap:6px;margin-bottom:10px;}
+.meta-num .atual{font-size:1.8rem;font-weight:800;color:var(--gold-dark);line-height:1;letter-spacing:-0.5px;}
+.meta-num .sep{font-size:1rem;color:var(--text-soft);}
+.meta-num .alvo{font-size:1rem;color:var(--text-soft);font-weight:600;}
+.meta-num .unid{font-size:0.74rem;color:var(--text-soft);margin-left:4px;font-weight:500;}
+.meta-barra{height:8px;background:var(--bg-2);border-radius:5px;overflow:hidden;border:1px solid var(--border);}
+.meta-barra-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-2));transition:width 0.5s ease;border-radius:5px;}
+.meta-config{display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:14px;border-top:1px dashed var(--gold-light);}
+.meta-config label{font-size:0.76rem;color:var(--text-soft);flex:1;}
 .meta-config input{
-  width:72px;
-  padding:6px 10px;
-  border:1px solid var(--border-2);
-  border-radius:6px;
-  font-size:0.84rem;
-  text-align:center;
-  font-weight:700;
-  color:var(--gold-dark);
-  font-family:inherit;
-  background:var(--card);
+  width:72px; padding:6px 10px; border:1px solid var(--border-2); border-radius:6px;
+  font-size:0.84rem; text-align:center; font-weight:700; color:var(--gold-dark);
+  font-family:inherit; background:var(--card);
 }
-.meta-config input:focus{
-  outline:none;
-  border-color:var(--gold-2);
-  box-shadow:0 0 0 3px rgba(212,175,55,0.16);
-}
+.meta-config input:focus{outline:none;border-color:var(--gold-2);box-shadow:0 0 0 3px rgba(212,175,55,0.16);}
 .meta-status{
-  position:absolute;
-  top:16px;
-  right:16px;
-  font-size:0.62rem;
-  padding:3px 9px;
-  border-radius:11px;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:0.5px;
+  position:absolute; top:16px; right:16px; font-size:0.62rem; padding:3px 9px;
+  border-radius:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px;
 }
-.meta-status.ok{
-  background:var(--ok-bg);
-  color:var(--ok);
-}
-.meta-status.prog{
-  background:var(--gold-pale);
-  color:var(--gold-dark);
-  border:1px solid var(--gold-light);
-}
+.meta-status.ok{background:var(--ok-bg);color:var(--ok);}
+.meta-status.prog{background:var(--gold-pale);color:var(--gold-dark);border:1px solid var(--gold-light);}
 
-/* ==================== HISTÓRICO ==================== */
 .hist-list{display:flex;flex-direction:column;gap:8px;}
 .hist-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px 14px;
-  background:var(--gold-pale-2);
-  border:1px solid var(--gold-light);
-  border-radius:8px;
-  font-size:0.83rem;
-  gap:10px;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:10px 14px; background:var(--gold-pale-2); border:1px solid var(--gold-light);
+  border-radius:8px; font-size:0.83rem; gap:10px;
 }
-.hist-item .hist-nome{
-  flex:1;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-  color:var(--text);
-}
-.hist-item .hist-data{
-  font-size:0.7rem;
-  color:var(--text-soft);
-  white-space:nowrap;
-  font-weight:600;
-}
-.hist-vazio{
-  text-align:center;
-  color:var(--text-soft);
-  font-size:0.83rem;
-  padding:20px;
-  font-style:italic;
-}
+.hist-item .hist-nome{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text);}
+.hist-item .hist-data{font-size:0.7rem;color:var(--text-soft);white-space:nowrap;font-weight:600;}
+.hist-vazio{text-align:center;color:var(--text-soft);font-size:0.83rem;padding:20px;font-style:italic;}
 
-/* ==================== COLEÇÃO ==================== */
 .grid-colecao{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(135px,1fr));
-  gap:12px;
-  margin-top:12px;
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+  gap:12px; margin-top:12px;
 }
 .item-col{
-  background:var(--gold-pale-2);
-  border:1px solid var(--gold-light);
-  border-radius:10px;
-  padding:14px 10px;
-  text-align:center;
-  font-size:0.74rem;
-  min-height:105px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  transition:all 0.2s ease;
-  cursor:pointer;
-  color:var(--gold-darker);
+  background:var(--gold-pale-2); border:1px solid var(--gold-light); border-radius:10px;
+  padding:14px 10px; text-align:center; font-size:0.74rem; min-height:110px;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  transition:all 0.2s ease; cursor:pointer; color:var(--gold-darker);
   box-shadow:var(--shadow-sm);
 }
-.item-col:hover{
-  transform:translateY(-3px);
-  box-shadow:0 8px 20px rgba(201,162,39,0.22);
-  border-color:var(--gold-2);
-}
-.item-col.bloq{
-  background:var(--bg-2);
-  border-color:var(--border);
-  color:var(--text-soft);
-  cursor:default;
-  opacity:0.55;
-}
-.item-col.bloq:hover{
-  transform:none;
-  box-shadow:var(--shadow-sm);
-  border-color:var(--border);
-}
-.item-col .icone{
-  font-size:1.7rem;
-  margin-bottom:6px;
-  line-height:1;
-}
-.item-col .titulo{
-  font-weight:700;
-  line-height:1.25;
-  font-size:0.7rem;
-  word-break:break-word;
-}
+.item-col:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,162,39,0.22);border-color:var(--gold-2);}
+.item-col.bloq{background:var(--bg-2);border-color:var(--border);color:var(--text-soft);cursor:default;opacity:0.55;}
+.item-col.bloq:hover{transform:none;box-shadow:var(--shadow-sm);border-color:var(--border);}
+.item-col .icone{font-size:1.7rem;margin-bottom:6px;line-height:1;}
+.item-col .titulo{font-weight:700;line-height:1.25;font-size:0.7rem;word-break:break-word;}
 
-/* ==================== BOTÕES ==================== */
+/* ============ VITRINE ============ */
+.vitrine-grid{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:14px;
+  margin-top:12px;
+}
+.item-raro{
+  background:var(--card); border:2px solid var(--border); border-radius:12px;
+  padding:16px 12px; text-align:center; position:relative;
+  transition:all 0.2s ease; display:flex; flex-direction:column; align-items:center; gap:8px;
+}
+.item-raro:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+.item-raro .icone{font-size:2.2rem;line-height:1;}
+.item-raro .nome{font-weight:700;font-size:0.8rem;color:var(--text);line-height:1.25;}
+.item-raro .rar{
+  font-size:0.6rem; font-weight:700; text-transform:uppercase; letter-spacing:0.6px;
+  padding:2px 8px; border-radius:8px;
+}
+.item-raro.comum{border-color:var(--rar-comum);}
+.item-raro.comum .rar{background:rgba(156,163,175,0.15);color:var(--rar-comum);}
+.item-raro.raro{border-color:var(--rar-raro);}
+.item-raro.raro .rar{background:rgba(59,130,246,0.15);color:var(--rar-raro);}
+.item-raro.epico{border-color:var(--rar-epico);}
+.item-raro.epico .rar{background:rgba(168,85,247,0.15);color:var(--rar-epico);}
+.item-raro.lendario{border-color:var(--rar-lendario);}
+.item-raro.lendario .rar{background:rgba(245,158,11,0.18);color:var(--rar-lendario);}
+.item-raro .preco{
+  font-size:0.8rem; font-weight:800; color:#B45309; margin-top:2px;
+  display:flex; align-items:center; gap:4px;
+}
+body.dark .item-raro .preco{color:#FBBF24;}
+.item-raro .btn-comprar{
+  width:100%; padding:6px 10px; border-radius:7px; border:none; cursor:pointer;
+  font-weight:700; font-size:0.74rem; font-family:inherit;
+  background:linear-gradient(135deg,var(--gold-2),var(--gold));
+  color:#fff; transition:all 0.15s;
+}
+body.dark .item-raro .btn-comprar{color:#1A1408;}
+.item-raro .btn-comprar:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(201,162,39,0.35);}
+.item-raro .btn-comprar:disabled{
+  background:var(--bg-2); color:var(--text-soft); cursor:not-allowed;
+  transform:none; box-shadow:none; border:1px solid var(--border);
+}
+.item-raro.adquirido{background:var(--gold-pale);border-color:var(--gold-2);}
+.item-raro.adquirido::after{
+  content:'✓ ADQUIRIDO'; position:absolute; top:8px; right:8px;
+  font-size:0.55rem; font-weight:800; color:var(--gold-dark);
+  background:var(--gold-pale-2); border:1px solid var(--gold-light);
+  padding:2px 6px; border-radius:6px; letter-spacing:0.4px;
+}
+.item-raro.adquirido .btn-comprar{display:none;}
+
+.moeda-bar{
+  display:flex; justify-content:space-between; align-items:center;
+  background:linear-gradient(135deg,var(--gold-pale),var(--gold-pale-2));
+  border:1px solid var(--gold-light); border-radius:10px;
+  padding:12px 18px; margin-bottom:16px;
+}
+.moeda-bar .label{font-size:0.8rem;color:var(--text-soft);font-weight:600;}
+.moeda-bar .valor{
+  font-size:1.4rem; font-weight:800; color:#B45309; letter-spacing:-0.3px;
+}
+body.dark .moeda-bar .valor{color:#FBBF24;}
+
 .btn{
-  padding:9px 18px;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:600;
-  font-size:0.83rem;
-  transition:all 0.18s ease;
-  margin:4px 6px 4px 0;
-  font-family:inherit;
-  letter-spacing:0.2px;
+  padding:9px 18px; border:none; border-radius:8px; cursor:pointer;
+  font-weight:600; font-size:0.83rem; transition:all 0.18s ease;
+  margin:4px 6px 4px 0; font-family:inherit; letter-spacing:0.2px;
 }
 .btn-gold{
-  background:linear-gradient(135deg,var(--gold-2),var(--gold));
-  color:#FFFFFF;
-  border:1px solid var(--gold-dark);
-  box-shadow:0 2px 6px rgba(201,162,39,0.28);
+  background:linear-gradient(135deg,var(--gold-2),var(--gold)); color:#FFFFFF;
+  border:1px solid var(--gold-dark); box-shadow:0 2px 6px rgba(201,162,39,0.28);
 }
 body.dark .btn-gold{color:#1A1408;}
-.btn-gold:hover{
-  transform:translateY(-1px);
-  box-shadow:0 4px 12px rgba(201,162,39,0.38);
-}
-.btn-outline{
-  background:var(--card);
-  color:var(--gold-dark);
-  border:1px solid var(--gold-2);
-}
+.btn-gold:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(201,162,39,0.38);}
+.btn-outline{background:var(--card);color:var(--gold-dark);border:1px solid var(--gold-2);}
 .btn-outline:hover{background:var(--gold-pale);}
-.btn-perigo{
-  background:var(--card);
-  color:var(--erro);
-  border:1px solid var(--erro);
-  opacity:0.85;
-}
+.btn-perigo{background:var(--card);color:var(--erro);border:1px solid var(--erro);opacity:0.85;}
 .btn-perigo:hover{background:var(--card-2);opacity:1;}
 
-/* ==================== MODAL ==================== */
 .modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.55);
-  z-index:1000;
-  justify-content:center;
-  align-items:center;
-  padding:16px;
+  display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55);
+  z-index:1000; justify-content:center; align-items:center; padding:16px;
   animation:fadeIn 0.15s ease;
 }
 .modal.ativo{display:flex;}
 .modal-box{
-  background:var(--card);
-  border:1px solid var(--gold-light);
-  border-radius:14px;
-  padding:26px 24px 22px;
-  max-width:460px;
-  width:100%;
-  box-shadow:0 20px 60px rgba(0,0,0,0.35);
-  position:relative;
+  background:var(--card); border:1px solid var(--gold-light); border-radius:14px;
+  padding:26px 24px 22px; max-width:460px; width:100%;
+  box-shadow:0 20px 60px rgba(0,0,0,0.35); position:relative;
 }
 .modal-box::before{
-  content:'';
-  position:absolute;
-  top:0;left:0;right:0;
-  height:3px;
+  content:''; position:absolute; top:0;left:0;right:0; height:3px;
   border-radius:14px 14px 0 0;
   background:linear-gradient(90deg,var(--gold),var(--gold-2),var(--gold-light),var(--gold-2),var(--gold));
 }
 .modal-box h3{
-  color:var(--gold-dark);
-  font-size:1.05rem;
-  font-family:Georgia,serif;
-  margin-bottom:10px;
-  padding-right:28px;
-  letter-spacing:0.3px;
+  color:var(--gold-dark); font-size:1.05rem; font-family:Georgia,serif;
+  margin-bottom:10px; padding-right:28px; letter-spacing:0.3px;
 }
-.modal-box p{
-  line-height:1.65;
-  font-size:0.88rem;
-  white-space:pre-line;
-  color:var(--text);
-}
+.modal-box p{line-height:1.65;font-size:0.88rem;white-space:pre-line;color:var(--text);}
 .modal-box .fechar{
-  position:absolute;
-  top:12px;
-  right:14px;
-  background:none;
-  border:none;
-  font-size:1.35rem;
-  cursor:pointer;
-  color:var(--text-soft);
-  line-height:1;
-  padding:4px 8px;
-  border-radius:6px;
-  transition:all 0.15s;
+  position:absolute; top:12px; right:14px; background:none; border:none;
+  font-size:1.35rem; cursor:pointer; color:var(--text-soft); line-height:1;
+  padding:4px 8px; border-radius:6px; transition:all 0.15s;
 }
-.modal-box .fechar:hover{
-  background:var(--gold-pale);
-  color:var(--gold-dark);
-}
+.modal-box .fechar:hover{background:var(--gold-pale);color:var(--gold-dark);}
 
-/* ==================== TOAST ==================== */
+/* Modal frase */
+.frase-box{text-align:center;padding:32px 26px 24px;}
+.frase-box .frase-badge{
+  display:inline-block; font-size:0.68rem; font-weight:800; letter-spacing:1.2px;
+  color:var(--gold-dark); background:var(--gold-pale);
+  border:1px solid var(--gold-light); padding:4px 12px; border-radius:20px;
+  margin-bottom:18px;
+}
+.frase-box .frase-en{
+  font-family:Georgia,serif; font-size:1.25rem; font-weight:700;
+  color:var(--gold-dark); line-height:1.35; margin-bottom:10px;
+}
+.frase-box .frase-pt{
+  font-size:0.92rem; color:var(--text-soft); font-style:italic;
+  margin-bottom:20px; line-height:1.4;
+}
+.frase-box .frase-flag{font-size:2rem;margin-bottom:12px;display:block;}
+
 .toast{
-  position:fixed;
-  bottom:24px;
-  right:24px;
+  position:fixed; bottom:24px; right:24px;
   background:linear-gradient(135deg,var(--gold-2),var(--gold-dark));
-  color:#FFFFFF;
-  padding:13px 20px;
-  border-radius:10px;
-  box-shadow:0 8px 24px rgba(201,162,39,0.4);
-  font-weight:600;
-  z-index:2000;
-  transform:translateX(500px);
+  color:#FFFFFF; padding:13px 20px; border-radius:10px;
+  box-shadow:0 8px 24px rgba(201,162,39,0.4); font-weight:600;
+  z-index:2000; transform:translateX(500px);
   transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);
-  max-width:320px;
-  font-size:0.85rem;
-  letter-spacing:0.2px;
+  max-width:320px; font-size:0.85rem; letter-spacing:0.2px;
 }
 body.dark .toast{color:#1A1408;}
 .toast.ativo{transform:translateX(0);}
 
-/* ==================== GRÁFICOS ==================== */
-.graficos-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
-  gap:16px;
-}
+.graficos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;}
 .grafico-card{
-  background:var(--card);
-  border-radius:10px;
-  padding:16px;
-  box-shadow:var(--shadow-sm);
-  border:1px solid var(--border);
+  background:var(--card); border-radius:10px; padding:16px;
+  box-shadow:var(--shadow-sm); border:1px solid var(--border);
 }
-.grafico-card h4{
-  color:var(--gold-dark);
-  margin-bottom:12px;
-  font-size:0.88rem;
-  font-weight:700;
-  letter-spacing:0.2px;
-}
+.grafico-card h4{color:var(--gold-dark);margin-bottom:12px;font-size:0.88rem;font-weight:700;letter-spacing:0.2px;}
 canvas{max-height:240px;}
 .oculto{display:none!important;}
 
-/* ==================== RESPONSIVO ==================== */
 @media(max-width:600px){
   body{padding:12px 10px;font-size:14px;}
   header{padding:22px 56px 18px;}
@@ -878,8 +439,8 @@ canvas{max-height:240px;}
   header .sub{font-size:0.74rem;}
   .theme-toggle{width:32px;height:32px;font-size:0.9rem;top:10px;right:10px;}
   .tab{padding:7px 11px;font-size:0.76rem;}
-  .hud-item .num{font-size:1.15rem;}
-  .hud-item .num.texto{font-size:0.82rem;}
+  .hud-item .num{font-size:1.1rem;}
+  .hud-item .num.texto{font-size:0.8rem;}
   .toast{right:10px;left:10px;bottom:10px;max-width:none;}
   .aula{font-size:0.78rem;padding:6px 9px;gap:8px;}
   .card{padding:14px;}
@@ -890,8 +451,8 @@ canvas{max-height:240px;}
   .meta-num .atual{font-size:1.5rem;}
   .item-col{min-height:95px;padding:12px 8px;}
   .btn{padding:8px 14px;font-size:0.78rem;}
-  .xp-current{font-size:0.84rem;}
-  .xp-next{font-size:0.7rem;}
+  .vitrine-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;}
+  .item-raro .icone{font-size:1.8rem;}
 }
 </style>
 </head>
@@ -909,8 +470,9 @@ canvas{max-height:240px;}
   <div class="tabs">
     <button class="tab ativo" data-tab="jornada">📚 Jornada</button>
     <button class="tab" data-tab="metas">🎯 Metas</button>
-    <button class="tab" data-tab="painel">📊 Painel</button>
+    <button class="tab" data-tab="vitrine">🛒 Vitrine</button>
     <button class="tab" data-tab="colecao">🏅 Coleção</button>
+    <button class="tab" data-tab="painel">📊 Painel</button>
     <button class="tab" data-tab="config">⚙️ Config</button>
   </div>
 
@@ -922,8 +484,9 @@ canvas{max-height:240px;}
         <div class="hud-item"><span class="num texto" id="hud-titulo">Aprendiz</span><span class="lbl">Título</span></div>
         <div class="hud-item"><span class="num" id="hud-xp">0</span><span class="lbl">XP Total</span></div>
         <div class="hud-item"><span class="num" id="hud-aulas">0</span><span class="lbl">Aulas</span></div>
-        <div class="hud-item"><span class="num" id="hud-selos">0</span><span class="lbl">Selos</span></div>
-        <div class="hud-item"><span class="num" id="hud-reliquias">0</span><span class="lbl">Relíquias</span></div>
+        <div class="hud-item"><span class="num" id="hud-frases">0</span><span class="lbl">Frases</span></div>
+        <div class="hud-item"><span class="num" id="hud-itens">0</span><span class="lbl">Itens</span></div>
+        <div class="hud-item"><span class="num moeda" id="hud-moedas">0</span><span class="lbl">Moedas</span></div>
       </div>
 
       <div class="xp-display">
@@ -941,6 +504,9 @@ canvas{max-height:240px;}
   <div id="metas" class="painel">
     <div class="card">
       <h2>🎯 Metas de Estudo</h2>
+      <p style="font-size:0.8rem;color:var(--text-soft);margin-bottom:14px;">
+        Ao bater cada meta você recebe <strong style="color:#B45309">moedas</strong> para gastar na Vitrine de itens raros.
+      </p>
       <div class="metas-grid">
         <div class="meta-card" id="meta-semana-card"></div>
         <div class="meta-card" id="meta-mes-card"></div>
@@ -952,6 +518,32 @@ canvas{max-height:240px;}
     </div>
   </div>
 
+  <div id="vitrine" class="painel">
+    <div class="card">
+      <h2>🛒 Vitrine de Itens Raros</h2>
+      <div class="moeda-bar">
+        <span class="label">💰 Suas moedas</span>
+        <span class="valor" id="vitrine-moedas">0</span>
+      </div>
+      <p style="font-size:0.8rem;color:var(--text-soft);margin-bottom:6px;">
+        Itens também caem ao completar <strong>módulos</strong>. Use moedas para comprar os que faltam!
+      </p>
+      <div class="vitrine-grid" id="vitrine-grid"></div>
+    </div>
+  </div>
+
+  <div id="colecao" class="painel">
+    <div class="card">
+      <h2>🏅 Câmara do Tesouro</h2>
+      <div class="tabs" style="margin-top:8px;">
+        <button class="tab ativo" data-colecao="itens">🎁 Itens Raros</button>
+        <button class="tab" data-colecao="selos">🏅 Selos</button>
+        <button class="tab" data-colecao="frases">💬 Frases</button>
+      </div>
+      <div id="colecao-conteudo"></div>
+    </div>
+  </div>
+
   <div id="painel" class="painel">
     <div class="card">
       <h2>📊 Estatísticas</h2>
@@ -960,18 +552,6 @@ canvas{max-height:240px;}
         <div class="grafico-card"><h4>Progresso por Cargo</h4><canvas id="graf-cargos"></canvas></div>
         <div class="grafico-card" style="grid-column:1/-1;"><h4>Progresso por Curso</h4><canvas id="graf-cursos"></canvas></div>
       </div>
-    </div>
-  </div>
-
-  <div id="colecao" class="painel">
-    <div class="card">
-      <h2>🏅 Câmara do Tesouro</h2>
-      <div class="tabs" style="margin-top:8px;">
-        <button class="tab ativo" data-colecao="selos">🏅 Selos</button>
-        <button class="tab" data-colecao="reliquias">💎 Relíquias</button>
-        <button class="tab" data-colecao="coroas">👑 Coroas</button>
-      </div>
-      <div id="colecao-conteudo" class="grid-colecao"></div>
     </div>
   </div>
 
@@ -989,9 +569,10 @@ canvas{max-height:240px;}
       <h2>ℹ️ Sobre</h2>
       <p style="font-size:0.86rem;color:var(--text-soft);line-height:1.7;">
         Sistema de progresso pessoal para estudos de tecnologia.<br>
-        Ganhe XP ao concluir aulas · desbloqueie <strong style="color:var(--gold-dark)">selos</strong> por módulo ·
-        <strong style="color:var(--gold-dark)">relíquias</strong> por curso ·
-        <strong style="color:var(--gold-dark)">coroas</strong> por cargo completo.
+        📚 Cada <strong>aula</strong> revela uma <strong style="color:var(--gold-dark)">frase de inglês</strong> ·<br>
+        🎁 Cada <strong>módulo</strong> concede um <strong style="color:var(--gold-dark)">item raro</strong> ·<br>
+        🏅 Cada <strong>cargo</strong> completo coroa você com um <strong style="color:var(--gold-dark)">selo</strong> ·<br>
+        💰 <strong>Metas</strong> semanais e mensais rendem <strong style="color:#B45309">moedas</strong> para a Vitrine.
       </p>
     </div>
   </div>
@@ -1005,106 +586,227 @@ canvas{max-height:240px;}
   </div>
 </div>
 
+<div id="modal-frase" class="modal" onclick="fecharFraseModal(event)">
+  <div class="modal-box frase-box" onclick="event.stopPropagation()">
+    <span class="frase-flag">🇺🇸</span>
+    <div class="frase-badge">✨ NOVA FRASE DESBLOQUEADA</div>
+    <div class="frase-en" id="frase-en"></div>
+    <div class="frase-pt" id="frase-pt"></div>
+    <button class="btn btn-gold" onclick="fecharFraseModal()">Continuar</button>
+  </div>
+</div>
+
 <div id="toast" class="toast"></div>
 
 <script>
 /* ============================================================
-   DADOS (mantidos iguais — omitidos aqui por espaço)
+   DADOS DOS CARGOS/CURSOS/MÓDULOS
    ============================================================ */
 const DADOS = { cargos: [
-  {id:"c1",nome:"Desenvolvedor Front-end Júnior",coroa:"Coroa de Aprendiz",foco:"Base sólida para sua primeira vaga.",cursos:[
-    {id:"c1-1",nome:"Programação Básica",icone:"🧠",reliquia:"Cristal da Lógica",tempo:"40h",modulos:[
-      {id:"c1-1-1",nome:"Módulo 01: Primeiros Comandos",cor:"#C9A227",selo:"Selo da Primeira Chama",aulas:["M01A01 – O que são variáveis?","M01A02 – Tipos Primitivos","M01A03 – Declarando Variáveis","M01A04 – Usando Constantes","M01A05 – Entrada e Saída de Dados","M01A06 – Como usar Bibliotecas","M01A07 – Operações Aritméticas","M01A08 – Exercícios Extras","M01A09 – Operadores de Atribuição","M01A10 – Operações com Textos","M01A11 – Representação com Fluxogramas"]},
-      {id:"c1-1-2",nome:"Módulo 02: Condicionais",cor:"#B8860B",selo:"Selo do Caminho Duplo",aulas:["M02A00 – Estruturas de controle","M02A01 – Operadores Relacionais","M02A02 – Operadores Lógicos","M02A03 – Condições Simples","M02A04 – Condições Compostas","M02A05 – Condições Aninhadas","M02A06 – Condições Múltiplas"]},
-      {id:"c1-1-3",nome:"Módulo 03: Repetições",cor:"#A67C00",selo:"Selo do Ciclo Eterno",aulas:["M03A00 – Estruturas de Controle","M03A01 – Repetição com teste lógico no início","M03A02 – Realizando Contagens","M03A03 – Continuação","M03A04 – Realizando Cálculos em Laços","M03A05 – Teste de Mesa no Portugol Studio","M03A06 – Contando elementos por categoria","M03A07 – Maior e Menor Valores","M03A08 – Repetição com Flag","M03A09 – Repetição com interrupção","M03A10 – Repetição com teste no final","M03A11 – Exercícios com Faça Enquanto","M03A12 – Repetição com variável de controle","M03A13 – Exercícios com Estrutura PARA","M03A14 – Laços Aninhados","M03A15 – Validação de dados com Laço"]},
-      {id:"c1-1-4",nome:"Módulo 04: Variáveis Compostas",cor:"#8B6914",selo:"Selo da Mente Coletiva",aulas:["M04A00 – Variáveis Compostas","M04A01 – Variáveis Simples Vs Compostas","M04A02 – Atribuições em Vetores","M04A03 – Tamanho do Vetor","M04A04 – Exercícios","M04A05 – Busca Sequencial em Vetor","M04A06 – Contagens em Vetores","M04A07 – Totais em vetores","M04A08 – Maior e menor valores em vetor","M04A09 – Exercícios","M04A10 – Matrizes","M04A11 – Atribuições em Matrizes","M04A12 – Exibindo uma matriz na tela","M04A13 – Isolando Elementos em Matrizes","M04A14 – Exercícios","M04A15 – Registros","M04A16 – Sortear Sem Repetir","M04A17 – Ordenando um vetor","M04A18 – Busca Binária em Vetores"]},
-      {id:"c1-1-5",nome:"Módulo 05: Rotinas",cor:"#6B5010",selo:"Selo da Mão Reutilizável",aulas:["M05A00 – Rotinas","M05A01 – Rotinas (Continuação)","M05A02 – Rotinas Sem Retorno","M05A03 – Passagem de parâmetros por valor","M05A04 – Escopo de Variáveis","M05A06 – Rotinas com retorno","M05A07 – Simplificando as chamadas","M05A08 – Exercícios","M05A09 – Função que chama função","M05A10 – Funções Recursivas"]}
+  {id:"c1",nome:"Desenvolvedor Front-end Júnior",coroa:"Coroa de Aprendiz",foco:"Base sólida para sua primeira vaga.",selo:"🎖️ Insígnia do Aprendiz",cursos:[
+    {id:"c1-1",nome:"Programação Básica",icone:"🧠",tempo:"40h",modulos:[
+      {id:"c1-1-1",nome:"Módulo 01: Primeiros Comandos",cor:"#C9A227",aulas:["M01A01 – O que são variáveis?","M01A02 – Tipos Primitivos","M01A03 – Declarando Variáveis","M01A04 – Usando Constantes","M01A05 – Entrada e Saída de Dados","M01A06 – Como usar Bibliotecas","M01A07 – Operações Aritméticas","M01A08 – Exercícios Extras","M01A09 – Operadores de Atribuição","M01A10 – Operações com Textos","M01A11 – Representação com Fluxogramas"]},
+      {id:"c1-1-2",nome:"Módulo 02: Condicionais",cor:"#B8860B",aulas:["M02A00 – Estruturas de controle","M02A01 – Operadores Relacionais","M02A02 – Operadores Lógicos","M02A03 – Condições Simples","M02A04 – Condições Compostas","M02A05 – Condições Aninhadas","M02A06 – Condições Múltiplas"]},
+      {id:"c1-1-3",nome:"Módulo 03: Repetições",cor:"#A67C00",aulas:["M03A00 – Estruturas de Controle","M03A01 – Repetição com teste lógico no início","M03A02 – Realizando Contagens","M03A03 – Continuação","M03A04 – Realizando Cálculos em Laços","M03A05 – Teste de Mesa no Portugol Studio","M03A06 – Contando elementos por categoria","M03A07 – Maior e Menor Valores","M03A08 – Repetição com Flag","M03A09 – Repetição com interrupção","M03A10 – Repetição com teste no final","M03A11 – Exercícios com Faça Enquanto","M03A12 – Repetição com variável de controle","M03A13 – Exercícios com Estrutura PARA","M03A14 – Laços Aninhados","M03A15 – Validação de dados com Laço"]},
+      {id:"c1-1-4",nome:"Módulo 04: Variáveis Compostas",cor:"#8B6914",aulas:["M04A00 – Variáveis Compostas","M04A01 – Variáveis Simples Vs Compostas","M04A02 – Atribuições em Vetores","M04A03 – Tamanho do Vetor","M04A04 – Exercícios","M04A05 – Busca Sequencial em Vetor","M04A06 – Contagens em Vetores","M04A07 – Totais em vetores","M04A08 – Maior e menor valores em vetor","M04A09 – Exercícios","M04A10 – Matrizes","M04A11 – Atribuições em Matrizes","M04A12 – Exibindo uma matriz na tela","M04A13 – Isolando Elementos em Matrizes","M04A14 – Exercícios","M04A15 – Registros","M04A16 – Sortear Sem Repetir","M04A17 – Ordenando um vetor","M04A18 – Busca Binária em Vetores"]},
+      {id:"c1-1-5",nome:"Módulo 05: Rotinas",cor:"#6B5010",aulas:["M05A00 – Rotinas","M05A01 – Rotinas (Continuação)","M05A02 – Rotinas Sem Retorno","M05A03 – Passagem de parâmetros por valor","M05A04 – Escopo de Variáveis","M05A06 – Rotinas com retorno","M05A07 – Simplificando as chamadas","M05A08 – Exercícios","M05A09 – Função que chama função","M05A10 – Funções Recursivas"]}
     ]},
-    {id:"c1-2",nome:"Desenvolvimento Web 2020 (HTML5+CSS3)",icone:"🌐",reliquia:"Cetro do Layout",tempo:"200h",modulos:[
-      {id:"c1-2-1",nome:"Módulo 01: Fundamentos HTML",cor:"#C9A227",selo:"Selo do Primeiro HTML",aulas:["Cap 01 Aula 01 – Introdução","Cap 01 Aula 02 – Evolução da Internet","Cap 02 Aula 01 – Como a Internet Funciona","Cap 02 Aula 02 – Domínio e Hospedagem","Cap 03 Aula 01 – Como funciona HTML e CSS","Cap 03 Aula 02 – Back-end e Front-end","Cap 04 Aula 01 – Instalando Ferramentas","Cap 04 Aula 02 – Nosso primeiro HTML5","Cap 05 Aula 01 – Parágrafos e Quebras de Linha","Cap 05 Aula 02 – Símbolos e Emojis","Cap 06 Aula 01 – Direitos Autorais","Cap 06 Aula 02 – Formatos de Imagem","Cap 06 Aula 03 – Tamanhos de Imagem","Cap 06 Aula 04 – Imagens em HTML5","Cap 06 Aula 05 – Ícones e Favoritos","Cap 07 Aula 01 – Hierarquia de Títulos","Cap 08 Aula 01 – Semântica em HTML5","Cap 08 Aula 02 – Negrito e Itálico","Cap 08 Aula 03 – Formatações Importantes","Cap 08 Aula 04 – Códigos e citações","Cap 09 Aula 01 – Listas OL e UL","Cap 09 Aula 02 – Listas mistas e de definição","Cap 10 Aula 01 – Links","Cap 10 Aula 02 – Links Internos","Cap 10 Aula 03 – Links para Download","Cap 10 Aula 04 – Desafios do Capítulo 10"]},
-      {id:"c1-2-2",nome:"Módulo 02: CSS e Design",cor:"#B8860B",selo:"Selo da Paleta Real",aulas:["Cap 12 Aula 01 – Estilos CSS inline","Cap 12 Aula 02 – Estilos CSS Internos","Cap 12 Aula 03 – Estilos CSS Externos","Cap 13 Aula 01 – Psicologia das Cores","Cap 13 Aula 02 – Representando Cores","Cap 13 Aula 03 – Harmonia de Cores","Cap 13 Aula 04 – Paleta de cores na prática","Cap 13 Aula 05 – Captura de cores em sites","Cap 13 Aula 06 – Criando Degradê em CSS","Cap 13 Aula 07 – Criando um site harmônico","Cap 14 Aula 1 – Tipografia (parte 1)","Cap 14 Aula 2 – Tipografia (parte 2)","Cap 14 Aula 3 – Familias de fonte","Cap 14 Aula 4 – Tamanhos de fonte","Cap 14 Aula 5 – Peso, estilo e shorhand","Cap 14 Aula 6 – Google Fonts","Cap 14 Aula 7 – Fontes Externas","Cap 14 Aula 10 – Alinhamentos","Cap 15 Aula 1 – CSS id","Cap 15 Aula 2 – CSS class","Cap 15 Aula 3 – CSS pseudo-class","Cap 15 Aula 4 – CSS pseudo-element","Cap 16 Aula 1 – Modelo de Caixas","Cap 16 Aula 2 – Modelo de Caixas na prática","Cap 16 Aula 3 – Shorthands Úteis","Cap 16 Aula 4 – Grouping Tags Semânticas","Cap 16 Aula 5 – Sombra nas Caixas","Cap 16 Aula 6 – Vértices Arredondados","Cap 16 Aula 7 – Bordas com Imagens","Cap 16 Aula 8 – Desafio Site Completo"]},
-      {id:"c1-2-3",nome:"Módulo 03: Projetos e Git",cor:"#A67C00",selo:"Selo do Repositório",aulas:["Cap 17 Aula 1 – Criando um projeto do Zero","Cap 17 Aula 2 – Como vai ficar o projeto pronto","Cap 17 Aula 3 – Wireframe, paleta e tipografia","Cap 17 Aula 4 – Aplicando o Wireframe","Cap 17 Aula 5 – Organizando o Conteúdo","Cap 17 Aula 6 – Variáveis em CSS","Cap 17 Aula 7 – Responsividade","Cap 17 Aula 8 – Tornando um site responsivo","Cap 17 Aula 9 – Personalizando o topo","Cap 17 Aula 10 – Estilizando o Conteúdo","Cap 17 Aula 11 – Rodapé e Aside","Cap 17 Aula 12 – Vídeo Adaptável","Cap 18 Aula 1 – O que é Git e GitHub?","Cap 18 Aula 2 – Instalação do Git e GitHub","Cap 18 Aula 3 – Criando uma conta GitHub","Cap 18 Aula 4 – Primeiro Repositório","Cap 18 Aula 5 – Gerenciando Repositórios","Cap 18 Aula 6 – GitHub Pages","Cap 18 Aula 7 – Manutenção em sites no GitHub","Cap 18 Aula 8 – GitHub Social","Cap 18 Aula 9 – Clonando Repositórios","Cap 18 Aula 10 – GitHub em outro PC"]},
-      {id:"c1-2-4",nome:"Módulo 04: Tabelas, Iframes e Formulários",cor:"#8B6914",selo:"Selo do Formulário",aulas:["Cap 19 Aula 01 – Trabalhando com imagens de fundo","Cap 19 Aula 02 – background-image","Cap 19 Aula 03 – background-repeat","Cap 19 Aula 04 – Background Position","Cap 19 Aula 05 – background-size","Cap 19 Aula 06 – background-attachment e shorthand","Cap 19 Aula 07 – Centralização Vertical","Cap 20 Aula 01 – Um projeto completo usando HTML e CSS","Cap 20 Aula 02 – Organizando os arquivos","Cap 20 Aula 03 – Ajustando o HTML","Cap 20 Aula 04 – Ajustando o Estilo","Cap 20 Aula 05 – Aplicando as fontes","Cap 20 Aula 06 – Imagens com efeito parallax","Cap 20 Aula 07 – Hospedando o projeto cordel","Cap 21 Aula 01 – Quando usar e não usar tabelas","Cap 21 Aula 02 – Primeira Tabela em HTML","Cap 21 Aula 03 – Alinhamento de conteúdos em tabelas","Cap 21 Aula 04 – Anatomia de tabelas grandes","Cap 21 Aula 05 – Caption e Escopo de títulos","Cap 21 Aula 06 – Efeito Zebrado","Cap 21 Aula 07 – Cabeçalho fixo para tabelas grandes","Cap 21 Aula 08 – Mesclagem de Células","Cap 21 Aula 14 – Tabelas responsivas","Cap 22 Aula 1 – Nosso primeiro iframe","Cap 22 Aula 2 – Configurações do iframe","Cap 22 Aula 3 – Conteúdo local no iframe","Cap 22 Aula 4 – Navegação no iframe","Cap 22 Aula 5 – Conteúdo estático em iframe","Cap 22 Aula 6 – Inconvenientes do iframe","Cap 22 Aula 7 – Tornando iframes mais seguros","Cap 22 Aula 8 – Dicas interessantes para iframes","Cap 23 Aula 1 – Projeto Redes Sociais","Cap 23 Aula 2 – Organizando arquivos do projeto","Cap 23 Aula 3 – Criando a página principal","Cap 23 Aula 4 – Posicionando o conteúdo na tela","Cap 23 Aula 5 – Criando os botões de redes sociais","Cap 23 Aula 6 – Criando as páginas de cada rede","Cap 24 Aula 1 – Criando o primeiro Formulário","Cap 24 Aula 2 – Aprimorando Formulários com Label","Cap 24 Aula 3 – Métodos GET e POST","Cap 24 Aula 4 – Atributos para input text e password","Cap 24 Aula 5 – Elementos number month date e time","Cap 24 Aula 6 – Compatibilidade com formulários","Cap 24 Aula 7 – Formulários com telefone e e-mail","Cap 24 Aula 8 – Checkbox e radio","Cap 24 Aula 9 – Color, range e file","Cap 24 Aula 10 – Select, datalist e textarea","Cap 24 Aula 11 – Output em Formulários HTML"]},
-      {id:"c1-2-5",nome:"Módulo 05: Media Queries, Flexbox e Grid",cor:"#6B5010",selo:"Selo da Rainha Responsiva",aulas:["Cap 25 Aula 01 – O que são Media Queries?","Cap 25 Aula 02 – Preparando um site para impressão","Cap 25 Aula 03 – Múltiplas Media Features","Cap 25 Aula 04 – Seguindo a orientação do dispositivo","Cap 25 Aula 06 – Mobile First","Cap 25 Aula 07 – Iniciando um site mobile first","Cap 25 Aula 08 – Device breakpoints","Cap 25 Aula 09 – Exercício menu responsivo","Cap 25 Aula 10 – Configurando layout do projeto","Cap 25 Aula 11 – Criando um menu hambúrguer","Cap 25 Aula 12 – Media queries para outros dispositivos","Cap 26 Aula 01 – Inicio do projeto tela de login","Cap 26 Aula 02 – Versão mobile first da tela de login","Cap 26 Aula 03 – Outras media queries para login","Cap 26 Aula 04 – Criando o formulário de login","Cap 26 Aula 05 – Aplicando estilo ao formulário de login","Cap 26 Aula 06 – Finalizando projeto tela de login","Cap 27 Aula 1 – Introdução ao Flexbox","Cap 27 Aula 2 – Direções e eixos","Cap 27 Aula 3 – Empacotamento e fluxo","Cap 27 Aula 4 – Alinhamentos nos eixos","Cap 27 Aula 5 – Centralização com Flexbox","Cap 27 Aula 6 – Alinhamento empacotado","Cap 27 Aula 7 – Anatomia dos itens Flexbox","Cap 27 Aula 8 – Tamanho base dos itens","Cap 27 Aula 9 – Pode crescer ou diminuir","Cap 27 Aula 10 – Simplificando com flex","Cap 27 Aula 11 – Menu com Flexbox (Parte1)","Cap 27 Aula 12 – Menu com Flexbox (Parte 2)","Cap 27 Aula 13 – Menu Com Flexbox (Parte 3)","Cap 27 Aula 14 – Conteúdo Flexível (Parte 1)","Cap 27 Aula 15 – Conteúdo Flexível (Parte 2)","Cap 27 Aula 16 – Flexbox Froggy (parte 1)","Cap 27 Aula 17 – Flexbox Froggy (parte 2)","Cap 28 Aula 01 – O que é Grid Layout","Cap 28 Aula 02 – Anatomia do Grid","Cap 28 Aula 03 – Propriedades Container","Cap 28 Aula 04 – CSS Grid Layout na prática (parte 1)","Cap 28 Aula 05 – Propriedades de container para Grids (parte 2)","Cap 28 Aula 06 – CSS Grid Layout na prática (parte 2)","Cap 28 Aula 07 – Propriedades de container para Grids (parte 3)","Cap 28 Aula 08 – Propriedades de container para Grids (parte 4)","Cap 28 Aula 09 – CSS Grid Layout na prática (parte 3)","Cap 28 Aula 10 – Propriedades de itens para Grids (parte 1)","Cap 28 Aula 11 – CSS Grid Layout na prática (parte 4)","Cap 28 Aula 12 – Propriedades de itens para Grids (parte 2)"]}
+    {id:"c1-2",nome:"Desenvolvimento Web (HTML5+CSS3)",icone:"🌐",tempo:"200h",modulos:[
+      {id:"c1-2-1",nome:"Módulo 01: Fundamentos HTML",cor:"#C9A227",aulas:["Cap 01 Aula 01 – Introdução","Cap 01 Aula 02 – Evolução da Internet","Cap 02 Aula 01 – Como a Internet Funciona","Cap 02 Aula 02 – Domínio e Hospedagem","Cap 03 Aula 01 – Como funciona HTML e CSS","Cap 03 Aula 02 – Back-end e Front-end","Cap 04 Aula 01 – Instalando Ferramentas","Cap 04 Aula 02 – Nosso primeiro HTML5","Cap 05 Aula 01 – Parágrafos e Quebras de Linha","Cap 05 Aula 02 – Símbolos e Emojis","Cap 06 Aula 01 – Direitos Autorais","Cap 06 Aula 02 – Formatos de Imagem","Cap 06 Aula 03 – Tamanhos de Imagem","Cap 06 Aula 04 – Imagens em HTML5","Cap 06 Aula 05 – Ícones e Favoritos","Cap 07 Aula 01 – Hierarquia de Títulos","Cap 08 Aula 01 – Semântica em HTML5","Cap 08 Aula 02 – Negrito e Itálico","Cap 08 Aula 03 – Formatações Importantes","Cap 08 Aula 04 – Códigos e citações","Cap 09 Aula 01 – Listas OL e UL","Cap 09 Aula 02 – Listas mistas e de definição","Cap 10 Aula 01 – Links","Cap 10 Aula 02 – Links Internos","Cap 10 Aula 03 – Links para Download","Cap 10 Aula 04 – Desafios do Capítulo 10"]},
+      {id:"c1-2-2",nome:"Módulo 02: CSS e Design",cor:"#B8860B",aulas:["Cap 12 Aula 01 – Estilos CSS inline","Cap 12 Aula 02 – Estilos CSS Internos","Cap 12 Aula 03 – Estilos CSS Externos","Cap 13 Aula 01 – Psicologia das Cores","Cap 13 Aula 02 – Representando Cores","Cap 13 Aula 03 – Harmonia de Cores","Cap 13 Aula 04 – Paleta de cores na prática","Cap 13 Aula 05 – Captura de cores em sites","Cap 13 Aula 06 – Criando Degradê em CSS","Cap 13 Aula 07 – Criando um site harmônico","Cap 14 Aula 1 – Tipografia (parte 1)","Cap 14 Aula 2 – Tipografia (parte 2)","Cap 14 Aula 3 – Familias de fonte","Cap 14 Aula 4 – Tamanhos de fonte","Cap 14 Aula 5 – Peso, estilo e shorhand","Cap 14 Aula 6 – Google Fonts","Cap 14 Aula 7 – Fontes Externas","Cap 14 Aula 10 – Alinhamentos","Cap 15 Aula 1 – CSS id","Cap 15 Aula 2 – CSS class","Cap 15 Aula 3 – CSS pseudo-class","Cap 15 Aula 4 – CSS pseudo-element","Cap 16 Aula 1 – Modelo de Caixas","Cap 16 Aula 2 – Modelo de Caixas na prática","Cap 16 Aula 3 – Shorthands Úteis","Cap 16 Aula 4 – Grouping Tags Semânticas","Cap 16 Aula 5 – Sombra nas Caixas","Cap 16 Aula 6 – Vértices Arredondados","Cap 16 Aula 7 – Bordas com Imagens","Cap 16 Aula 8 – Desafio Site Completo"]},
+      {id:"c1-2-3",nome:"Módulo 03: Projetos e Git",cor:"#A67C00",aulas:["Cap 17 Aula 1 – Criando um projeto do Zero","Cap 17 Aula 2 – Como vai ficar o projeto pronto","Cap 17 Aula 3 – Wireframe, paleta e tipografia","Cap 17 Aula 4 – Aplicando o Wireframe","Cap 17 Aula 5 – Organizando o Conteúdo","Cap 17 Aula 6 – Variáveis em CSS","Cap 17 Aula 7 – Responsividade","Cap 17 Aula 8 – Tornando um site responsivo","Cap 17 Aula 9 – Personalizando o topo","Cap 17 Aula 10 – Estilizando o Conteúdo","Cap 17 Aula 11 – Rodapé e Aside","Cap 17 Aula 12 – Vídeo Adaptável","Cap 18 Aula 1 – O que é Git e GitHub?","Cap 18 Aula 2 – Instalação do Git e GitHub","Cap 18 Aula 3 – Criando uma conta GitHub","Cap 18 Aula 4 – Primeiro Repositório","Cap 18 Aula 5 – Gerenciando Repositórios","Cap 18 Aula 6 – GitHub Pages","Cap 18 Aula 7 – Manutenção em sites no GitHub","Cap 18 Aula 8 – GitHub Social","Cap 18 Aula 9 – Clonando Repositórios","Cap 18 Aula 10 – GitHub em outro PC"]},
+      {id:"c1-2-4",nome:"Módulo 04: Tabelas, Iframes e Formulários",cor:"#8B6914",aulas:["Cap 19 Aula 01 – Trabalhando com imagens de fundo","Cap 19 Aula 02 – background-image","Cap 19 Aula 03 – background-repeat","Cap 19 Aula 04 – Background Position","Cap 19 Aula 05 – background-size","Cap 19 Aula 06 – background-attachment e shorthand","Cap 19 Aula 07 – Centralização Vertical","Cap 20 Aula 01 – Um projeto completo usando HTML e CSS","Cap 20 Aula 02 – Organizando os arquivos","Cap 20 Aula 03 – Ajustando o HTML","Cap 20 Aula 04 – Ajustando o Estilo","Cap 20 Aula 05 – Aplicando as fontes","Cap 20 Aula 06 – Imagens com efeito parallax","Cap 20 Aula 07 – Hospedando o projeto cordel","Cap 21 Aula 01 – Quando usar e não usar tabelas","Cap 21 Aula 02 – Primeira Tabela em HTML","Cap 21 Aula 03 – Alinhamento de conteúdos em tabelas","Cap 21 Aula 04 – Anatomia de tabelas grandes","Cap 21 Aula 05 – Caption e Escopo de títulos","Cap 21 Aula 06 – Efeito Zebrado","Cap 21 Aula 07 – Cabeçalho fixo para tabelas grandes","Cap 21 Aula 08 – Mesclagem de Células","Cap 21 Aula 14 – Tabelas responsivas","Cap 22 Aula 1 – Nosso primeiro iframe","Cap 22 Aula 2 – Configurações do iframe","Cap 22 Aula 3 – Conteúdo local no iframe","Cap 22 Aula 4 – Navegação no iframe","Cap 22 Aula 5 – Conteúdo estático em iframe","Cap 22 Aula 6 – Inconvenientes do iframe","Cap 22 Aula 7 – Tornando iframes mais seguros","Cap 22 Aula 8 – Dicas interessantes para iframes","Cap 23 Aula 1 – Projeto Redes Sociais","Cap 23 Aula 2 – Organizando arquivos do projeto","Cap 23 Aula 3 – Criando a página principal","Cap 23 Aula 4 – Posicionando o conteúdo na tela","Cap 23 Aula 5 – Criando os botões de redes sociais","Cap 23 Aula 6 – Criando as páginas de cada rede","Cap 24 Aula 1 – Criando o primeiro Formulário","Cap 24 Aula 2 – Aprimorando Formulários com Label","Cap 24 Aula 3 – Métodos GET e POST","Cap 24 Aula 4 – Atributos para input text e password","Cap 24 Aula 5 – Elementos number month date e time","Cap 24 Aula 6 – Compatibilidade com formulários","Cap 24 Aula 7 – Formulários com telefone e e-mail","Cap 24 Aula 8 – Checkbox e radio","Cap 24 Aula 9 – Color, range e file","Cap 24 Aula 10 – Select, datalist e textarea","Cap 24 Aula 11 – Output em Formulários HTML"]},
+      {id:"c1-2-5",nome:"Módulo 05: Media Queries, Flexbox e Grid",cor:"#6B5010",aulas:["Cap 25 Aula 01 – O que são Media Queries?","Cap 25 Aula 02 – Preparando um site para impressão","Cap 25 Aula 03 – Múltiplas Media Features","Cap 25 Aula 04 – Seguindo a orientação do dispositivo","Cap 25 Aula 06 – Mobile First","Cap 25 Aula 07 – Iniciando um site mobile first","Cap 25 Aula 08 – Device breakpoints","Cap 25 Aula 09 – Exercício menu responsivo","Cap 25 Aula 10 – Configurando layout do projeto","Cap 25 Aula 11 – Criando um menu hambúrguer","Cap 25 Aula 12 – Media queries para outros dispositivos","Cap 26 Aula 01 – Inicio do projeto tela de login","Cap 26 Aula 02 – Versão mobile first da tela de login","Cap 26 Aula 03 – Outras media queries para login","Cap 26 Aula 04 – Criando o formulário de login","Cap 26 Aula 05 – Aplicando estilo ao formulário de login","Cap 26 Aula 06 – Finalizando projeto tela de login","Cap 27 Aula 1 – Introdução ao Flexbox","Cap 27 Aula 2 – Direções e eixos","Cap 27 Aula 3 – Empacotamento e fluxo","Cap 27 Aula 4 – Alinhamentos nos eixos","Cap 27 Aula 5 – Centralização com Flexbox","Cap 27 Aula 6 – Alinhamento empacotado","Cap 27 Aula 7 – Anatomia dos itens Flexbox","Cap 27 Aula 8 – Tamanho base dos itens","Cap 27 Aula 9 – Pode crescer ou diminuir","Cap 27 Aula 10 – Simplificando com flex","Cap 27 Aula 11 – Menu com Flexbox (Parte1)","Cap 27 Aula 12 – Menu com Flexbox (Parte 2)","Cap 27 Aula 13 – Menu Com Flexbox (Parte 3)","Cap 27 Aula 14 – Conteúdo Flexível (Parte 1)","Cap 27 Aula 15 – Conteúdo Flexível (Parte 2)","Cap 27 Aula 16 – Flexbox Froggy (parte 1)","Cap 27 Aula 17 – Flexbox Froggy (parte 2)","Cap 28 Aula 01 – O que é Grid Layout","Cap 28 Aula 02 – Anatomia do Grid","Cap 28 Aula 03 – Propriedades Container","Cap 28 Aula 04 – CSS Grid Layout na prática (parte 1)","Cap 28 Aula 05 – Propriedades de container para Grids (parte 2)","Cap 28 Aula 06 – CSS Grid Layout na prática (parte 2)","Cap 28 Aula 07 – Propriedades de container para Grids (parte 3)","Cap 28 Aula 08 – Propriedades de container para Grids (parte 4)","Cap 28 Aula 09 – CSS Grid Layout na prática (parte 3)","Cap 28 Aula 10 – Propriedades de itens para Grids (parte 1)","Cap 28 Aula 11 – CSS Grid Layout na prática (parte 4)","Cap 28 Aula 12 – Propriedades de itens para Grids (parte 2)"]}
     ]},
-    {id:"c1-3",nome:"Linguagem JavaScript",icone:"⚡",reliquia:"Anel do Dinamismo",tempo:"40h",modulos:[
-      {id:"c1-3-1",nome:"Módulo 01: Fundamentos da Web",cor:"#C9A227",selo:"Selo da Internet Viva",aulas:["Cap 01 Aula 01 – Introdução","Cap 01 Aula 02 – Evolução da Internet","Cap 02 Aula 01 – Como a Internet Funciona","Cap 02 Aula 02 – Domínio e Hospedagem","Cap 03 Aula 01 – Como funciona HTML e CSS","Cap 03 Aula 02 – Back-end e Front-end","Cap 04 Aula 01 – Instalando Ferramentas","Cap 04 Aula 02 – Nosso primeiro HTML5"]},
-      {id:"c1-3-2",nome:"Módulo 02: HTML Essencial",cor:"#B8860B",selo:"Selo da Estrutura Viva",aulas:["Cap 05 Aula 01 – Parágrafos e Quebras de Linha","Cap 05 Aula 02 – Símbolos e Emojis","Cap 06 Aula 01 – Direitos Autorais","Cap 06 Aula 02 – Formatos de Imagem","Cap 06 Aula 03 – Tamanhos de Imagem","Cap 06 Aula 04 – Imagens em HTML5","Cap 06 Aula 05 – Ícones e Favoritos","Cap 07 Aula 01 – Hierarquia de Títulos","Cap 08 Aula 01 – Semântica em HTML5","Cap 08 Aula 02 – Negrito e Itálico","Cap 08 Aula 03 – Formatações Importantes","Cap 08 Aula 04 – Códigos e citações","Cap 09 Aula 01 – Listas OL e UL","Cap 09 Aula 02 – Listas mistas e de definição","Cap 10 Aula 01 – Links","Cap 10 Aula 02 – Links Internos","Cap 10 Aula 03 – Links para Download","Cap 10 Aula 04 – Desafios do Capítulo 10","Cap 11 Aula 01 – Imagens Dinâmicas","Cap 11 Aula 02 – Elemento Picture","Cap 11 Aula 03 – Elemento Áudio","Cap 11 Aula 04 – Elemento Vídeo","Cap 11 Aula 05 – Vídeos de Hospedagem Local","Cap 11 Aula 06 – Vídeos de Hospedagem Externa","Cap 11 Aula 07 – Desafio do Capítulo 11"]}
+    {id:"c1-3",nome:"Linguagem JavaScript",icone:"⚡",tempo:"40h",modulos:[
+      {id:"c1-3-1",nome:"Módulo 01: Fundamentos da Web",cor:"#C9A227",aulas:["Cap 01 Aula 01 – Introdução","Cap 01 Aula 02 – Evolução da Internet","Cap 02 Aula 01 – Como a Internet Funciona","Cap 02 Aula 02 – Domínio e Hospedagem","Cap 03 Aula 01 – Como funciona HTML e CSS","Cap 03 Aula 02 – Back-end e Front-end","Cap 04 Aula 01 – Instalando Ferramentas","Cap 04 Aula 02 – Nosso primeiro HTML5"]},
+      {id:"c1-3-2",nome:"Módulo 02: HTML Essencial",cor:"#B8860B",aulas:["Cap 05 Aula 01 – Parágrafos e Quebras de Linha","Cap 05 Aula 02 – Símbolos e Emojis","Cap 06 Aula 01 – Direitos Autorais","Cap 06 Aula 02 – Formatos de Imagem","Cap 06 Aula 03 – Tamanhos de Imagem","Cap 06 Aula 04 – Imagens em HTML5","Cap 06 Aula 05 – Ícones e Favoritos","Cap 07 Aula 01 – Hierarquia de Títulos","Cap 08 Aula 01 – Semântica em HTML5","Cap 08 Aula 02 – Negrito e Itálico","Cap 08 Aula 03 – Formatações Importantes","Cap 08 Aula 04 – Códigos e citações","Cap 09 Aula 01 – Listas OL e UL","Cap 09 Aula 02 – Listas mistas e de definição","Cap 10 Aula 01 – Links","Cap 10 Aula 02 – Links Internos","Cap 10 Aula 03 – Links para Download","Cap 10 Aula 04 – Desafios do Capítulo 10","Cap 11 Aula 01 – Imagens Dinâmicas","Cap 11 Aula 02 – Elemento Picture","Cap 11 Aula 03 – Elemento Áudio","Cap 11 Aula 04 – Elemento Vídeo","Cap 11 Aula 05 – Vídeos de Hospedagem Local","Cap 11 Aula 06 – Vídeos de Hospedagem Externa","Cap 11 Aula 07 – Desafio do Capítulo 11"]}
     ]},
-    {id:"c1-4",nome:"Git e GitHub",icone:"🔗",reliquia:"Chave do Repositório",tempo:"20h",modulos:[
-      {id:"c1-4-1",nome:"Módulo Único: Versionamento",cor:"#8B6914",selo:"Selo do Commit Inicial",aulas:["O que é Git? O que é versionamento?","O que é GitHub? Pra que ele serve?","A Evolução do Git e GitHub","Instalações e configurações importantes","Criando o primeiro Repositório","Instalando GitHub Desktop no Linux","Clonando um Repositório","Versionando seus projetos antigos","Você sabe usar Issues?","Guia da Linguagem Markdown","Seu GitHub muito mais seguro","Git Branches de forma fácil e com exemplo","Hospedagem Grátis no GitHub Pages"]}
+    {id:"c1-4",nome:"Git e GitHub",icone:"🔗",tempo:"20h",modulos:[
+      {id:"c1-4-1",nome:"Módulo Único: Versionamento",cor:"#8B6914",aulas:["O que é Git? O que é versionamento?","O que é GitHub? Pra que ele serve?","A Evolução do Git e GitHub","Instalações e configurações importantes","Criando o primeiro Repositório","Instalando GitHub Desktop no Linux","Clonando um Repositório","Versionando seus projetos antigos","Você sabe usar Issues?","Guia da Linguagem Markdown","Seu GitHub muito mais seguro","Git Branches de forma fácil e com exemplo","Hospedagem Grátis no GitHub Pages"]}
     ]},
-    {id:"c1-5",nome:"React",icone:"⚛️",reliquia:"Coroa Componentizada",tempo:"40h",modulos:[
-      {id:"c1-5-1",nome:"Módulo Único: Componentes e Estado",cor:"#6B5010",selo:"Selo do Componente Vivo",aulas:["Introdução ao React","JSX e Componentes","Props e Estado","Hooks: useState e useEffect","Eventos e Formulários","Renderização Condicional","Listas e Keys","Roteamento com React Router","Consumo de APIs","Projeto Final"]}
+    {id:"c1-5",nome:"React",icone:"⚛️",tempo:"40h",modulos:[
+      {id:"c1-5-1",nome:"Módulo Único: Componentes e Estado",cor:"#6B5010",aulas:["Introdução ao React","JSX e Componentes","Props e Estado","Hooks: useState e useEffect","Eventos e Formulários","Renderização Condicional","Listas e Keys","Roteamento com React Router","Consumo de APIs","Projeto Final"]}
     ]}
   ]},
-  {id:"c2",nome:"Desenvolvedor Full-Stack",coroa:"Coroa da Tecelã",foco:"Aplicação completa, do front ao back-end.",cursos:[
-    {id:"c2-1",nome:"PHP Básico",icone:"🐘",reliquia:"Cálice do Servidor",tempo:"40h",modulos:[
-      {id:"c2-1-1",nome:"Módulo Único: PHP Básico",cor:"#C9A227",selo:"Selo do ElePHPant",aulas:["Aula 1 – Historia do PHP","Aula 2 – Como funciona o PHP","Aula 3 – Como instalar PHP","Aula 4 – Variáveis em PHP","Aula 5 – Operadores Aritméticos","Aula 6 – Operadores de Atribuição","Aula 7 – Operadores Relacionais","Aula 8 – Integração HTML 5 + PHP","Aula 9 – Estrutura Condicional if","Aula 10 – Estrutura Condicional Switch","Aula 11 – Estrutura de Repetição While","Aula 12 – Estrutura de Repetição Do While","Aula 13 – Estrutura de Repetição For","Aula 14 – Rotinas em PHP (parte 1)","Aula 15 – Rotinas em PHP (parte 2)","Aula 16 – Funções String em PHP (parte 1)","Aula 17 – Funções String em PHP (parte 2)","Aula 18 – Vetores e Matrizes (parte 1)","Aula 19 – Vetores e Matrizes (parte 2)"]}
+  {id:"c2",nome:"Desenvolvedor Full-Stack",coroa:"Coroa da Tecelã",foco:"Aplicação completa, do front ao back-end.",selo:"🏅 Medalha da Tecelã",cursos:[
+    {id:"c2-1",nome:"PHP Básico",icone:"🐘",tempo:"40h",modulos:[
+      {id:"c2-1-1",nome:"Módulo Único: PHP Básico",cor:"#C9A227",aulas:["Aula 1 – Historia do PHP","Aula 2 – Como funciona o PHP","Aula 3 – Como instalar PHP","Aula 4 – Variáveis em PHP","Aula 5 – Operadores Aritméticos","Aula 6 – Operadores de Atribuição","Aula 7 – Operadores Relacionais","Aula 8 – Integração HTML 5 + PHP","Aula 9 – Estrutura Condicional if","Aula 10 – Estrutura Condicional Switch","Aula 11 – Estrutura de Repetição While","Aula 12 – Estrutura de Repetição Do While","Aula 13 – Estrutura de Repetição For","Aula 14 – Rotinas em PHP (parte 1)","Aula 15 – Rotinas em PHP (parte 2)","Aula 16 – Funções String em PHP (parte 1)","Aula 17 – Funções String em PHP (parte 2)","Aula 18 – Vetores e Matrizes (parte 1)","Aula 19 – Vetores e Matrizes (parte 2)"]}
     ]},
-    {id:"c2-2",nome:"PHP Moderno",icone:"✨",reliquia:"Grimório Moderno",tempo:"40h",modulos:[
-      {id:"c2-2-1",nome:"Módulo 01: PHP Moderno",cor:"#B8860B",selo:"Selo da Modernidade",aulas:["M01 Aula 01 – Abertura","M01 Aula 02 – O curso serve pra mim?","M01 Aula 04 – Evolução do PHP","M01 Aula 05 – ElePHPant","M01 Aula 06 – Versões do PHP","M01 Aula 07 – PHP Morreu","M01 Aula 09 – Como o PHP Funciona","M01 Aula 12 – Instalação Windows","M01 Aula 13 – PHP no Linux","M01 Aula 15 – Configurações básicas VS Code","M01 Aula 17 – Primeiro script em PHP","M01 Aula 18 – Script PHP por dentro","M01 Aula 19 – Configurando php.ini","M01 Aula 20 – Variáveis constantes","M01 Aula 21 – Tipos primitivos","M01 Aula 22 – Strings PHP","M01 Aula 23 – Interação formulários (parte 1)","M01 Aula 24 – Interação formulários (parte 2)","M01 Aula 25 – Operadores aritméticos","M01 Aula 26 – Expressões aritméticas","M01 Aula 27 – Funções aritméticas","M01 Aula 28 – Antecessor e Sucessor","M01 Aula 29 – Sorteador de números","M01 Aula 30 – Conversor de Moedas v1","M01 Aula 31 – Conversor de Moedas v2","M01 Aula 33 – Super globais PHP","M01 Aula 34 – Formulários retroalimentados","M01 Aula 35 – Desafios"]}
+    {id:"c2-2",nome:"PHP Moderno",icone:"✨",tempo:"40h",modulos:[
+      {id:"c2-2-1",nome:"Módulo 01: PHP Moderno",cor:"#B8860B",aulas:["M01 Aula 01 – Abertura","M01 Aula 02 – O curso serve pra mim?","M01 Aula 04 – Evolução do PHP","M01 Aula 05 – ElePHPant","M01 Aula 06 – Versões do PHP","M01 Aula 07 – PHP Morreu","M01 Aula 09 – Como o PHP Funciona","M01 Aula 12 – Instalação Windows","M01 Aula 13 – PHP no Linux","M01 Aula 15 – Configurações básicas VS Code","M01 Aula 17 – Primeiro script em PHP","M01 Aula 18 – Script PHP por dentro","M01 Aula 19 – Configurando php.ini","M01 Aula 20 – Variáveis constantes","M01 Aula 21 – Tipos primitivos","M01 Aula 22 – Strings PHP","M01 Aula 23 – Interação formulários (parte 1)","M01 Aula 24 – Interação formulários (parte 2)","M01 Aula 25 – Operadores aritméticos","M01 Aula 26 – Expressões aritméticas","M01 Aula 27 – Funções aritméticas","M01 Aula 28 – Antecessor e Sucessor","M01 Aula 29 – Sorteador de números","M01 Aula 30 – Conversor de Moedas v1","M01 Aula 31 – Conversor de Moedas v2","M01 Aula 33 – Super globais PHP","M01 Aula 34 – Formulários retroalimentados","M01 Aula 35 – Desafios"]}
     ]},
-    {id:"c2-3",nome:"MySQL",icone:"🗄️",reliquia:"Coração do Banco",tempo:"40h",modulos:[
-      {id:"c2-3-1",nome:"Módulo 00: MySQL",cor:"#A67C00",selo:"Selo do SELECT Eterno",aulas:["Aula 01 – O que é um Banco de Dados?","Aula 02A – Instalando o MySQL com WAMP","Aula 02B – Instalando o XAMPP","Aula 03 – Criando o primeiro Banco de Dados","Aula 04 – Melhorando a Estrutura do Banco de Dados","Aula 05 – Inserindo Dados na Tabela (INSERT INTO)","Aula 06 – Alterando a Estrutura da Tabela","Aula 07 – Manipulando Linhas (UPDATE, DELETE e TRUNCATE)","Aula 08 – Gerenciando Cópias de Segurança MySQL","Aula 09 – PHPMyAdmin (Parte 1)","Aula 10 – PHPMyAdmin (Parte 2)","Aula 11 – SELECT (Parte 1)","Aula 12 – SELECT (Parte 2)","Aula 13 – SELECT (Parte 3)","Aula 14 – Modelo Relacional","Aula 15 – Chaves Estrangeiras e JOIN","Aula 16 – INNER JOIN com várias tabelas"]}
+    {id:"c2-3",nome:"MySQL",icone:"🗄️",tempo:"40h",modulos:[
+      {id:"c2-3-1",nome:"Módulo 00: MySQL",cor:"#A67C00",aulas:["Aula 01 – O que é um Banco de Dados?","Aula 02A – Instalando o MySQL com WAMP","Aula 02B – Instalando o XAMPP","Aula 03 – Criando o primeiro Banco de Dados","Aula 04 – Melhorando a Estrutura do Banco de Dados","Aula 05 – Inserindo Dados na Tabela (INSERT INTO)","Aula 06 – Alterando a Estrutura da Tabela","Aula 07 – Manipulando Linhas (UPDATE, DELETE e TRUNCATE)","Aula 08 – Gerenciando Cópias de Segurança MySQL","Aula 09 – PHPMyAdmin (Parte 1)","Aula 10 – PHPMyAdmin (Parte 2)","Aula 11 – SELECT (Parte 1)","Aula 12 – SELECT (Parte 2)","Aula 13 – SELECT (Parte 3)","Aula 14 – Modelo Relacional","Aula 15 – Chaves Estrangeiras e JOIN","Aula 16 – INNER JOIN com várias tabelas"]}
     ]},
-    {id:"c2-4",nome:"PHP com MySQL",icone:"🧩",reliquia:"Anel do CRUD",tempo:"120h",modulos:[
-      {id:"c2-4-1",nome:"Módulo 00: Primeiros Passos",cor:"#C9A227",selo:"Selo da Conexão",aulas:["M00A00 – Como vai ser o projeto?","M00A01 – Instalando as ferramentas","M00A02 – Configurando e testando o ambiente","M00A03 – Criando a estrutura HTML5+CSS","M00A04 – Criando o Banco MySQL","M00A05 – Alimentando a base de dados","M00A06 – Busca com múltiplos JOINs","M00A07 – Instalando PHP, Apache e MySQL no Debian","M00A08 – Servidor Apache no Ubuntu","M00A09 – Subir e Matar o serviço"]},
-      {id:"c2-4-2",nome:"Módulo 01: CRUD",cor:"#B8860B",selo:"Selo do CRUD Vivo",aulas:["M01A00 – Introdução ao PHP com MySQL","M01A01 – Conectando ao Banco de Dados","M01A02 – Integrando dados ao HTML criado","M01A03 – Imagens no Banco de Dados","M01A04 – Criando navegação entre páginas","M01A05 – Criando a página de detalhes","M01A06 – Criando JOINs entre tabelas","M01A07 – Rodapé e Menu de navegação","M01A08 – Ordenação de Dados","M01A09 – Fazendo busca de dados","M01A10 – Aprimorando os filtros e buscas"]},
-      {id:"c2-4-3",nome:"Módulo 02: Segurança e Acesso",cor:"#8B6914",selo:"Selo do Guardião",aulas:["M02A00 – Apresentação","M02A01 – Instalando Ferramentas","M02A02 – Renomeando arquivos","M02A03 – Usando ícones Google","M02A04 – Sistema de Notificações","M02A05 – Segurança e Hash","M02A06 – Criptografia simples","M02A07 – Tela de login","M02A08 – Fazendo o login funcionar","M02A09 – Fazendo o logout funcionar","M02A10 – Níveis de Acesso","M02A11 – Formulário novo usuário","M02A12 – Incluindo usuário no banco","M02A13 – Formulário de edição de usuário","M02A14 – Alterando dados do Banco","M02A15 – Salvando alterações no banco","M02A16 – Encerramento"]}
+    {id:"c2-4",nome:"PHP com MySQL",icone:"🧩",tempo:"120h",modulos:[
+      {id:"c2-4-1",nome:"Módulo 00: Primeiros Passos",cor:"#C9A227",aulas:["M00A00 – Como vai ser o projeto?","M00A01 – Instalando as ferramentas","M00A02 – Configurando e testando o ambiente","M00A03 – Criando a estrutura HTML5+CSS","M00A04 – Criando o Banco MySQL","M00A05 – Alimentando a base de dados","M00A06 – Busca com múltiplos JOINs","M00A07 – Instalando PHP, Apache e MySQL no Debian","M00A08 – Servidor Apache no Ubuntu","M00A09 – Subir e Matar o serviço"]},
+      {id:"c2-4-2",nome:"Módulo 01: CRUD",cor:"#B8860B",aulas:["M01A00 – Introdução ao PHP com MySQL","M01A01 – Conectando ao Banco de Dados","M01A02 – Integrando dados ao HTML criado","M01A03 – Imagens no Banco de Dados","M01A04 – Criando navegação entre páginas","M01A05 – Criando a página de detalhes","M01A06 – Criando JOINs entre tabelas","M01A07 – Rodapé e Menu de navegação","M01A08 – Ordenação de Dados","M01A09 – Fazendo busca de dados","M01A10 – Aprimorando os filtros e buscas"]},
+      {id:"c2-4-3",nome:"Módulo 02: Segurança e Acesso",cor:"#8B6914",aulas:["M02A00 – Apresentação","M02A01 – Instalando Ferramentas","M02A02 – Renomeando arquivos","M02A03 – Usando ícones Google","M02A04 – Sistema de Notificações","M02A05 – Segurança e Hash","M02A06 – Criptografia simples","M02A07 – Tela de login","M02A08 – Fazendo o login funcionar","M02A09 – Fazendo o logout funcionar","M02A10 – Níveis de Acesso","M02A11 – Formulário novo usuário","M02A12 – Incluindo usuário no banco","M02A13 – Formulário de edição de usuário","M02A14 – Alterando dados do Banco","M02A15 – Salvando alterações no banco","M02A16 – Encerramento"]}
     ]}
   ]},
-  {id:"c3",nome:"Engenheira de Software",coroa:"Coroa da Arquiteta",foco:"Fundamentos da computação.",cursos:[
-    {id:"c3-1",nome:"Linguagem C",icone:"🔧",reliquia:"Ponteiro Ancestral",tempo:"40h",modulos:[
-      {id:"c3-1-1",nome:"Módulos 00 a 03: C",cor:"#C9A227",selo:"Selo da Memória Crua",aulas:["M00A00 – Apresentação","M00A01 – História","M00A02 – Como Funciona","M00A03 – Instalação","M00A04 – Primeiro Programa","M01A01 – Mostrando coisas na tela","M01A02 – Fazendo comentários","M01A03 – Tipos Primitivos","M01A04 – Saídas Formatadas","M01A05 – Variáveis","M01A06 – Constantes","M01A07 – Entrada de Dados","M01A08 – Exercícios em Linguagem C","M01A09 – Números Aleatórios","M02A01 – Operações Aritméticas","M02A02 – Coerção de Tipo","M02A03 – Operadores Relacionais","M02A04 – Operador Ternário","M02A05 – Operações com Strings","M02A06 – Operadores Lógicos","M02A07 – Operadores de Atribuição","M02A08 – Operadores de Incremento e Decremento","M02A09 – Conversão Binário Decimal","M02A10 – Conversão Decimal Binário","M02A11 – Operadores Bit a Bit","M02A12 – Operadores de Deslocamento","M03A01 – Condições Simples","M03A02 – Capturando a Data e Hora do Sistema","M03A03 – Exercícios de Condições Simples","M03A04 – Condições Compostas","M03A05 – Exercícios com Condições Compostas","M03A06 – Condições Aninhadas","M03A07 – Exercícios de Condições Aninhadas","M03A08 – Condições Múltiplas","M03A09 – Exercícios Condições Múltiplas"]}
+  {id:"c3",nome:"Engenheira de Software",coroa:"Coroa da Arquiteta",foco:"Fundamentos da computação.",selo:"🎗️ Distintivo da Arquiteta",cursos:[
+    {id:"c3-1",nome:"Linguagem C",icone:"🔧",tempo:"40h",modulos:[
+      {id:"c3-1-1",nome:"Módulos 00 a 03: C",cor:"#C9A227",aulas:["M00A00 – Apresentação","M00A01 – História","M00A02 – Como Funciona","M00A03 – Instalação","M00A04 – Primeiro Programa","M01A01 – Mostrando coisas na tela","M01A02 – Fazendo comentários","M01A03 – Tipos Primitivos","M01A04 – Saídas Formatadas","M01A05 – Variáveis","M01A06 – Constantes","M01A07 – Entrada de Dados","M01A08 – Exercícios em Linguagem C","M01A09 – Números Aleatórios","M02A01 – Operações Aritméticas","M02A02 – Coerção de Tipo","M02A03 – Operadores Relacionais","M02A04 – Operador Ternário","M02A05 – Operações com Strings","M02A06 – Operadores Lógicos","M02A07 – Operadores de Atribuição","M02A08 – Operadores de Incremento e Decremento","M02A09 – Conversão Binário Decimal","M02A10 – Conversão Decimal Binário","M02A11 – Operadores Bit a Bit","M02A12 – Operadores de Deslocamento","M03A01 – Condições Simples","M03A02 – Capturando a Data e Hora do Sistema","M03A03 – Exercícios de Condições Simples","M03A04 – Condições Compostas","M03A05 – Exercícios com Condições Compostas","M03A06 – Condições Aninhadas","M03A07 – Exercícios de Condições Aninhadas","M03A08 – Condições Múltiplas","M03A09 – Exercícios Condições Múltiplas"]}
     ]},
-    {id:"c3-2",nome:"Linguagem C#",icone:"💠",reliquia:"Espada Tipada",tempo:"40h",modulos:[
-      {id:"c3-2-1",nome:"Módulos 00 a 02: C#",cor:"#B8860B",selo:"Selo do Visual Studio",aulas:["M00A00 – Curso de C#","M00A01 – História da Linguagem C#","M00A02 – Como funciona a Linguagem C#?","M00A03 – Instalando o Visual Studio","M00A04 – Primeiro Programa em C# (1ª Parte)","M00A05 – Primeiro Programa em C# (2ª Parte)","M00A06 – Primeiro Programa em C# (3ª Parte)","M01A01 – Gestão de Soluções no Visual Studio","M01A02 – Mostrando coisas na tela com C#","M01A03 – Como fazer comentários","M01A04 – Tipos Primitivos do C#","M01A05 – Usando Variáveis com C#","M01A06 – Constantes em C#","M01A07 – Conversão de Tipos em C#","M01A08 – Entrada de Dados com C#","M01A09 – Números Aleatórios em C#","M01A10 – Data e Hora em C#","M01A11 – Comandos Temporizados em C#","M01A12 – Strings Interpoladas em C#","M01A13 – Formatação de Strings Interpoladas em C#","M01A14 – Exercícios C#","M02A01 – Classificação dos Operadores","M02A02 – Operadores Aritméticos","M02A03 – Prática dos Operadores Aritméticos","M02A04 – Divisões Inteira e Real","M02A05 – Precedência dos Operadores Aritméticos","M02A06 – Operadores Relacionais (teoria)","M02A07 – Operadores Relacionais (prática)","M02A08 – Operadores Lógicos (teoria)","M02A09 – Operadores Lógicos (prática)","M02A10 – Expressões Mistas","M02A11 – Operador Condicional","M02A12 – Bases Numéricas C#","M02A15 – Operadores Bitwise (parte 1)","M02A16 – Operadores Bitwise (parte 2)","M02A17 – Operadores Bitwise (parte 3)","M02A19 – Operadores de Atribuição","M02A20 – Incremento e Decremento","M02A21 – Coalescência Nula","M02A22 – Precedência Completa","M02A23 – Classes Math MathF","M02A24 – Funções: Análise e Arredondamento","M02A25 – Cálculos Angulares"]}
+    {id:"c3-2",nome:"Linguagem C#",icone:"💠",tempo:"40h",modulos:[
+      {id:"c3-2-1",nome:"Módulos 00 a 02: C#",cor:"#B8860B",aulas:["M00A00 – Curso de C#","M00A01 – História da Linguagem C#","M00A02 – Como funciona a Linguagem C#?","M00A03 – Instalando o Visual Studio","M00A04 – Primeiro Programa em C# (1ª Parte)","M00A05 – Primeiro Programa em C# (2ª Parte)","M00A06 – Primeiro Programa em C# (3ª Parte)","M01A01 – Gestão de Soluções no Visual Studio","M01A02 – Mostrando coisas na tela com C#","M01A03 – Como fazer comentários","M01A04 – Tipos Primitivos do C#","M01A05 – Usando Variáveis com C#","M01A06 – Constantes em C#","M01A07 – Conversão de Tipos em C#","M01A08 – Entrada de Dados com C#","M01A09 – Números Aleatórios em C#","M01A10 – Data e Hora em C#","M01A11 – Comandos Temporizados em C#","M01A12 – Strings Interpoladas em C#","M01A13 – Formatação de Strings Interpoladas em C#","M01A14 – Exercícios C#","M02A01 – Classificação dos Operadores","M02A02 – Operadores Aritméticos","M02A03 – Prática dos Operadores Aritméticos","M02A04 – Divisões Inteira e Real","M02A05 – Precedência dos Operadores Aritméticos","M02A06 – Operadores Relacionais (teoria)","M02A07 – Operadores Relacionais (prática)","M02A08 – Operadores Lógicos (teoria)","M02A09 – Operadores Lógicos (prática)","M02A10 – Expressões Mistas","M02A11 – Operador Condicional","M02A12 – Bases Numéricas C#","M02A15 – Operadores Bitwise (parte 1)","M02A16 – Operadores Bitwise (parte 2)","M02A17 – Operadores Bitwise (parte 3)","M02A19 – Operadores de Atribuição","M02A20 – Incremento e Decremento","M02A21 – Coalescência Nula","M02A22 – Precedência Completa","M02A23 – Classes Math MathF","M02A24 – Funções: Análise e Arredondamento","M02A25 – Cálculos Angulares"]}
     ]},
-    {id:"c3-3",nome:"Java POO",icone:"☕",reliquia:"Cálice da Orientação",tempo:"40h",modulos:[
-      {id:"c3-3-1",nome:"Módulo Único: POO em Java",cor:"#A67C00",selo:"Selo do Objeto Vivo",aulas:["Aula Teórica 1 – O que é Programação Orientada a Objetos?","Aula Prática 1 – Instalando o JDK e NetBeans","Aula Teórica 2 – O que é um Objeto?","Aula Prática 2 – Criando Classes e Objetos em Java","Aula Teórica 3 – O que é Visibilidade em um Objeto?","Aula Prática 3 – Configurando Visibilidade de Atributos e Métodos","Aula Teórica 4 – Métodos Especiais","Aula Prática 4 – Métodos Getter, Setter e Construtor","Aula Teórica 5 – Exemplo Prático com Objetos","Aula Prática 5 – Exemplo Prático em Java","Aula Teórica 6 – Pilares da POO: Encapsulamento","Aula Prática 6 – Encapsulamento","Aula Teórica 7 – Relacionamento entre Classes","Aula Prática 7 – Objetos Compostos em Java","Aula Teórica 8 – Relacionamento de Agregação","Aula Prática 8 – Agregação entre Objetos com Java","Aula Teórica 9 – Exercícios de POO","Aula Prática 9 – Exercício prático POO em Java","Aula Teórica 10 – Herança (Parte 1)","Aula Prática 10 – Herança (Parte 1)","Aula Teórica 11 – Herança (Parte 2)","Aula Prática 11 – Herança (Parte 2)","Aula Teórica 12 – Conceito Polimorfismo (Parte 1)","Aula Prática 12 – Polimorfismo em Java (Parte 1)","Aula Teórica 13 – Conceito Polimorfismo (Parte 2)","Aula Prática 13 – Polimorfismo Sobrecarga (Parte 2)","Aula Teórica 14 – Exercícios de POO (Parte 2)","Aula Prática 14 – Projeto Final em Java (Parte 1)","Aula Teórica 15 – Exercícios de POO (Parte 3)","Aula Prática 15 – Projeto Final em Java (Parte 2)"]}
+    {id:"c3-3",nome:"Java POO",icone:"☕",tempo:"40h",modulos:[
+      {id:"c3-3-1",nome:"Módulo Único: POO em Java",cor:"#A67C00",aulas:["Aula Teórica 1 – O que é Programação Orientada a Objetos?","Aula Prática 1 – Instalando o JDK e NetBeans","Aula Teórica 2 – O que é um Objeto?","Aula Prática 2 – Criando Classes e Objetos em Java","Aula Teórica 3 – O que é Visibilidade em um Objeto?","Aula Prática 3 – Configurando Visibilidade de Atributos e Métodos","Aula Teórica 4 – Métodos Especiais","Aula Prática 4 – Métodos Getter, Setter e Construtor","Aula Teórica 5 – Exemplo Prático com Objetos","Aula Prática 5 – Exemplo Prático em Java","Aula Teórica 6 – Pilares da POO: Encapsulamento","Aula Prática 6 – Encapsulamento","Aula Teórica 7 – Relacionamento entre Classes","Aula Prática 7 – Objetos Compostos em Java","Aula Teórica 8 – Relacionamento de Agregação","Aula Prática 8 – Agregação entre Objetos com Java","Aula Teórica 9 – Exercícios de POO","Aula Prática 9 – Exercício prático POO em Java","Aula Teórica 10 – Herança (Parte 1)","Aula Prática 10 – Herança (Parte 1)","Aula Teórica 11 – Herança (Parte 2)","Aula Prática 11 – Herança (Parte 2)","Aula Teórica 12 – Conceito Polimorfismo (Parte 1)","Aula Prática 12 – Polimorfismo em Java (Parte 1)","Aula Teórica 13 – Conceito Polimorfismo (Parte 2)","Aula Prática 13 – Polimorfismo Sobrecarga (Parte 2)","Aula Teórica 14 – Exercícios de POO (Parte 2)","Aula Prática 14 – Projeto Final em Java (Parte 1)","Aula Teórica 15 – Exercícios de POO (Parte 3)","Aula Prática 15 – Projeto Final em Java (Parte 2)"]}
     ]},
-    {id:"c3-4",nome:"Redes de Computadores",icone:"🌐",reliquia:"Mapa das Camadas",tempo:"20h",modulos:[
-      {id:"c3-4-1",nome:"Módulos 00 a 05: Redes",cor:"#8B6914",selo:"Selo do Pacote Viajante",aulas:["M00A01 – O que são redes?","M00A02 – Histórico das Redes","M00A03 – O que faz um Servidor?","M00A04 – Classificação das Redes","M00A05 – Redes Cliente-Servidor","M00A06 – Redes em Arquitetura Web","M00A08 – Lan: Redes Locais","M00A09 – Can: Redes de Campus","M00A10 – Man: Redes Metropolitanas","M00A11 – Wan: Redes Mundiais","M00A15 – Topologia em estrela","M00A16 – Topologia em anel","M00A17 – Topologia em barramento","M01A01 – Meios de transmissão","M01A02 – Cabos Coaxiais","M01A03 – Cabos de fibra óptica","M01A04 – Cabos de par trançado","M02A01 – Estrutura TCP/IP","M02A02 – Endereçamento IP","M02A03 – Classes IP","M02A04 – Anatomia de Roteadores","M03A01 – Revisão de IP","M03A07 – Máscaras de Rede Padrão","M03A13 – Calculando a Quantidade de Hosts","M04A01 – Tipos de Equipamento","M04A04 – Conhecendo o Switch","M04A08 – Conhecendo o Roteador","M05A01 – O que é protocolo?","M05A02 – Portas de comunicação","M05A03 – HTTP HTTPS","M05A04 – FTP DNS DHCP","M05A05 – SSH Telnet","M05A06 – SMTP POP3 IMAP","M05A08 – Modelo OSI","M05A09 – Camada de Aplicação","M05A25 – UDP","M05A26 – TCP","M05A27 – Comparativo UDP vs TCP"]}
+    {id:"c3-4",nome:"Redes de Computadores",icone:"🌐",tempo:"20h",modulos:[
+      {id:"c3-4-1",nome:"Módulos 00 a 05: Redes",cor:"#8B6914",aulas:["M00A01 – O que são redes?","M00A02 – Histórico das Redes","M00A03 – O que faz um Servidor?","M00A04 – Classificação das Redes","M00A05 – Redes Cliente-Servidor","M00A06 – Redes em Arquitetura Web","M00A08 – Lan: Redes Locais","M00A09 – Can: Redes de Campus","M00A10 – Man: Redes Metropolitanas","M00A11 – Wan: Redes Mundiais","M00A15 – Topologia em estrela","M00A16 – Topologia em anel","M00A17 – Topologia em barramento","M01A01 – Meios de transmissão","M01A02 – Cabos Coaxiais","M01A03 – Cabos de fibra óptica","M01A04 – Cabos de par trançado","M02A01 – Estrutura TCP/IP","M02A02 – Endereçamento IP","M02A03 – Classes IP","M02A04 – Anatomia de Roteadores","M03A01 – Revisão de IP","M03A07 – Máscaras de Rede Padrão","M03A13 – Calculando a Quantidade de Hosts","M04A01 – Tipos de Equipamento","M04A04 – Conhecendo o Switch","M04A08 – Conhecendo o Roteador","M05A01 – O que é protocolo?","M05A02 – Portas de comunicação","M05A03 – HTTP HTTPS","M05A04 – FTP DNS DHCP","M05A05 – SSH Telnet","M05A06 – SMTP POP3 IMAP","M05A08 – Modelo OSI","M05A09 – Camada de Aplicação","M05A25 – UDP","M05A26 – TCP","M05A27 – Comparativo UDP vs TCP"]}
     ]},
-    {id:"c3-5",nome:"Segurança da Informação",icone:"🛡️",reliquia:"Escudo dos Cinco Pilares",tempo:"120h",modulos:[
-      {id:"c3-5-1",nome:"Módulos 00 a 06: Segurança",cor:"#6B5010",selo:"Selo do Guardião Cibernético",aulas:["M00A03 – Cinco pilares","M00A04 – Alguns termos","M00A06 – Principais riscos","M00A09 – Contas e senhas","M00A11 – Dispositivos Móveis","M00A12 – Principais riscos","M01A01 – Redes Sociais","M01A03 – Riscos Principais","M01A07 – Senhas","M01A12 – Phishing e códigos maliciosos","M01A13 – Verificação de duas etapas","M02A01 – Privacidade","M02A04 – Principais riscos","M02A06 – Cuidados ao navegar na web","M02A10 – Proteção de Dados","M02A18 – LGPD","M02A19 – Vazamento de dados","M02A22 – O que fazer em caso de vazamento?","M03A01 – Redes","M03A07 – Backup","M03A13 – Tipos de backups","M04A01 – Códigos maliciosos","M04A02 – Malware","M04A05 – Tipos mais comuns de vírus","M04A06 – Cavalo de troia/trojan","M04A08 – Ransomware","M04A12 – Spyware","M04A13 – Rootkit","M05A01 – Comércio eletrônico","M05A09 – Internet Banking","M05A14 – Boatos na internet","M05A16 – Como identificar um boato?"]}
+    {id:"c3-5",nome:"Segurança da Informação",icone:"🛡️",tempo:"120h",modulos:[
+      {id:"c3-5-1",nome:"Módulos 00 a 06: Segurança",cor:"#6B5010",aulas:["M00A03 – Cinco pilares","M00A04 – Alguns termos","M00A06 – Principais riscos","M00A09 – Contas e senhas","M00A11 – Dispositivos Móveis","M00A12 – Principais riscos","M01A01 – Redes Sociais","M01A03 – Riscos Principais","M01A07 – Senhas","M01A12 – Phishing e códigos maliciosos","M01A13 – Verificação de duas etapas","M02A01 – Privacidade","M02A04 – Principais riscos","M02A06 – Cuidados ao navegar na web","M02A10 – Proteção de Dados","M02A18 – LGPD","M02A19 – Vazamento de dados","M02A22 – O que fazer em caso de vazamento?","M03A01 – Redes","M03A07 – Backup","M03A13 – Tipos de backups","M04A01 – Códigos maliciosos","M04A02 – Malware","M04A05 – Tipos mais comuns de vírus","M04A06 – Cavalo de troia/trojan","M04A08 – Ransomware","M04A12 – Spyware","M04A13 – Rootkit","M05A01 – Comércio eletrônico","M05A09 – Internet Banking","M05A14 – Boatos na internet","M05A16 – Como identificar um boato?"]}
     ]}
   ]},
-  {id:"c4",nome:"Arquiteta de Software",coroa:"Coroa da Arquiteta Suprema",foco:"Projetar sistemas complexos.",cursos:[
-    {id:"c4-1",nome:"Linux",icone:"🐧",reliquia:"Terminal de Ouro",tempo:"240h",modulos:[
-      {id:"c4-1-1",nome:"Módulos 00 a 05: Linux",cor:"#C9A227",selo:"Selo do Pinguim Ancestral",aulas:["M00A01 – Material de Estudos","M00A02 – História do Linux (Parte 1)","M00A03 – História do Linux (Parte 2)","M00A05 – Características do Linux","M00A06 – Usuários e Interpretador de Comandos","M00A07 – GNU/Linux Debian","M00A08 – Preparando pendrive com Debian","M00A09 – Instalação completa do Debian","M00A11 – Instalando o Debian em uma máquina virtual","M01A01 – Interface do Debian","M01A02 – Sistemas de arquivos","M01A03 – Dispositivos","M01A04 – Terminais","M01A05 – Interpretadores de Comandos","M01A06 – Sintaxe dos Comandos","M01A08 – Caminhos absoluto e relativo","M01A09 – Comando Ls","M01A11 – Comandos de manipulação de diretórios","M01A12 – Comandos de Manipulação de Arquivos","M02A01 – Pacotes no Linux","M02A02 – Instalação de Pacotes","M02A03 – Pacotes Via Terminal","M02A04 – Sistemas de Arquivos","M02A05 – Formatando Pendrives","M02A09 – Processos no Linux","M02A12 – Processos no Terminal","M02A13 – Gerenciamento de Processos","M03A01 – Configurando Permissões (Parte 1)","M03A02 – Configurando Permissões (Parte 2)","M03A03 – Como usar o editor NANO","M03A04 – Instalação do SNAP","M03A11 – Instalando o VSCODE","M03A15 – Instalando o Android Studio","M04A01 – Comandos Diversos","M04A04 – Níveis do Sistema","M04A06 – Buscando Conteúdos","M04A07 – Buscando Arquivos","M04A09 – Arquivos Compactados","M04A10 – Criando Contas","M05A01 – Obtendo mais ajuda","M05A03 – Anatomia de um HD","M05A05 – Sistemas de arquivos","M05A07 – Tipos de RAID","M05A08 – Criando um RAID0","M05A10 – Criando um RAID1","M05A14 – Criando RAID5"]}
+  {id:"c4",nome:"Arquiteta de Software",coroa:"Coroa da Arquiteta Suprema",foco:"Projetar sistemas complexos.",selo:"🏆 Troféu da Arquiteta Suprema",cursos:[
+    {id:"c4-1",nome:"Linux",icone:"🐧",tempo:"240h",modulos:[
+      {id:"c4-1-1",nome:"Módulos 00 a 05: Linux",cor:"#C9A227",aulas:["M00A01 – Material de Estudos","M00A02 – História do Linux (Parte 1)","M00A03 – História do Linux (Parte 2)","M00A05 – Características do Linux","M00A06 – Usuários e Interpretador de Comandos","M00A07 – GNU/Linux Debian","M00A08 – Preparando pendrive com Debian","M00A09 – Instalação completa do Debian","M00A11 – Instalando o Debian em uma máquina virtual","M01A01 – Interface do Debian","M01A02 – Sistemas de arquivos","M01A03 – Dispositivos","M01A04 – Terminais","M01A05 – Interpretadores de Comandos","M01A06 – Sintaxe dos Comandos","M01A08 – Caminhos absoluto e relativo","M01A09 – Comando Ls","M01A11 – Comandos de manipulação de diretórios","M01A12 – Comandos de Manipulação de Arquivos","M02A01 – Pacotes no Linux","M02A02 – Instalação de Pacotes","M02A03 – Pacotes Via Terminal","M02A04 – Sistemas de Arquivos","M02A05 – Formatando Pendrives","M02A09 – Processos no Linux","M02A12 – Processos no Terminal","M02A13 – Gerenciamento de Processos","M03A01 – Configurando Permissões (Parte 1)","M03A02 – Configurando Permissões (Parte 2)","M03A03 – Como usar o editor NANO","M03A04 – Instalação do SNAP","M03A11 – Instalando o VSCODE","M03A15 – Instalando o Android Studio","M04A01 – Comandos Diversos","M04A04 – Níveis do Sistema","M04A06 – Buscando Conteúdos","M04A07 – Buscando Arquivos","M04A09 – Arquivos Compactados","M04A10 – Criando Contas","M05A01 – Obtendo mais ajuda","M05A03 – Anatomia de um HD","M05A05 – Sistemas de arquivos","M05A07 – Tipos de RAID","M05A08 – Criando um RAID0","M05A10 – Criando um RAID1","M05A14 – Criando RAID5"]}
     ]},
-    {id:"c4-2",nome:"Raspberry Pi",icone:"🍓",reliquia:"Placa Mãe Encantada",tempo:"120h",modulos:[
-      {id:"c4-2-1",nome:"Módulos 00 a 03: Raspberry Pi",cor:"#B8860B",selo:"Selo da Framboesa Mágica",aulas:["De onde vem o Raspberry Pi","Gerações do Raspberry Pi","Como eu comprei meu Raspberry","Analisando o Hardware (Parte 1)","Analisando o Hardware (Parte 2)","Raspberry ou Arduino","Do que eu preciso além da placa","Montando seu Raspberry Pi","Instalando o Raspbian","Usando Raspbian sem Raspberry Pi","Rasp3B+ vs Rasp4B","Configurações visuais básicas","Acessando Pendrive e HD externo","Programando Em Javascript","Programando Em Python","Programando Em Java","Programando em C","Instalando Vs Code","Instalando Pycharm","Eletrônica Básica Para Raspberry","Cálculo de Resistores","Uso Da Protoboard","Gpio Com Python (Parte1)","Gpio Com Python (Parte2)","Acesso remoto via SSH","Acesso remoto via VNC","Instalando o Apache","Instalando o PHP","Instalando o MySQL","Instalando PHPmyAdmin","Retro Pie","Instalando ROMs no RetroPie"]}
+    {id:"c4-2",nome:"Raspberry Pi",icone:"🍓",tempo:"120h",modulos:[
+      {id:"c4-2-1",nome:"Módulos 00 a 03: Raspberry Pi",cor:"#B8860B",aulas:["De onde vem o Raspberry Pi","Gerações do Raspberry Pi","Como eu comprei meu Raspberry","Analisando o Hardware (Parte 1)","Analisando o Hardware (Parte 2)","Raspberry ou Arduino","Do que eu preciso além da placa","Montando seu Raspberry Pi","Instalando o Raspbian","Usando Raspbian sem Raspberry Pi","Rasp3B+ vs Rasp4B","Configurações visuais básicas","Acessando Pendrive e HD externo","Programando Em Javascript","Programando Em Python","Programando Em Java","Programando em C","Instalando Vs Code","Instalando Pycharm","Eletrônica Básica Para Raspberry","Cálculo de Resistores","Uso Da Protoboard","Gpio Com Python (Parte1)","Gpio Com Python (Parte2)","Acesso remoto via SSH","Acesso remoto via VNC","Instalando o Apache","Instalando o PHP","Instalando o MySQL","Instalando PHPmyAdmin","Retro Pie","Instalando ROMs no RetroPie"]}
     ]},
-    {id:"c4-3",nome:"Inteligência Artificial",icone:"🤖",reliquia:"Orbe da Consciência",tempo:"80h",modulos:[
-      {id:"c4-3-1",nome:"Módulos 01 e 02: IA",cor:"#A67C00",selo:"Selo da Mente Artificial",aulas:["Abertura","Porque Aprender IA?","O que é IA?","Como Funciona a IA?","Aplicações da I.A","Desafios da I.A","Inteligência Artificial hoje e no futuro","Crie e edite imagens com IA","Machine Learning","Deep Learning","Large Language Model","Chatbots","Processamento De Linguagem Natural","Tokens","Prompts","Gemini e ChatGPT","Engenharia de Prompt","Fornecendo Instruções","Crie seu assistente virtual com Hugging Chat","Role Prompting (Parte 1)","Role Prompting (Parte 2)","Fornecendo Exemplos","Combinando Técnicas","Perplexity","Formalizando Prompts","NapkinAI","Armadilhas dos LLMs (Parte 1): Falhas Comuns e Citação de Fontes","Armadilhas dos LLMs (Parte 2): Viés","Armadilhas dos LLMs (Parte 3): Alucinações","Facilite Tarefas com IA: Automação e Organização de Dados","Como a IA Pode Transformar Seus Estudos","Como a IA Ajuda na Criação e Revisão de Códigos","Planejamento e Gestão de Projetos com IA","Transforme seus Projetos em Negócios Reais com IA","Markdown: Como surgiu o Markdown (Parte1)","Base de Conhecimento (Parte 1)","Evolução da IA","Etapas da IA","Artificial General Intelligence","Artificial Super Intelligence","Frameworks: O que são? (Parte 1)","Do Prompt ao Agente: Criando Assistentes Funcionais no GPT e no Gemini"]}
+    {id:"c4-3",nome:"Inteligência Artificial",icone:"🤖",tempo:"80h",modulos:[
+      {id:"c4-3-1",nome:"Módulos 01 e 02: IA",cor:"#A67C00",aulas:["Abertura","Porque Aprender IA?","O que é IA?","Como Funciona a IA?","Aplicações da I.A","Desafios da I.A","Inteligência Artificial hoje e no futuro","Crie e edite imagens com IA","Machine Learning","Deep Learning","Large Language Model","Chatbots","Processamento De Linguagem Natural","Tokens","Prompts","Gemini e ChatGPT","Engenharia de Prompt","Fornecendo Instruções","Crie seu assistente virtual com Hugging Chat","Role Prompting (Parte 1)","Role Prompting (Parte 2)","Fornecendo Exemplos","Combinando Técnicas","Perplexity","Formalizando Prompts","NapkinAI","Armadilhas dos LLMs (Parte 1): Falhas Comuns e Citação de Fontes","Armadilhas dos LLMs (Parte 2): Viés","Armadilhas dos LLMs (Parte 3): Alucinações","Facilite Tarefas com IA: Automação e Organização de Dados","Como a IA Pode Transformar Seus Estudos","Como a IA Ajuda na Criação e Revisão de Códigos","Planejamento e Gestão de Projetos com IA","Transforme seus Projetos em Negócios Reais com IA","Markdown: Como surgiu o Markdown (Parte1)","Base de Conhecimento (Parte 1)","Evolução da IA","Etapas da IA","Artificial General Intelligence","Artificial Super Intelligence","Frameworks: O que são? (Parte 1)","Do Prompt ao Agente: Criando Assistentes Funcionais no GPT e no Gemini"]}
     ]},
-    {id:"c4-4",nome:"Jornada IA Premium Pack",icone:"💎",reliquia:"Diamante do Prompt",tempo:"40h",modulos:[
-      {id:"c4-4-1",nome:"Módulo Único: IA Premium",cor:"#8B6914",selo:"Selo do Prompt Perfeito",aulas:["Fundamentos Práticos de IA","Técnicas de Engenharia de Prompt","Aplicações Práticas","Aprimoramento e Otimização de Prompts","Jornada IA: Engenharia de Prompt","Funcionamento do Curso","Fundamentos da criação visual com IA","Como criar imagens com o ChatGPT","Edição de imagens com o ChatGPT","Estilos Visuais","Guia de elementos visuais para prompts","Composição criativa","Criação de personagens (Modelos Fotográficos)","Como criar uma personagem do zero","Roupas e acessórios – Técnica de flatlay","Cenários e estilo","Prompts para fotos de estúdio","Criação de Personagens – Estilo Mascotes e HQs","Criação de Cenas Completas e Narrativas Visuais","Melhoria de Imagens: Upscaling, Nitidez e Detalhamento","Criação de Logos com IA","Transformando Logo em Vetor (SVG)","Imagens para Sites e Lojas Virtuais com ChatGPT 4o","Criação de Infográficos Visuais com IA","Ética e Direitos Autorais na Criação com IA"]}
+    {id:"c4-4",nome:"Jornada IA Premium Pack",icone:"💎",tempo:"40h",modulos:[
+      {id:"c4-4-1",nome:"Módulo Único: IA Premium",cor:"#8B6914",aulas:["Fundamentos Práticos de IA","Técnicas de Engenharia de Prompt","Aplicações Práticas","Aprimoramento e Otimização de Prompts","Jornada IA: Engenharia de Prompt","Funcionamento do Curso","Fundamentos da criação visual com IA","Como criar imagens com o ChatGPT","Edição de imagens com o ChatGPT","Estilos Visuais","Guia de elementos visuais para prompts","Composição criativa","Criação de personagens (Modelos Fotográficos)","Como criar uma personagem do zero","Roupas e acessórios – Técnica de flatlay","Cenários e estilo","Prompts para fotos de estúdio","Criação de Personagens – Estilo Mascotes e HQs","Criação de Cenas Completas e Narrativas Visuais","Melhoria de Imagens: Upscaling, Nitidez e Detalhamento","Criação de Logos com IA","Transformando Logo em Vetor (SVG)","Imagens para Sites e Lojas Virtuais com ChatGPT 4o","Criação de Infográficos Visuais com IA","Ética e Direitos Autorais na Criação com IA"]}
     ]}
   ]},
-  {id:"c5",nome:"Especialista em DevOps / SRE",coroa:"Coroa da Guardiã da Infraestrutura",foco:"Automatizar e garantir a entrega contínua.",cursos:[
-    {id:"c5-1",nome:"Linux (Avançado)",icone:"🐧",reliquia:"Coração do Servidor",tempo:"240h",modulos:[
-      {id:"c5-1-1",nome:"Módulos 00 a 05: Linux DevOps",cor:"#C9A227",selo:"Selo do Servidor Imortal",aulas:["M00A01 – Material de Estudos","M01A01 – Interface do Debian","M02A01 – Pacotes no Linux","M03A01 – Configurando Permissões (Parte 1)","M04A01 – Comandos Diversos","M05A01 – Obtendo mais ajuda","M05A07 – Tipos de RAID","M05A14 – Criando RAID5"]}
+  {id:"c5",nome:"Especialista em DevOps / SRE",coroa:"Coroa da Guardiã da Infraestrutura",foco:"Automatizar e garantir a entrega contínua.",selo:"⭐ Estrela da Guardiã",cursos:[
+    {id:"c5-1",nome:"Linux (Avançado)",icone:"🐧",tempo:"240h",modulos:[
+      {id:"c5-1-1",nome:"Módulos 00 a 05: Linux DevOps",cor:"#C9A227",aulas:["M00A01 – Material de Estudos","M01A01 – Interface do Debian","M02A01 – Pacotes no Linux","M03A01 – Configurando Permissões (Parte 1)","M04A01 – Comandos Diversos","M05A01 – Obtendo mais ajuda","M05A07 – Tipos de RAID","M05A14 – Criando RAID5"]}
     ]},
-    {id:"c5-2",nome:"Git e GitHub (Avançado)",icone:"🔗",reliquia:"Chave do Infinito",tempo:"20h",modulos:[
-      {id:"c5-2-1",nome:"Módulo Único: Git Avançado",cor:"#B8860B",selo:"Selo do Branch Eterno",aulas:["Git Branches de forma fácil e com exemplo","Hospedagem Grátis no GitHub Pages","Guia da Linguagem Markdown","Seu GitHub muito mais seguro","Você sabe usar Issues?"]}
+    {id:"c5-2",nome:"Git e GitHub (Avançado)",icone:"🔗",tempo:"20h",modulos:[
+      {id:"c5-2-1",nome:"Módulo Único: Git Avançado",cor:"#B8860B",aulas:["Git Branches de forma fácil e com exemplo","Hospedagem Grátis no GitHub Pages","Guia da Linguagem Markdown","Seu GitHub muito mais seguro","Você sabe usar Issues?"]}
     ]},
-    {id:"c5-3",nome:"Redes de Computadores",icone:"🌐",reliquia:"Anel do Balanceador",tempo:"20h",modulos:[
-      {id:"c5-3-1",nome:"Módulo Único: Redes em DevOps",cor:"#A67C00",selo:"Selo do DNS Onisciente",aulas:["M05A03 – HTTP HTTPS","M05A04 – FTP DNS DHCP","M05A05 – SSH Telnet","M05A26 – TCP","M05A27 – Comparativo UDP vs TCP"]}
+    {id:"c5-3",nome:"Redes de Computadores",icone:"🌐",tempo:"20h",modulos:[
+      {id:"c5-3-1",nome:"Módulo Único: Redes em DevOps",cor:"#A67C00",aulas:["M05A03 – HTTP HTTPS","M05A04 – FTP DNS DHCP","M05A05 – SSH Telnet","M05A26 – TCP","M05A27 – Comparativo UDP vs TCP"]}
     ]},
-    {id:"c5-4",nome:"Segurança da Informação",icone:"🛡️",reliquia:"Escudo do SRE",tempo:"120h",modulos:[
-      {id:"c5-4-1",nome:"Módulos 00 a 06: Segurança DevOps",cor:"#8B6914",selo:"Selo da Fortaleza Digital",aulas:["M00A03 – Cinco pilares","M01A01 – Redes Sociais","M02A01 – Privacidade","M03A07 – Backup","M04A01 – Códigos maliciosos","M05A01 – Comércio eletrônico"]}
+    {id:"c5-4",nome:"Segurança da Informação",icone:"🛡️",tempo:"120h",modulos:[
+      {id:"c5-4-1",nome:"Módulos 00 a 06: Segurança DevOps",cor:"#8B6914",aulas:["M00A03 – Cinco pilares","M01A01 – Redes Sociais","M02A01 – Privacidade","M03A07 – Backup","M04A01 – Códigos maliciosos","M05A01 – Comércio eletrônico"]}
     ]},
-    {id:"c5-5",nome:"Hardware",icone:"🔩",reliquia:"Engrenagem Primordial",tempo:"20h",modulos:[
-      {id:"c5-5-1",nome:"Módulo Único: Hardware",cor:"#6B5010",selo:"Selo do Silício Vivo",aulas:["O que é hardware","Componentes do computador","Montagem e manutenção","Diagnóstico de problemas"]}
+    {id:"c5-5",nome:"Hardware",icone:"🔩",tempo:"20h",modulos:[
+      {id:"c5-5-1",nome:"Módulo Único: Hardware",cor:"#6B5010",aulas:["O que é hardware","Componentes do computador","Montagem e manutenção","Diagnóstico de problemas"]}
     ]}
   ]}
 ]};
 
-/* Índices rápidos */
+/* ============================================================
+   750 FRASES DE INGLÊS
+   ============================================================ */
+const FRASES = [
+["Hello.","Olá."],["Hi, how are you?","Oi, como você está?"],["Good morning.","Bom dia."],["Good afternoon.","Boa tarde."],["Good evening.","Boa noite (ao chegar)."],["Good night.","Boa noite (ao dormir/sair)."],["Goodbye.","Tchau."],["See you later.","Até mais tarde."],["Please.","Por favor."],["Thank you very much.","Muito obrigado."],["You're welcome.","De nada."],["I'm sorry.","Desculpe / Sinto muito."],["Excuse me.","Com licença."],["No problem.","Sem problema."],["Have a nice day!","Tenha um bom dia!"],
+["My name is John.","Meu nome é John."],["What's your name?","Qual é o seu nome?"],["I'm from Brazil.","Eu sou do Brasil."],["Where are you from?","De onde você é?"],["I'm 30 years old.","Eu tenho 30 anos."],["How old are you?","Quantos anos você tem?"],["I live in São Paulo.","Eu moro em São Paulo."],["I work as a teacher.","Eu trabalho como professor."],["What do you do?","O que você faz?"],["I'm a student.","Eu sou estudante."],["This is my friend.","Este é meu amigo."],["Nice to meet you.","Prazer em conhecer você."],["Nice to meet you too.","Prazer em conhecer você também."],["My phone number is...","Meu telefone é..."],["My email is...","Meu e-mail é..."],
+["I am here.","Eu estou aqui."],["You are right.","Você está certo."],["He is my brother.","Ele é meu irmão."],["She is my sister.","Ela é minha irmã."],["It is cold today.","Está frio hoje."],["We are ready.","Nós estamos prontos."],["They are at home.","Eles estão em casa."],["My book is new.","Meu livro é novo."],["Your car is fast.","Seu carro é rápido."],["His name is Paul.","O nome dele é Paul."],["Her house is big.","A casa dela é grande."],["Our team is good.","Nosso time é bom."],["Their children are small.","Os filhos deles são pequenos."],["This is mine.","Isto é meu."],["That is yours.","Aquilo é seu."],
+["I am.","Eu sou/estou."],["I have a car.","Eu tenho um carro."],["I do my homework.","Eu faço minha lição de casa."],["I go to work.","Eu vou ao trabalho."],["I come from Brazil.","Eu venho do Brasil."],["I get up early.","Eu acordo cedo."],["I make coffee.","Eu faço café."],["I take the bus.","Eu pego o ônibus."],["I give a gift.","Eu dou um presente."],["I say hello.","Eu digo olá."],["I tell the truth.","Eu digo a verdade."],["I think so.","Eu acho que sim."],["I know him.","Eu o conheço."],["I want water.","Eu quero água."],["I need help.","Eu preciso de ajuda."],
+["What is this?","O que é isto?"],["Who is that?","Quem é aquele?"],["Where is the bathroom?","Onde é o banheiro?"],["When does it start?","Quando começa?"],["Why are you late?","Por que você está atrasado?"],["How are you?","Como você está?"],["Which one do you want?","Qual você quer?"],["Whose bag is this?","De quem é esta bolsa?"],["How much is it?","Quanto custa?"],["How many people?","Quantas pessoas?"],["What time is it?","Que horas são?"],["Where are you going?","Para onde você vai?"],["What do you mean?","O que você quer dizer?"],["How do I get there?","Como eu chego lá?"],["Can you help me?","Você pode me ajudar?"],
+["I like tea and coffee.","Eu gosto de chá e café."],["I'm tired, but I'm happy.","Estou cansado, mas feliz."],["Do you want tea or coffee?","Você quer chá ou café?"],["I'm late, so I'm running.","Estou atrasado, então estou correndo."],["I'm happy because I passed.","Estou feliz porque passei."],["If it rains, I'll stay.","Se chover, eu fico."],["When I arrive, I'll call.","Quando eu chegar, eu ligo."],["I also speak English.","Eu também falo inglês."],["Then we went home.","Então nós fomos para casa."],["However, it's expensive.","No entanto, é caro."],["First, we eat.","Primeiro, nós comemos."],["After that, we leave.","Depois disso, nós saímos."],["In addition, it's free.","Além disso, é grátis."],["For example, this one.","Por exemplo, este."],["In short, it's good.","Resumindo, é bom."],
+["One, two, three.","Um, dois, três."],["I have two brothers.","Eu tenho dois irmãos."],["It's the first time.","É a primeira vez."],["Half an hour.","Meia hora."],["A dozen eggs.","Uma dúzia de ovos."],["It's 3 p.m.","São 3 da tarde."],["It's 10 a.m.","São 10 da manhã."],["Today is Monday.","Hoje é segunda-feira."],["My birthday is in January.","Meu aniversário é em janeiro."],["We travel in summer.","Nós viajamos no verão."],["See you tomorrow.","Até amanhã."],["Yesterday was Sunday.","Ontem foi domingo."],["Next week.","Semana que vem."],["Last month.","Mês passado."],["This year.","Este ano."],
+["I'm in the room.","Eu estou no quarto."],["It's on the table.","Está na mesa."],["At the airport.","No aeroporto."],["Go to the station.","Vá para a estação."],["I'm from Brazil.","Eu sou do Brasil."],["Near the hotel.","Perto do hotel."],["Next to the bank.","Ao lado do banco."],["Before dinner.","Antes do jantar."],["After lunch.","Depois do almoço."],["In the morning.","De manhã."],["On Monday.","Na segunda-feira."],["At night.","À noite."],["Under the bed.","Debaixo da cama."],["Between the cars.","Entre os carros."],["Behind the door.","Atrás da porta."],
+["There is a problem.","Há um problema."],["There are two options.","Há duas opções."],["This is my ticket.","Este é meu bilhete."],["That is your seat.","Aquele é seu assento."],["Here is your key.","Aqui está sua chave."],["There is the bus.","Ali está o ônibus."],["I have a question.","Eu tenho uma pergunta."],["I need a taxi.","Eu preciso de um táxi."],["I want to go home.","Eu quero ir para casa."],["I would like coffee.","Eu gostaria de café."],["Can I sit here?","Posso sentar aqui?"],["May I come in?","Posso entrar?"],["Is there Wi-Fi?","Tem Wi-Fi?"],["Are you ready?","Você está pronto?"],["Do you have a map?","Você tem um mapa?"],
+["I don't understand.","Eu não entendo."],["Can you repeat, please?","Você pode repetir, por favor?"],["Speak slowly, please.","Fale devagar, por favor."],["What does this mean?","O que isso significa?"],["How do you say this in English?","Como se diz isto em inglês?"],["I don't speak English well.","Eu não falo inglês bem."],["I speak a little English.","Eu falo um pouco de inglês."],["Can you write it down?","Você pode escrever?"],["I need an interpreter.","Eu preciso de um intérprete."],["I'm learning English.","Estou aprendendo inglês."],["Please, help me.","Por favor, me ajude."],["I'm lost.","Estou perdido."],["Where am I?","Onde estou?"],["Is it far?","É longe?"],["I'm looking for this address.","Estou procurando este endereço."],
+["Where is check-in?","Onde é o check-in?"],["I have a reservation.","Eu tenho uma reserva."],["Here is my passport.","Aqui está meu passaporte."],["I'd like an aisle seat.","Eu gostaria de um assento no corredor."],["I'd like a window seat.","Eu gostaria de um assento na janela."],["How many bags?","Quantas malas?"],["Is the flight delayed?","O voo está atrasado?"],["What's the gate number?","Qual é o número do portão?"],["Where is boarding?","Onde é o embarque?"],["What time do we board?","Que horas embarcamos?"],["Is this the right gate?","Este é o portão certo?"],["My flight is canceled.","Meu voo foi cancelado."],["I missed my connection.","Perdi minha conexão."],["Where is baggage claim?","Onde é a retirada de bagagem?"],["My luggage is lost.","Minha bagagem está perdida."],
+["Here is my passport.","Aqui está meu passaporte."],["I'm here on vacation.","Estou aqui de férias."],["I'm here on business.","Estou aqui a negócios."],["I'm staying for one week.","Vou ficar uma semana."],["I'm staying at this hotel.","Estou hospedado neste hotel."],["I have nothing to declare.","Não tenho nada a declarar."],["I have something to declare.","Tenho algo a declarar."],["This is for personal use.","Isto é de uso pessoal."],["Where is customs?","Onde é a alfândega?"],["Do I need a visa?","Preciso de visto?"],["I'm a tourist.","Sou turista."],["I'm visiting friends.","Estou visitando amigos."],["I'm traveling alone.","Estou viajando sozinho."],["I'm traveling with my family.","Estou viajando com minha família."],["Can I see an officer?","Posso falar com um oficial?"],
+["Is this carry-on?","Isto é bagagem de mão?"],["This is my check-in luggage.","Esta é minha bagagem despachada."],["Can I take this on board?","Posso levar isto a bordo?"],["Do I need to remove my shoes?","Preciso tirar os sapatos?"],["Do I need to remove my belt?","Preciso tirar o cinto?"],["Put liquids in a bag.","Coloque líquidos em um saco."],["Is this liquid allowed?","Este líquido é permitido?"],["I have a laptop.","Eu tenho um notebook."],["I have a power bank.","Eu tenho um carregador portátil."],["Where is security?","Onde é a segurança?"],["Please empty your pockets.","Esvazie seus bolsos, por favor."],["This is not dangerous.","Isto não é perigoso."],["Can I lock my bag?","Posso trancar minha mala?"],["My bag is overweight.","Minha mala está acima do peso."],["How much for extra weight?","Quanto custa o excesso de peso?"],
+["I have a reservation.","Eu tenho uma reserva."],["I'd like to check in.","Eu gostaria de fazer o check-in."],["What time is check-out?","Que horas é o check-out?"],["Is breakfast included?","O café da manhã está incluído?"],["Can I have a wake-up call?","Pode me acordar com uma ligação?"],["The key card doesn't work.","O cartão-chave não funciona."],["The room is too noisy.","O quarto é muito barulhento."],["The air conditioning is broken.","O ar-condicionado está quebrado."],["Can I change rooms?","Posso mudar de quarto?"],["I need extra towels.","Preciso de toalhas extras."],["Is there room service?","Tem serviço de quarto?"],["Where is the elevator?","Onde é o elevador?"],["Is there Wi-Fi in the room?","Tem Wi-Fi no quarto?"],["What is the Wi-Fi password?","Qual é a senha do Wi-Fi?"],["I'd like to extend my stay.","Gostaria de estender minha estadia."],
+["Where is the subway?","Onde é o metrô?"],["Where is the bus stop?","Onde é o ponto de ônibus?"],["How much is the fare?","Quanto é a tarifa?"],["I need a ticket.","Preciso de um bilhete."],["Does this bus go downtown?","Este ônibus vai para o centro?"],["Where can I get a taxi?","Onde posso pegar um táxi?"],["Please take me to this address.","Por favor, me leve a este endereço."],["How long does it take?","Quanto tempo leva?"],["Stop here, please.","Pare aqui, por favor."],["I'm using a ride app.","Estou usando um aplicativo de corrida."],["Is it metered?","É com taxímetro?"],["Can I pay by card?","Posso pagar com cartão?"],["Which line goes there?","Qual linha vai para lá?"],["Do I need to transfer?","Preciso fazer baldeação?"],["Where is the exit?","Onde é a saída?"],
+["Where is the train station?","Onde é a estação de trem?"],["One-way or round trip?","Só ida ou ida e volta?"],["I'd like a round-trip ticket.","Gostaria de uma passagem de ida e volta."],["What time does it leave?","Que horas sai?"],["What time does it arrive?","Que horas chega?"],["Which platform?","Qual plataforma?"],["Is this seat taken?","Este assento está ocupado?"],["Is there a dining car?","Tem vagão-restaurante?"],["Does it stop here?","Ele para aqui?"],["I missed my train.","Perdi meu trem."],["Can I change my ticket?","Posso trocar minha passagem?"],["Is there a delay?","Há atraso?"],["Where is the schedule?","Onde está o horário?"],["I need a bus to the airport.","Preciso de um ônibus para o aeroporto."],["How long is the trip?","Quanto tempo dura a viagem?"],
+["Turn left.","Vire à esquerda."],["Turn right.","Vire à direita."],["Go straight ahead.","Siga em frente."],["It's next to the bank.","É ao lado do banco."],["It's across from the park.","É em frente ao parque."],["It's behind the hotel.","É atrás do hotel."],["It's in front of the station.","É na frente da estação."],["It's on the corner.","É na esquina."],["It's two blocks away.","Fica a duas quadras."],["Is it far from here?","É longe daqui?"],["Can you show me on the map?","Pode me mostrar no mapa?"],["I'm looking for this place.","Estou procurando este lugar."],["Where is the nearest pharmacy?","Onde é a farmácia mais próxima?"],["How do I get to the museum?","Como chego ao museu?"],["Am I going the right way?","Estou indo no caminho certo?"],
+["I'd like to rent a car.","Gostaria de alugar um carro."],["Here is my driver's license.","Aqui está minha carteira de motorista."],["Is insurance included?","O seguro está incluído?"],["Where is the gas station?","Onde é o posto de gasolina?"],["Fill it up, please.","Complete o tanque, por favor."],["I need parking.","Preciso de estacionamento."],["Is there a toll?","Tem pedágio?"],["How much is the toll?","Quanto é o pedágio?"],["I had an accident.","Eu sofri um acidente."],["The car won't start.","O carro não liga."],["I have a flat tire.","Estou com um pneu furado."],["Where can I park?","Onde posso estacionar?"],["Is this a one-way street?","Esta é uma rua de mão única?"],["What's the speed limit?","Qual é o limite de velocidade?"],["I need to return the car.","Preciso devolver o carro."],
+["Can you show me the map?","Pode me mostrar o mapa?"],["Where am I on the map?","Onde estou no mapa?"],["What's the best route?","Qual é a melhor rota?"],["Is there traffic?","Tem trânsito?"],["How long to get there?","Quanto tempo para chegar lá?"],["My GPS isn't working.","Meu GPS não está funcionando."],["I need directions.","Preciso de direções."],["Is this the right address?","Este é o endereço certo?"],["Drop the pin here.","Marque o ponto aqui."],["Navigate to this location.","Navegue até este local."],["Is it walking distance?","Dá para ir a pé?"],["Where is the nearest station?","Onde é a estação mais próxima?"],["Can you send me the location?","Pode me enviar a localização?"],["I'm following the app.","Estou seguindo o aplicativo."],["We're almost there.","Estamos quase chegando."],
+["I'd like a ticket.","Gostaria de um ingresso."],["How much is admission?","Quanto é a entrada?"],["Is there a guided tour?","Tem visita guiada?"],["What time does it open?","Que horas abre?"],["What time does it close?","Que horas fecha?"],["Are there discounts?","Tem descontos?"],["Two adults, one child.","Dois adultos, uma criança."],["Can I take pictures?","Posso tirar fotos?"],["Where is the entrance?","Onde é a entrada?"],["Where is the exit?","Onde é a saída?"],["Is there an audio guide?","Tem áudio-guia?"],["What do you recommend?","O que você recomenda?"],["Is it worth visiting?","Vale a pena visitar?"],["How long is the tour?","Quanto tempo dura o passeio?"],["Where can I buy souvenirs?","Onde posso comprar lembranças?"],
+["I'm hungry.","Estou com fome."],["I'm thirsty.","Estou com sede."],["Where is the supermarket?","Onde é o supermercado?"],["I need bread and milk.","Preciso de pão e leite."],["Do you have fresh fruit?","Você tem fruta fresca?"],["How much is a kilo?","Quanto é o quilo?"],["I'd like some water.","Gostaria de um pouco de água."],["Is this fresh?","Isto está fresco?"],["I don't eat meat.","Eu não como carne."],["I like vegetables.","Eu gosto de legumes."],["Can I have a bag?","Pode me dar uma sacola?"],["Where is the checkout?","Onde é o caixa?"],["Do you accept cards?","Aceita cartão?"],["Can I pay in cash?","Posso pagar em dinheiro?"],["Thank you, keep the change.","Obrigado, fique com o troco."],
+["A table for two, please.","Uma mesa para dois, por favor."],["Can I see the menu?","Posso ver o cardápio?"],["What do you recommend?","O que você recomenda?"],["I'd like to order.","Gostaria de pedir."],["I'll have the chicken.","Vou querer o frango."],["Can I have the bill?","Pode trazer a conta?"],["Is service included?","O serviço está incluído?"],["Can I get this to go?","Pode ser para viagem?"],["No ice, please.","Sem gelo, por favor."],["Extra napkins, please.","Guardanapos extras, por favor."],["This is not what I ordered.","Isto não é o que eu pedi."],["It's delicious.","Está delicioso."],["Can I have some more water?","Pode trazer mais água?"],["Where is the restroom?","Onde é o banheiro?"],["Do you have Wi-Fi?","Tem Wi-Fi?"],
+["I'm allergic to peanuts.","Sou alérgico a amendoim."],["I'm allergic to seafood.","Sou alérgico a frutos do mar."],["Does this contain milk?","Isto contém leite?"],["Does this contain gluten?","Isto contém glúten?"],["I'm vegetarian.","Eu sou vegetariano."],["I'm vegan.","Eu sou vegano."],["I don't eat pork.","Eu não como porco."],["I can't eat sugar.","Não posso comer açúcar."],["Is it spicy?","É picante?"],["Is it fried?","É frito?"],["Can you make it without cheese?","Pode fazer sem queijo?"],["Is there a vegetarian option?","Tem opção vegetariana?"],["I need a gluten-free meal.","Preciso de uma refeição sem glúten."],["This is an emergency.","Isto é uma emergência."],["I need my medicine.","Preciso do meu remédio."],
+["Can I try this on?","Posso experimentar isto?"],["Where is the fitting room?","Onde é o provador?"],["Do you have this in a smaller size?","Tem isto em tamanho menor?"],["Do you have this in a larger size?","Tem isto em tamanho maior?"],["What size is this?","Que tamanho é este?"],["How much is this shirt?","Quanto custa esta camisa?"],["I'm just looking.","Estou só olhando."],["I'll take it.","Vou levar."],["Can I return it?","Posso devolver?"],["Do you have another color?","Tem outra cor?"],["This is too expensive.","Isto é caro demais."],["Do you have a discount?","Tem desconto?"],["Where is the cashier?","Onde é o caixa?"],["Can I pay by card?","Posso pagar com cartão?"],["I need a receipt.","Preciso de um recibo."],
+["Where is an ATM?","Onde tem um caixa eletrônico?"],["I need to exchange money.","Preciso trocar dinheiro."],["What's the exchange rate?","Qual é a taxa de câmbio?"],["Can I pay by credit card?","Posso pagar com cartão de crédito?"],["Do you accept debit?","Aceita débito?"],["The machine took my card.","A máquina engoliu meu cartão."],["I need cash.","Preciso de dinheiro."],["Is there a fee?","Tem taxa?"],["Can I have a receipt?","Pode me dar um recibo?"],["My card was declined.","Meu cartão foi recusado."],["I want to pay in local currency.","Quero pagar na moeda local."],["How much is the service fee?","Quanto é a taxa de serviço?"],["Can you break a bill?","Pode trocar uma nota?"],["I think I was overcharged.","Acho que me cobraram a mais."],["Please give me the change.","Por favor, me dê o troco."],
+["How much is it?","Quanto custa?"],["That's too expensive.","Isso é caro demais."],["Can you lower the price?","Pode baixar o preço?"],["Is there a discount?","Tem desconto?"],["I'm just looking, thanks.","Estou só olhando, obrigado."],["Do you have anything cheaper?","Tem algo mais barato?"],["What's the total?","Qual é o total?"],["Can I get a receipt?","Pode me dar um recibo?"],["Keep the change.","Fique com o troco."],["I don't have change.","Não tenho troco."],["Can I pay in installments?","Posso pagar parcelado?"],["Is tax included?","O imposto está incluído?"],["That's a good deal.","É uma boa oferta."],["I'll think about it.","Vou pensar."],["I'll take it.","Vou levar."],
+["Where is the pharmacy?","Onde é a farmácia?"],["I have a headache.","Estou com dor de cabeça."],["I have a fever.","Estou com febre."],["I have a cold.","Estou resfriado."],["I have a cough.","Estou com tosse."],["I need medicine.","Preciso de remédio."],["Do you have painkillers?","Tem analgésico?"],["I need a prescription.","Preciso de receita."],["Is this over the counter?","Isto é sem receita?"],["How many times a day?","Quantas vezes ao dia?"],["I'm allergic to this.","Sou alérgico a isto."],["It hurts here.","Dói aqui."],["I don't feel well.","Não me sinto bem."],["I need to see a doctor.","Preciso ver um médico."],["Call an ambulance.","Chame uma ambulância."],
+["I need a doctor.","Preciso de um médico."],["Where is the hospital?","Onde é o hospital?"],["I have an appointment.","Tenho uma consulta."],["I need an appointment.","Preciso de uma consulta."],["It's an emergency.","É uma emergência."],["I have health insurance.","Tenho seguro saúde."],["Here is my insurance card.","Aqui está meu cartão do seguro."],["I'm in pain.","Estou com dor."],["I feel dizzy.","Estou tonto."],["I can't breathe.","Não consigo respirar."],["I broke my arm.","Quebrei meu braço."],["I need a specialist.","Preciso de um especialista."],["How much does it cost?","Quanto custa?"],["Can I pay in cash?","Posso pagar em dinheiro?"],["Thank you for your help.","Obrigado pela ajuda."],
+["What's the Wi-Fi password?","Qual é a senha do Wi-Fi?"],["Is there Wi-Fi here?","Tem Wi-Fi aqui?"],["I need a SIM card.","Preciso de um chip."],["Where can I buy a SIM card?","Onde posso comprar um chip?"],["How much data is included?","Quantos dados estão incluídos?"],["My phone is dead.","Meu celular está descarregado."],["I need a charger.","Preciso de um carregador."],["Can I charge my phone?","Posso carregar meu celular?"],["I need internet access.","Preciso de acesso à internet."],["Can I use your phone?","Posso usar seu telefone?"],["I lost my phone.","Perdi meu celular."],["My phone was stolen.","Meu celular foi roubado."],["Can you help me with this app?","Pode me ajudar com este aplicativo?"],["I need to download this.","Preciso baixar isto."],["The connection is slow.","A conexão está lenta."],
+["I'd like to order delivery.","Gostaria de pedir delivery."],["Can I order online?","Posso pedir online?"],["How long does delivery take?","Quanto tempo leva a entrega?"],["Where is my order?","Onde está meu pedido?"],["I need to track my package.","Preciso rastrear meu pacote."],["I want to return this.","Quero devolver isto."],["I need a refund.","Preciso de um reembolso."],["This is damaged.","Isto está danificado."],["I didn't receive it.","Não recebi."],["Can you send it again?","Pode enviar de novo?"],["I need customer service.","Preciso do atendimento ao cliente."],["Can I speak to a manager?","Posso falar com um gerente?"],["I have a complaint.","Tenho uma reclamação."],["Please cancel my order.","Por favor, cancele meu pedido."],["Thank you for your help.","Obrigado pela ajuda."],
+["Help!","Socorro!"],["Call the police.","Chame a polícia."],["I've been robbed.","Fui roubado."],["My bag was stolen.","Minha bolsa foi roubada."],["Someone took my wallet.","Alguém pegou minha carteira."],["I need to report a crime.","Preciso denunciar um crime."],["Where is the police station?","Onde é a delegacia?"],["I saw an accident.","Vi um acidente."],["There's a fire.","Há um incêndio."],["I need help now.","Preciso de ajuda agora."],["It's an emergency.","É uma emergência."],["I'm in danger.","Estou em perigo."],["He has a knife.","Ele tem uma faca."],["She attacked me.","Ela me atacou."],["Please hurry.","Por favor, apresse-se."],
+["Can you help me?","Você pode me ajudar?"],["Where is the bathroom?","Onde é o banheiro?"],["How do I get to the airport?","Como chego ao aeroporto?"],["Where is the nearest hotel?","Onde é o hotel mais próximo?"],["I'm looking for this address.","Estou procurando este endereço."],["Can you show me?","Pode me mostrar?"],["Can you tell me the way?","Pode me dizer o caminho?"],["I don't know where I am.","Não sei onde estou."],["Is it far?","É longe?"],["Is it safe to walk there?","É seguro ir a pé até lá?"],["What's the best way?","Qual é a melhor maneira?"],["Can you call a taxi for me?","Pode chamar um táxi para mim?"],["Please write it down.","Por favor, escreva."],["Speak slowly, please.","Fale devagar, por favor."],["Thank you for your help.","Obrigado pela ajuda."],
+["My reservation is canceled.","Minha reserva foi cancelada."],["The flight is delayed.","O voo está atrasado."],["The hotel is overbooked.","O hotel está lotado."],["I need a refund.","Preciso de um reembolso."],["I want to make a complaint.","Quero fazer uma reclamação."],["Can I change my booking?","Posso alterar minha reserva?"],["Is there another room?","Tem outro quarto?"],["Can you rebook me?","Pode me remarcar?"],["I missed my connection.","Perdi minha conexão."],["What are my options?","Quais são minhas opções?"],["I need a hotel for tonight.","Preciso de um hotel para hoje."],["Who is responsible?","Quem é o responsável?"],["I want to speak to the manager.","Quero falar com o gerente."],["This is unacceptable.","Isto é inaceitável."],["Please solve this.","Por favor, resolva isto."],
+["Leave me alone.","Deixe-me em paz."],["Stop!","Pare!"],["Don't touch me.","Não me toque."],["I need help.","Preciso de ajuda."],["Call security.","Chame a segurança."],["I feel unsafe.","Não me sinto seguro."],["He is following me.","Ele está me seguindo."],["She is harassing me.","Ela está me assediando."],["I want to report harassment.","Quero denunciar assédio."],["Where is the police?","Onde está a polícia?"],["Can you walk with me?","Pode caminhar comigo?"],["I need a safe place.","Preciso de um lugar seguro."],["Please help me.","Por favor, me ajude."],["I'm scared.","Estou com medo."],["Get away from me.","Fique longe de mim."],
+["I lost my passport.","Perdi meu passaporte."],["I need a police report.","Preciso de um boletim de ocorrência."],["Where is the embassy?","Onde é a embaixada?"],["I need to contact my embassy.","Preciso contatar minha embaixada."],["I lost my documents.","Perdi meus documentos."],["My visa is expired.","Meu visto está vencido."],["I need a lawyer.","Preciso de um advogado."],["I have a fine.","Recebi uma multa."],["I didn't do anything wrong.","Não fiz nada errado."],["Can I make a phone call?","Posso fazer uma ligação?"],["I need a copy of my passport.","Preciso de uma cópia do meu passaporte."],["What should I do?","O que devo fazer?"],["Where is the consulate?","Onde é o consulado?"],["I need legal help.","Preciso de ajuda jurídica."],["Please contact my family.","Por favor, contate minha família."],
+["There's been an accident.","Houve um acidente."],["Call an ambulance.","Chame uma ambulância."],["Call the fire department.","Chame os bombeiros."],["Someone is injured.","Alguém está ferido."],["He is unconscious.","Ele está inconsciente."],["She is bleeding.","Ela está sangrando."],["I need a doctor.","Preciso de um médico."],["Help me, please.","Me ajude, por favor."],["It's urgent.","É urgente."],["Where is the hospital?","Onde é o hospital?"],["I can't move my leg.","Não consigo mover minha perna."],["I hit my head.","Bati minha cabeça."],["I have chest pain.","Estou com dor no peito."],["Stay with me.","Fique comigo."],["Don't move him.","Não o mova."],
+["I'm lost.","Estou perdido."],["My flight is delayed.","Meu voo está atrasado."],["My flight is canceled.","Meu voo foi cancelado."],["I missed my bus.","Perdi meu ônibus."],["I missed my train.","Perdi meu trem."],["I missed my connection.","Perdi minha conexão."],["What time is the next one?","Que horas é o próximo?"],["Is there another route?","Tem outra rota?"],["Can you help me find it?","Pode me ajudar a encontrar?"],["Where is the information desk?","Onde é o balcão de informações?"],["I need to change my ticket.","Preciso trocar minha passagem."],["Can I get a refund?","Posso receber reembolso?"],["I'm in a hurry.","Estou com pressa."],["How long is the delay?","Quanto tempo é o atraso?"],["What should I do now?","O que devo fazer agora?"],
+["This is wrong.","Isto está errado."],["I need a refund.","Preciso de um reembolso."],["Can you fix it?","Pode consertar?"],["I want to speak to the manager.","Quero falar com o gerente."],["This is not what I ordered.","Isto não é o que eu pedi."],["The room is dirty.","O quarto está sujo."],["The food is cold.","A comida está fria."],["The service is bad.","O serviço é ruim."],["I was overcharged.","Cobraram-me a mais."],["I have a complaint.","Tenho uma reclamação."],["Can I have a discount?","Posso ter um desconto?"],["I want to cancel.","Quero cancelar."],["Please solve this problem.","Por favor, resolva este problema."],["I'm not satisfied.","Não estou satisfeito."],["That's not acceptable.","Isso não é aceitável."],
+["What should I do?","O que devo fazer?"],["Is there another way?","Tem outra maneira?"],["I need help now.","Preciso de ajuda agora."],["Can you help me quickly?","Pode me ajudar rapidamente?"],["I don't have much time.","Não tenho muito tempo."],["What are my options?","Quais são minhas opções?"],["Can we find a solution?","Podemos encontrar uma solução?"],["I need an alternative.","Preciso de uma alternativa."],["Is it possible?","É possível?"],["Can you make an exception?","Pode abrir uma exceção?"],["I'm in trouble.","Estou em apuros."],["Please, I need this.","Por favor, preciso disto."],["Who can help me?","Quem pode me ajudar?"],["Where can I go?","Onde posso ir?"],["What happens now?","O que acontece agora?"],
+["Pardon?","Como?"],["Can you repeat, please?","Pode repetir, por favor?"],["Again, please.","De novo, por favor."],["What does it mean?","O que significa?"],["Spell it, please.","Soletre, por favor."],["Can you speak slowly?","Pode falar devagar?"],["Can you speak louder?","Pode falar mais alto?"],["I don't understand.","Eu não entendo."],["I didn't catch that.","Não entendi."],["What did you say?","O que você disse?"],["How do you spell that?","Como se soletra isso?"],["Can you write it down?","Pode escrever?"],["What's the word in English?","Qual é a palavra em inglês?"],["Can you explain?","Pode explicar?"],["Is this correct?","Isto está correto?"],
+["How's it going?","Como vai?"],["Nice weather today.","O tempo está bom hoje."],["Where are you from?","De onde você é?"],["What do you do?","O que você faz?"],["How long are you staying?","Quanto tempo você vai ficar?"],["Is this your first time here?","É sua primeira vez aqui?"],["Do you like it here?","Você gosta daqui?"],["What do you recommend?","O que você recomenda?"],["Have a good day!","Tenha um bom dia!"],["It was nice talking to you.","Foi bom falar com você."],["See you around.","Até mais."],["Take care.","Cuide-se."],["How was your day?","Como foi seu dia?"],["What's new?","Quais são as novidades?"],["Long time no see.","Há quanto tempo!"],
+["Do you want to grab a coffee?","Você quer tomar um café?"],["Let's meet tomorrow.","Vamos nos encontrar amanhã."],["Are you free tonight?","Você está livre hoje à noite?"],["I'd love to.","Eu adoraria."],["I'm sorry, I can't.","Desculpe, não posso."],["Maybe next time.","Talvez na próxima."],["What time works for you?","Que horas funciona para você?"],["Where should we meet?","Onde devemos nos encontrar?"],["Can I have your number?","Posso ter seu número?"],["Let's keep in touch.","Vamos manter contato."],["Add me on social media.","Me adicione nas redes sociais."],["It's on me.","Eu pago."],["Let's split the bill.","Vamos dividir a conta."],["Thank you for the invitation.","Obrigado pelo convite."],["I had a great time.","Me diverti muito."],
+["I think so.","Eu acho que sim."],["I don't think so.","Eu acho que não."],["In my opinion...","Na minha opinião..."],["I agree.","Eu concordo."],["I disagree.","Eu discordo."],["You're right.","Você está certo."],["I'm not sure.","Não tenho certeza."],["Maybe.","Talvez."],["Of course.","Claro."],["Exactly.","Exatamente."],["It depends.","Depende."],["I see your point.","Entendo seu ponto."],["That makes sense.","Faz sentido."],["I'm not convinced.","Não estou convencido."],["Let's agree to disagree.","Vamos concordar em discordar."],
+["I'm happy.","Estou feliz."],["I'm sad.","Estou triste."],["I'm angry.","Estou com raiva."],["I'm tired.","Estou cansado."],["I'm excited.","Estou animado."],["I'm worried.","Estou preocupado."],["I'm afraid.","Estou com medo."],["I love it.","Eu adoro isso."],["I hate it.","Eu odeio isso."],["I feel good.","Me sinto bem."],["I feel bad.","Me sinto mal."],["I'm stressed.","Estou estressado."],["I'm surprised.","Estou surpreso."],["I'm confused.","Estou confuso."],["I'm grateful.","Sou grato."],
+["He is nice.","Ele é simpático."],["She is kind.","Ela é gentil."],["He is funny.","Ele é engraçado."],["She is shy.","Ela é tímida."],["He is friendly.","Ele é amigável."],["She is serious.","Ela é séria."],["He is smart.","Ele é inteligente."],["She is polite.","Ela é educada."],["He is lazy.","Ele é preguiçoso."],["She is rude.","Ela é rude."],["He is honest.","Ele é honesto."],["She is patient.","Ela é paciente."],["He is generous.","Ele é generoso."],["She is confident.","Ela é confiante."],["He is reliable.","Ele é confiável."],
+["This is my mother.","Esta é minha mãe."],["This is my father.","Este é meu pai."],["I have one brother.","Tenho um irmão."],["I have two sisters.","Tenho duas irmãs."],["She is my wife.","Ela é minha esposa."],["He is my husband.","Ele é meu marido."],["He is my friend.","Ele é meu amigo."],["She is my girlfriend.","Ela é minha namorada."],["They are my parents.","Eles são meus pais."],["We are family.","Nós somos família."],["My son is five.","Meu filho tem cinco anos."],["My daughter is at school.","Minha filha está na escola."],["I'm married.","Sou casado."],["I'm single.","Sou solteiro."],["I have a partner.","Tenho um parceiro."],
+["I like music.","Eu gosto de música."],["I love movies.","Eu adoro filmes."],["I play soccer.","Eu jogo futebol."],["I go swimming.","Eu vou nadar."],["I like reading.","Eu gosto de ler."],["I enjoy traveling.","Eu gosto de viajar."],["I dance on weekends.","Eu danço nos fins de semana."],["What's your hobby?","Qual é o seu hobby?"],["Do you play any sports?","Você pratica algum esporte?"],["I'm learning guitar.","Estou aprendendo violão."],["Let's play a game.","Vamos jogar um jogo."],["I go to the gym.","Eu vou à academia."],["I like hiking.","Eu gosto de trilhas."],["I watch series.","Eu assisto séries."],["I listen to podcasts.","Eu ouço podcasts."],
+["What's the custom here?","Qual é o costume aqui?"],["Is it polite to tip?","É educado dar gorjeta?"],["Should I take off my shoes?","Devo tirar os sapatos?"],["Is it okay to take photos?","Pode tirar fotos?"],["Do I need to queue?","Preciso entrar na fila?"],["Is this seat free?","Este lugar está livre?"],["Personal space is important.","Espaço pessoal é importante."],["It's rude to point.","É rude apontar."],["Please be on time.","Por favor, seja pontual."],["Is this a gift?","Isto é um presente?"],["Can I bring a friend?","Posso levar um amigo?"],["What should I wear?","O que devo vestir?"],["Is it formal?","É formal?"],["Thank you for having me.","Obrigado por me receber."],["I respect your culture.","Eu respeito sua cultura."],
+["I have a job.","Eu tenho um emprego."],["I work in an office.","Eu trabalho em um escritório."],["I'm a teacher.","Sou professor."],["I have a meeting.","Tenho uma reunião."],["The deadline is tomorrow.","O prazo é amanhã."],["My salary is good.","Meu salário é bom."],["I'm looking for a job.","Estou procurando emprego."],["I'm a student.","Sou estudante."],["I study English.","Estudo inglês."],["I have a test.","Tenho uma prova."],["I need to study.","Preciso estudar."],["I work from home.","Trabalho de casa."],["I'm on vacation.","Estou de férias."],["I'm self-employed.","Sou autônomo."],["I'm retired.","Estou aposentado."],
+["Wake up!","Acorde!"],["Get up.","Levante-se."],["I woke up early.","Acordei cedo."],["Look for your keys.","Procure suas chaves."],["I'm looking for a hotel.","Estou procurando um hotel."],["Don't give up.","Não desista."],["By the way, I'm leaving.","A propósito, estou saindo."],["No worries.","Sem problemas."],["What's up?","E aí?"],["Take it easy.","Relaxe."],["Hang on a second.","Espere um segundo."],["Go ahead.","Vá em frente."],["Come on!","Vamos!"],["I'm fed up.","Estou cheio disso."],["It's up to you.","Você decide."]
+];
+
+/* ============================================================
+   ITENS RAROS (tema americano)
+   ============================================================ */
+const ITENS_RAROS = [
+  {id:"i01",nome:"Hambúrguer Americano",icone:"🍔",rar:"comum",preco:80},
+  {id:"i02",nome:"Hot Dog de Nova York",icone:"🌭",rar:"comum",preco:80},
+  {id:"i03",nome:"Pizza de Chicago",icone:"🍕",rar:"comum",preco:100},
+  {id:"i04",nome:"Pretzel da Filadélfia",icone:"🥨",rar:"comum",preco:90},
+  {id:"i05",nome:"Frango Frito do Sul",icone:"🍗",rar:"raro",preco:150},
+  {id:"i06",nome:"Panquecas com Maple Syrup",icone:"🥞",rar:"comum",preco:90},
+  {id:"i07",nome:"Donut Glaceado",icone:"🍩",rar:"comum",preco:80},
+  {id:"i08",nome:"Waffle Belga",icone:"🧇",rar:"comum",preco:90},
+  {id:"i09",nome:"Taco Tex-Mex",icone:"🌮",rar:"comum",preco:100},
+  {id:"i10",nome:"Bife do Texas",icone:"🥩",rar:"raro",preco:160},
+  {id:"i11",nome:"Batata Frita",icone:"🍟",rar:"comum",preco:70},
+  {id:"i12",nome:"Milkshake de Baunilha",icone:"🥤",rar:"comum",preco:80},
+  {id:"i13",nome:"Apple Pie",icone:"🍎",rar:"raro",preco:140},
+  {id:"i14",nome:"Cheesecake de Nova York",icone:"🍰",rar:"raro",preco:150},
+  {id:"i15",nome:"Pumpkin Pie",icone:"🥧",rar:"comum",preco:100},
+  {id:"i16",nome:"Café Americano",icone:"☕",rar:"comum",preco:60},
+  {id:"i17",nome:"Bacon Crocante",icone:"🥓",rar:"comum",preco:70},
+  {id:"i18",nome:"Milho na Espiga",icone:"🌽",rar:"comum",preco:60},
+  {id:"i19",nome:"Pipoca de Cinema",icone:"🍿",rar:"comum",preco:60},
+  {id:"i20",nome:"Amendoim de Baseball",icone:"🥜",rar:"comum",preco:60},
+  {id:"i21",nome:"Pimenta Jalapeño",icone:"🌶️",rar:"comum",preco:70},
+  {id:"i22",nome:"Sundae de Sorvete",icone:"🍦",rar:"comum",preco:80},
+  {id:"i23",nome:"Root Beer",icone:"🥤",rar:"comum",preco:70},
+  {id:"i24",nome:"Bola de Baseball",icone:"⚾",rar:"raro",preco:150},
+  {id:"i25",nome:"Bola de Futebol Americano",icone:"🏈",rar:"raro",preco:150},
+  {id:"i26",nome:"Bola de Basquete",icone:"🏀",rar:"raro",preco:150},
+  {id:"i27",nome:"Boliche",icone:"🎳",rar:"comum",preco:90},
+  {id:"i28",nome:"Estátua da Liberdade (mini)",icone:"🗽",rar:"epico",preco:300},
+  {id:"i29",nome:"Guitarra Elétrica",icone:"🎸",rar:"raro",preco:180},
+  {id:"i30",nome:"Oscar de Hollywood",icone:"🎬",rar:"epico",preco:320},
+  {id:"i31",nome:"Muscle Car Americano",icone:"🚗",rar:"epico",preco:350},
+  {id:"i32",nome:"Moto Harley",icone:"🏍️",rar:"epico",preco:340},
+  {id:"i33",nome:"Foguete da NASA",icone:"🚀",rar:"lendario",preco:500},
+  {id:"i34",nome:"Águia Careca",icone:"🦅",rar:"epico",preco:300},
+  {id:"i35",nome:"Cartola de Mágico",icone:"🎩",rar:"raro",preco:180},
+  {id:"i36",nome:"Caça-Níquel de Las Vegas",icone:"🎰",rar:"epico",preco:320},
+  {id:"i37",nome:"Carta de Poker",icone:"🃏",rar:"raro",preco:150},
+  {id:"i38",nome:"Dardo de Bar",icone:"🎯",rar:"comum",preco:90},
+  {id:"i39",nome:"Montanha-Russa",icone:"🎢",rar:"raro",preco:200},
+  {id:"i40",nome:"Roda Gigante",icone:"🎡",rar:"raro",preco:200},
+  {id:"i41",nome:"Algodão-Doce de Parque",icone:"🍭",rar:"comum",preco:70},
+  {id:"i42",nome:"Rádio Vintage",icone:"📻",rar:"raro",preco:160},
+  {id:"i43",nome:"Trompete de Jazz",icone:"🎺",rar:"raro",preco:180},
+  {id:"i44",nome:"Bateria de Rock",icone:"🥁",rar:"raro",preco:180},
+  {id:"i45",nome:"Skate Californiano",icone:"🛹",rar:"raro",preco:160}
+];
+const ITENS_MAP={};
+ITENS_RAROS.forEach(function(it){ ITENS_MAP[it.id]=it; });
+
+/* ============================================================
+   ÍNDICES
+   ============================================================ */
 const CURSOS_MAP={}, MODULOS_MAP={}, CARGOS_MAP={};
 DADOS.cargos.forEach(function(cargo){
   CARGOS_MAP[cargo.id]=cargo;
@@ -1119,15 +821,17 @@ DADOS.cargos.forEach(function(cargo){
 /* ============================================================
    ESTADO + STORAGE
    ============================================================ */
-const STORAGE_KEY="senhora_info_v6";
+const STORAGE_KEY="senhora_info_v7";
 const estado={
   aulasFeitas:{},
+  frases:{},
+  itens:{},
   selos:{},
-  reliquias:{},
-  coroas:{},
   xp:0,
+  moedas:0,
   metaSemanal:10,
   metaMensal:40,
+  metasPremiadas:{semana:"",mes:""},
   tema:"light"
 };
 
@@ -1137,38 +841,17 @@ function salvar(){
 function carregar(){
   let raw=null;
   try{ raw=localStorage.getItem(STORAGE_KEY); }catch(e){}
-  if(!raw){
-    /* tenta migrar de versões anteriores */
-    try{
-      const old=localStorage.getItem("senhora_info_v5")||localStorage.getItem("senhora_info_v4")||localStorage.getItem("senhora_info_v3");
-      if(old){
-        const d=JSON.parse(old);
-        if(d.xp) estado.xp=d.xp;
-        if(d.selos) estado.selos=d.selos;
-        if(d.reliquias) estado.reliquias=d.reliquias;
-        if(d.coroas) estado.coroas=d.coroas;
-        if(d.metaSemanal) estado.metaSemanal=d.metaSemanal;
-        if(d.metaMensal) estado.metaMensal=d.metaMensal;
-        if(d.aulasFeitas){
-          for(const k in d.aulasFeitas){
-            const v=d.aulasFeitas[k];
-            if(v===true) estado.aulasFeitas[k]=Date.now();
-            else if(typeof v==="number") estado.aulasFeitas[k]=v;
-          }
-        }
-        salvar();
-      }
-    }catch(e){}
-    return;
-  }
+  if(!raw){ return; }
   try{
     const d=JSON.parse(raw);
     if(d.xp!==undefined) estado.xp=d.xp;
+    if(d.moedas!==undefined) estado.moedas=d.moedas;
+    if(d.frases) estado.frases=d.frases;
+    if(d.itens) estado.itens=d.itens;
     if(d.selos) estado.selos=d.selos;
-    if(d.reliquias) estado.reliquias=d.reliquias;
-    if(d.coroas) estado.coroas=d.coroas;
     if(d.metaSemanal) estado.metaSemanal=d.metaSemanal;
     if(d.metaMensal) estado.metaMensal=d.metaMensal;
+    if(d.metasPremiadas) estado.metasPremiadas=d.metasPremiadas;
     if(d.tema) estado.tema=d.tema;
     if(d.aulasFeitas){
       for(const k in d.aulasFeitas){
@@ -1194,26 +877,10 @@ function contarFeitasMod(m){
   for(let i=0;i<m.aulas.length;i++) if(aulaFeita(m.aulas[i])) c++;
   return c;
 }
-function contarAulasCurso(c){
-  let s=0;
-  for(let i=0;i<c.modulos.length;i++) s+=c.modulos[i].aulas.length;
-  return s;
-}
-function contarFeitasCurso(c){
-  let s=0;
-  for(let i=0;i<c.modulos.length;i++) s+=contarFeitasMod(c.modulos[i]);
-  return s;
-}
-function contarAulasCargo(c){
-  let s=0;
-  for(let i=0;i<c.cursos.length;i++) s+=contarAulasCurso(c.cursos[i]);
-  return s;
-}
-function contarFeitasCargo(c){
-  let s=0;
-  for(let i=0;i<c.cursos.length;i++) s+=contarFeitasCurso(c.cursos[i]);
-  return s;
-}
+function contarAulasCurso(c){ let s=0; for(let i=0;i<c.modulos.length;i++) s+=c.modulos[i].aulas.length; return s; }
+function contarFeitasCurso(c){ let s=0; for(let i=0;i<c.modulos.length;i++) s+=contarFeitasMod(c.modulos[i]); return s; }
+function contarAulasCargo(c){ let s=0; for(let i=0;i<c.cursos.length;i++) s+=contarAulasCurso(c.cursos[i]); return s; }
+function contarFeitasCargo(c){ let s=0; for(let i=0;i<c.cursos.length;i++) s+=contarFeitasCurso(c.cursos[i]); return s; }
 
 /* ============================================================
    PERÍODOS
@@ -1256,18 +923,11 @@ const NIVEIS=[
   {n:8,t:"Lenda Digital",xp:100000},
   {n:9,t:"Além do Código",xp:200000}
 ];
-function nivelAtual(xp){
-  let a=NIVEIS[0];
-  for(let i=0;i<NIVEIS.length;i++) if(xp>=NIVEIS[i].xp) a=NIVEIS[i];
-  return a;
-}
-function proximoNivel(xp){
-  for(let i=0;i<NIVEIS.length;i++) if(xp<NIVEIS[i].xp) return NIVEIS[i];
-  return null;
-}
+function nivelAtual(xp){ let a=NIVEIS[0]; for(let i=0;i<NIVEIS.length;i++) if(xp>=NIVEIS[i].xp) a=NIVEIS[i]; return a; }
+function proximoNivel(xp){ for(let i=0;i<NIVEIS.length;i++) if(xp<NIVEIS[i].xp) return NIVEIS[i]; return null; }
 
 /* ============================================================
-   RENDER — JORNADA
+   RENDER JORNADA
    ============================================================ */
 function render(){
   const lista=document.getElementById("lista-cargos");
@@ -1277,13 +937,13 @@ function render(){
     const feitas=contarFeitasCargo(cargo);
     const total=contarAulasCargo(cargo);
     const pct=total?Math.round(feitas/total*100):0;
-    const coroada=!!estado.coroas[cargo.id];
+    const coroada=!!estado.selos[cargo.id];
 
     const card=document.createElement("div");
     card.className="cargo";
 
     let html='<div class="cargo-header">';
-    html+='<h2>'+cargo.nome+(coroada?'<span class="badge-coroa">👑 COROADA</span>':'')+'</h2>';
+    html+='<h2>'+cargo.nome+(coroada?'<span class="badge-coroa">'+cargo.selo+'</span>':'')+'</h2>';
     html+='<div class="coroa">'+cargo.coroa+'</div>';
     html+='<div class="foco">'+cargo.foco+'</div>';
     html+='<div class="progresso-mini"><div class="progresso-mini-fill" data-bar="cargo-'+cargo.id+'" style="width:'+pct+'%"></div></div>';
@@ -1293,10 +953,9 @@ function render(){
     cargo.cursos.forEach(function(curso){
       const f=contarFeitasCurso(curso), t=contarAulasCurso(curso);
       const pc=t?Math.round(f/t*100):0;
-      const temRel=!!estado.reliquias[curso.id];
       html+='<div class="curso">';
       html+='<div class="curso-header" onclick="toggleCurso(\''+curso.id+'\')">';
-      html+='<span class="curso-info">'+curso.icone+' <span class="curso-nome">'+curso.nome+'</span>'+(temRel?' <span style="font-size:0.85rem;">💎</span>':'')+'</span>';
+      html+='<span class="curso-info">'+curso.icone+' <span class="curso-nome">'+curso.nome+'</span></span>';
       html+='<span class="prog-txt" data-prog="curso-'+curso.id+'">'+f+'/'+t+' · '+pc+'%</span>';
       html+='</div>';
       html+='<div class="curso-body" id="body-'+curso.id+'"></div>';
@@ -1311,16 +970,10 @@ function render(){
   atualizarMetas();
 }
 
-/* ============================================================
-   EXPANSÃO
-   ============================================================ */
 function toggleCurso(id){
   const body=document.getElementById("body-"+id);
   if(!body) return;
-  if(body.classList.contains("aberto")){
-    body.classList.remove("aberto");
-    return;
-  }
+  if(body.classList.contains("aberto")){ body.classList.remove("aberto"); return; }
   if(!body.dataset.rendered){
     renderCursoBody(body, CURSOS_MAP[id]);
     body.dataset.rendered="1";
@@ -1332,11 +985,11 @@ function renderCursoBody(bodyEl, curso){
   let html="";
   curso.modulos.forEach(function(mod){
     const fm=contarFeitasMod(mod), tm=contarAulasMod(mod);
-    const selo=!!estado.selos[mod.id];
+    const itemDado=!!estado.itens["mod:"+mod.id];
     html+='<div class="modulo">';
     html+='<div class="modulo-header" style="border-left-color:'+mod.cor+'" onclick="toggleModulo(\''+mod.id+'\')">';
     html+='<span class="mod-nome">'+mod.nome+'</span>';
-    if(selo) html+='<span class="selo-tag">🏅 '+mod.selo+'</span>';
+    if(itemDado) html+='<span class="selo-tag">🎁 Item</span>';
     html+='<span class="mod-prog" data-modprog="'+mod.id+'">'+fm+'/'+tm+'</span>';
     html+='</div>';
     html+='<div class="aulas-lista" id="mod-'+mod.id+'"></div>';
@@ -1348,10 +1001,7 @@ function renderCursoBody(bodyEl, curso){
 function toggleModulo(id){
   const lista=document.getElementById("mod-"+id);
   if(!lista) return;
-  if(lista.classList.contains("aberto")){
-    lista.classList.remove("aberto");
-    return;
-  }
+  if(lista.classList.contains("aberto")){ lista.classList.remove("aberto"); return; }
   if(!lista.dataset.rendered){
     const info=MODULOS_MAP[id];
     renderModuloBody(lista, info.modulo);
@@ -1381,7 +1031,7 @@ function renderModuloBody(listaEl, mod){
 }
 
 /* ============================================================
-   AÇÃO: marcar aula
+   MARCAR AULA
    ============================================================ */
 function toggleAula(modId, idx, checked){
   const info=MODULOS_MAP[modId];
@@ -1396,14 +1046,19 @@ function toggleAula(modId, idx, checked){
     estado.aulasFeitas[aula]=Date.now();
     estado.xp+=10;
     if(aulaEl) aulaEl.classList.add("feita");
-    mostrarToast("✓ Aula concluída  ·  +10 XP");
+    // Sorteia uma frase nova
+    if(!estado.frases[aula]){
+      const idx2 = Object.keys(estado.frases).length % FRASES.length;
+      estado.frases[aula] = idx2;
+      mostrarFrase(idx2);
+    } else {
+      mostrarToast("✓ Aula concluída  ·  +10 XP");
+    }
   } else if(!checked && eraFeita){
     delete estado.aulasFeitas[aula];
     estado.xp=Math.max(0,estado.xp-10);
     if(aulaEl) aulaEl.classList.remove("feita");
-  } else {
-    return;
-  }
+  } else { return; }
 
   salvar();
   atualizarModuloUI(modId);
@@ -1445,33 +1100,50 @@ function atualizarCargoUI(idCargo){
 /* ============================================================
    CONQUISTAS
    ============================================================ */
+function sortearItemNaoPossuido(){
+  const pool = ITENS_RAROS.filter(function(it){ return !estado.itens[it.id]; });
+  if(!pool.length) return null;
+  return pool[Math.floor(Math.random()*pool.length)];
+}
+
 function verificarConquistas(mod, curso, cargo){
-  if(contarFeitasMod(mod)===mod.aulas.length && !estado.selos[mod.id]){
-    estado.selos[mod.id]=Date.now();
-    estado.xp+=100;
-    salvar();
-    setTimeout(function(){
-      abrirModal("🏅 Selo Desbloqueado",
-        mod.selo+"\n\n+100 XP de bônus por completar o módulo \""+mod.nome+"\".");
-    },300);
+  // Módulo completo → item raro
+  const chaveItem = "mod:"+mod.id;
+  if(contarFeitasMod(mod)===mod.aulas.length && !estado.itens[chaveItem]){
+    let item = sortearItemNaoPossuido();
+    if(item){
+      estado.itens[item.id] = Date.now();
+      estado.itens[chaveItem] = item.id;
+      estado.xp += 100;
+      salvar();
+      setTimeout(function(){
+        abrirModal("🎁 Item Raro Encontrado!",
+          item.icone+" "+item.nome+"\n\nRaridade: "+item.rar.toUpperCase()+"\n+100 XP de bônus!\n\nVocê completou o módulo \""+mod.nome+"\".");
+      }, 300);
+    } else {
+      // Já possui todos — dar moedas
+      estado.itens[chaveItem] = "moedas";
+      estado.moedas += 200;
+      estado.xp += 100;
+      salvar();
+      setTimeout(function(){
+        abrirModal("💰 Coleção Completa!",
+          "+200 moedas e +100 XP!\n\nVocê concluiu o módulo \""+mod.nome+"\" e já possui todos os itens raros.");
+      }, 300);
+    }
+    renderColecao();
   }
-  if(contarFeitasCurso(curso)===contarAulasCurso(curso) && !estado.reliquias[curso.id]){
-    estado.reliquias[curso.id]=Date.now();
-    estado.xp+=500;
-    salvar();
-    setTimeout(function(){
-      abrirModal("💎 Relíquia Conquistada",
-        curso.reliquia+"\n\n+500 XP de bônus!\n\nVocê dominou todo o curso \""+curso.nome+"\".");
-    },700);
-  }
-  if(contarFeitasCargo(cargo)===contarAulasCargo(cargo) && !estado.coroas[cargo.id]){
-    estado.coroas[cargo.id]=Date.now();
+
+  // Cargo completo → selo
+  if(contarFeitasCargo(cargo)===contarAulasCargo(cargo) && !estado.selos[cargo.id]){
+    estado.selos[cargo.id]=Date.now();
     estado.xp+=2000;
+    estado.moedas += 500;
     salvar();
     setTimeout(function(){
-      abrirModal("👑 Coroação",
-        cargo.coroa+"\n\n+2.000 XP de bônus!\n\nPARABÉNS! Você concluiu o cargo \""+cargo.nome+"\". A Corte Digital se curva diante de você.");
-    },1200);
+      abrirModal("🏅 Selo de Cargo Conquistado!",
+        cargo.selo+"\n\n+2.000 XP e +500 moedas!\n\nPARABÉNS! Você concluiu o cargo \""+cargo.nome+"\".");
+    }, 1200);
   }
 }
 
@@ -1485,8 +1157,9 @@ function atualizarHUD(){
   document.getElementById("hud-titulo").textContent=nv.t;
   document.getElementById("hud-xp").textContent=estado.xp.toLocaleString("pt-BR");
   document.getElementById("hud-aulas").textContent=Object.keys(estado.aulasFeitas).length;
-  document.getElementById("hud-selos").textContent=Object.keys(estado.selos).length;
-  document.getElementById("hud-reliquias").textContent=Object.keys(estado.reliquias).length;
+  document.getElementById("hud-frases").textContent=Object.keys(estado.frases).length;
+  document.getElementById("hud-itens").textContent=Object.keys(estado.itens).filter(function(k){return k.indexOf("mod:")!==0;}).length;
+  document.getElementById("hud-moedas").textContent=estado.moedas.toLocaleString("pt-BR");
 
   const barra=document.getElementById("barra-xp");
   const current=document.getElementById("xp-current");
@@ -1508,13 +1181,15 @@ function atualizarHUD(){
 }
 
 /* ============================================================
-   METAS
+   METAS + PREMIAÇÃO
    ============================================================ */
 function atualizarMetas(){
   const wr=getWeekRange();
   const mr=getMonthRange();
   const feitasSemana=contarConcluidasPeriodo(wr[0],wr[1]);
   const feitasMes=contarConcluidasPeriodo(mr[0],mr[1]);
+
+  verificarPremiosMetas(feitasSemana, feitasMes, wr, mr);
 
   const semCard=document.getElementById("meta-semana-card");
   const pcS=estado.metaSemanal?Math.min(100,Math.round(feitasSemana/estado.metaSemanal*100)):0;
@@ -1538,9 +1213,7 @@ function atualizarMetas(){
   if(semInput){
     semInput.addEventListener("change",function(){
       const v=Math.max(1,parseInt(this.value,10)||1);
-      estado.metaSemanal=v;
-      salvar();
-      atualizarMetas();
+      estado.metaSemanal=v; salvar(); atualizarMetas();
     });
   }
 
@@ -1566,13 +1239,38 @@ function atualizarMetas(){
   if(mesInput){
     mesInput.addEventListener("change",function(){
       const v=Math.max(1,parseInt(this.value,10)||1);
-      estado.metaMensal=v;
-      salvar();
-      atualizarMetas();
+      estado.metaMensal=v; salvar(); atualizarMetas();
     });
   }
 
   atualizarHistorico();
+}
+
+function verificarPremiosMetas(feitasSemana, feitasMes, wr, mr){
+  const semanaKey = new Date(wr[0]).toISOString().slice(0,10);
+  const mesKey = new Date(mr[0]).toISOString().slice(0,10);
+
+  if(feitasSemana >= estado.metaSemanal && estado.metasPremiadas.semana !== semanaKey){
+    estado.metasPremiadas.semana = semanaKey;
+    estado.moedas += 500;
+    estado.xp += 300;
+    salvar();
+    setTimeout(function(){
+      abrirModal("🎯 Meta Semanal Batida!",
+        "+500 moedas e +300 XP!\n\nUse as moedas na 🛒 Vitrine para comprar itens raros.");
+    }, 500);
+  }
+
+  if(feitasMes >= estado.metaMensal && estado.metasPremiadas.mes !== mesKey){
+    estado.metasPremiadas.mes = mesKey;
+    estado.moedas += 1500;
+    estado.xp += 1000;
+    salvar();
+    setTimeout(function(){
+      abrirModal("📅 Meta Mensal Batida!",
+        "+1.500 moedas e +1.000 XP!\n\nUse as moedas na 🛒 Vitrine para comprar itens raros.");
+    }, 900);
+  }
 }
 
 function atualizarHistorico(){
@@ -1601,6 +1299,127 @@ function atualizarHistorico(){
 }
 
 /* ============================================================
+   VITRINE
+   ============================================================ */
+function renderVitrine(){
+  const grid=document.getElementById("vitrine-grid");
+  if(!grid) return;
+  document.getElementById("vitrine-moedas").textContent = estado.moedas.toLocaleString("pt-BR");
+
+  let html="";
+  ITENS_RAROS.forEach(function(it){
+    const tem = !!estado.itens[it.id];
+    const pode = estado.moedas >= it.preco;
+    html+='<div class="item-raro '+it.rar+(tem?' adquirido':'')+'">';
+    html+='<div class="icone">'+it.icone+'</div>';
+    html+='<div class="nome">'+it.nome+'</div>';
+    html+='<div class="rar">'+it.rar+'</div>';
+    if(!tem){
+      html+='<div class="preco">💰 '+it.preco+'</div>';
+      html+='<button class="btn-comprar" '+(pode?'':'disabled')+' onclick="comprarItem(\''+it.id+'\')">'+(pode?'Comprar':'Faltam moedas')+'</button>';
+    }
+    html+='</div>';
+  });
+  grid.innerHTML=html;
+}
+
+function comprarItem(id){
+  const it = ITENS_MAP[id];
+  if(!it) return;
+  if(estado.itens[id]) return;
+  if(estado.moedas < it.preco){
+    mostrarToast("❌ Moedas insuficientes");
+    return;
+  }
+  estado.moedas -= it.preco;
+  estado.itens[id] = Date.now();
+  salvar();
+  atualizarHUD();
+  renderVitrine();
+  renderColecao();
+  mostrarToast("🎉 "+it.icone+" "+it.nome+" adquirido!");
+  setTimeout(function(){
+    abrirModal("🎁 Item Adquirido!", it.icone+" "+it.nome+"\n\nRaridade: "+it.rar.toUpperCase()+"\n\nAdicionado à sua Coleção.");
+  }, 400);
+}
+
+/* ============================================================
+   COLEÇÃO
+   ============================================================ */
+let colecaoAtual="itens";
+function renderColecao(){
+  const cont=document.getElementById("colecao-conteudo");
+  if(!cont) return;
+  cont.innerHTML="";
+  let html="";
+
+  if(colecaoAtual==="itens"){
+    const possuidos = ITENS_RAROS.filter(function(it){ return !!estado.itens[it.id]; });
+    if(!possuidos.length){
+      cont.innerHTML = '<div class="hist-vazio" style="margin-top:12px;">Nenhum item ainda. Complete módulos ou compre na Vitrine! 🎁</div>';
+      return;
+    }
+    html='<div class="vitrine-grid">';
+    possuidos.forEach(function(it){
+      const ts = estado.itens[it.id];
+      const data = typeof ts==="number" ? new Date(ts).toLocaleDateString("pt-BR") : "—";
+      html+='<div class="item-raro '+it.rar+'" data-tipo="item" data-id="'+it.id+'">';
+      html+='<div class="icone">'+it.icone+'</div>';
+      html+='<div class="nome">'+it.nome+'</div>';
+      html+='<div class="rar">'+it.rar+'</div>';
+      html+='</div>';
+    });
+    html+='</div>';
+  } else if(colecaoAtual==="selos"){
+    html+='<div class="grid-colecao">';
+    DADOS.cargos.forEach(function(c){
+      const tem=!!estado.selos[c.id];
+      html+='<div class="item-col '+(tem?'':'bloq')+'" '+(tem?'data-tipo="selo" data-id="'+c.id+'"':'')+'>';
+      html+= tem
+        ? '<div class="icone" style="font-size:1.9rem;">'+c.selo.split(" ")[0]+'</div><div class="titulo">'+c.selo+'</div>'
+        : '<div class="icone">🔒</div><div class="titulo">Bloqueado</div>';
+      html+='</div>';
+    });
+    html+='</div>';
+  } else if(colecaoAtual==="frases"){
+    const chaves = Object.keys(estado.frases).sort(function(a,b){ return estado.frases[a]-estado.frases[b]; });
+    if(!chaves.length){
+      cont.innerHTML='<div class="hist-vazio" style="margin-top:12px;">Nenhuma frase ainda. Conclua aulas para desbloquear! 💬</div>';
+      return;
+    }
+    html='<div style="max-height:520px;overflow-y:auto;margin-top:12px;">';
+    chaves.forEach(function(k){
+      const idx = estado.frases[k];
+      const f = FRASES[idx];
+      if(!f) return;
+      html+='<div class="hist-item" style="align-items:flex-start;flex-direction:column;gap:4px;">';
+      html+='<div style="font-weight:700;color:var(--gold-dark);font-family:Georgia,serif;font-size:0.9rem;">🇺🇸 '+f[0]+'</div>';
+      html+='<div style="font-size:0.8rem;color:var(--text-soft);font-style:italic;">🇧🇷 '+f[1]+'</div>';
+      html+='</div>';
+    });
+    html+='</div>';
+  }
+
+  cont.innerHTML=html;
+
+  cont.querySelectorAll("[data-tipo]").forEach(function(el){
+    el.addEventListener("click",function(){
+      const tipo=this.dataset.tipo;
+      const id=this.dataset.id;
+      if(tipo==="item"){
+        const it=ITENS_MAP[id];
+        abrirModal(it.icone+" "+it.nome,
+          "Raridade: "+it.rar.toUpperCase()+"\n\nAdquirido em: "+new Date(estado.itens[id]).toLocaleDateString("pt-BR"));
+      } else if(tipo==="selo"){
+        const cg=CARGOS_MAP[id];
+        abrirModal(cg.selo,
+          "Cargo: "+cg.nome+"\n\nConcluído em: "+new Date(estado.selos[id]).toLocaleDateString("pt-BR"));
+      }
+    });
+  });
+}
+
+/* ============================================================
    GRÁFICOS
    ============================================================ */
 let charts={};
@@ -1624,12 +1443,7 @@ function renderGraficos(){
       labels:["Concluídas","Pendentes"],
       datasets:[{data:[feitas,total-feitas],backgroundColor:["#C9A227",dark?"#2A2F36":"#F0F0F0"],borderWidth:2,borderColor:cardBg}]
     },
-    options:{
-      responsive:true,
-      plugins:{
-        legend:{position:"bottom",labels:{color:textColor,font:{size:12}}}
-      }
-    }
+    options:{responsive:true,plugins:{legend:{position:"bottom",labels:{color:textColor,font:{size:12}}}}}
   });
 
   const nomesC=DADOS.cargos.map(function(c){ return c.nome.split(" ").slice(0,3).join(" "); });
@@ -1641,15 +1455,7 @@ function renderGraficos(){
   charts.cargos=new Chart(document.getElementById("graf-cargos"),{
     type:"bar",
     data:{labels:nomesC,datasets:[{label:"% Concluído",data:pctsC,backgroundColor:"#C9A227",borderRadius:6}]},
-    options:{
-      responsive:true,
-      indexAxis:"y",
-      plugins:{legend:{display:false}},
-      scales:{
-        x:{max:100,ticks:{color:textSoft},grid:{color:gridColor}},
-        y:{ticks:{color:textSoft},grid:{display:false}}
-      }
-    }
+    options:{responsive:true,indexAxis:"y",plugins:{legend:{display:false}},scales:{x:{max:100,ticks:{color:textSoft},grid:{color:gridColor}},y:{ticks:{color:textSoft},grid:{display:false}}}}
   });
 
   const nomesCu=[], pctsCu=[];
@@ -1662,75 +1468,7 @@ function renderGraficos(){
   charts.cursos=new Chart(document.getElementById("graf-cursos"),{
     type:"bar",
     data:{labels:nomesCu,datasets:[{label:"% Concluído",data:pctsCu,backgroundColor:"#D4AF37",borderRadius:4}]},
-    options:{
-      responsive:true,
-      plugins:{legend:{display:false}},
-      scales:{
-        y:{max:100,ticks:{color:textSoft},grid:{color:gridColor}},
-        x:{ticks:{color:textSoft,font:{size:9},maxRotation:60,minRotation:30},grid:{display:false}}
-      }
-    }
-  });
-}
-
-/* ============================================================
-   COLEÇÃO
-   ============================================================ */
-let colecaoAtual="selos";
-function renderColecao(){
-  const cont=document.getElementById("colecao-conteudo");
-  cont.innerHTML="";
-  let html="";
-
-  if(colecaoAtual==="selos"){
-    DADOS.cargos.forEach(function(c){ c.cursos.forEach(function(cu){ cu.modulos.forEach(function(m){
-      const tem=!!estado.selos[m.id];
-      html+='<div class="item-col '+(tem?'':'bloq')+'" '+(tem?'data-tipo="selo" data-id="'+m.id+'"':'')+'>';
-      html+= tem
-        ? '<div class="icone">🏅</div><div class="titulo">'+m.selo+'</div>'
-        : '<div class="icone">🔒</div><div class="titulo">Bloqueado</div>';
-      html+='</div>';
-    });});});
-  } else if(colecaoAtual==="reliquias"){
-    DADOS.cargos.forEach(function(c){ c.cursos.forEach(function(cu){
-      const tem=!!estado.reliquias[cu.id];
-      html+='<div class="item-col '+(tem?'':'bloq')+'" '+(tem?'data-tipo="reliquia" data-id="'+cu.id+'"':'')+'>';
-      html+= tem
-        ? '<div class="icone">💎</div><div class="titulo">'+cu.reliquia+'</div>'
-        : '<div class="icone">🔒</div><div class="titulo">Bloqueado</div>';
-      html+='</div>';
-    });});
-  } else if(colecaoAtual==="coroas"){
-    DADOS.cargos.forEach(function(c){
-      const tem=!!estado.coroas[c.id];
-      html+='<div class="item-col '+(tem?'':'bloq')+'" '+(tem?'data-tipo="coroa" data-id="'+c.id+'"':'')+'>';
-      html+= tem
-        ? '<div class="icone">👑</div><div class="titulo">'+c.coroa+'</div>'
-        : '<div class="icone">🔒</div><div class="titulo">Bloqueado</div>';
-      html+='</div>';
-    });
-  }
-
-  cont.innerHTML=html;
-
-  cont.querySelectorAll("[data-tipo]").forEach(function(el){
-    el.addEventListener("click",function(){
-      const tipo=this.dataset.tipo;
-      const id=this.dataset.id;
-      if(tipo==="selo"){
-        const info=MODULOS_MAP[id];
-        abrirModal("🏅 "+info.modulo.selo,
-          "Módulo: "+info.modulo.nome+"\n\nConcluído em: "+new Date(estado.selos[id]).toLocaleDateString("pt-BR"));
-      } else if(tipo==="reliquia"){
-        const cu=CURSOS_MAP[id];
-        abrirModal("💎 "+cu.reliquia,
-          "Curso: "+cu.nome+"\nCarga: "+cu.tempo+"\n\nConcluído em: "+new Date(estado.reliquias[id]).toLocaleDateString("pt-BR"));
-      } else if(tipo==="coroa"){
-        const cg=CARGOS_MAP[id];
-        abrirModal("👑 "+cg.coroa,
-          "Cargo: "+cg.nome+"\n\nConcluído em: "+new Date(estado.coroas[id]).toLocaleDateString("pt-BR"));
-      }
-    });
+    options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{max:100,ticks:{color:textSoft},grid:{color:gridColor}},x:{ticks:{color:textSoft,font:{size:9},maxRotation:60,minRotation:30},grid:{display:false}}}}
   });
 }
 
@@ -1766,11 +1504,13 @@ function importarBackup(ev){
     try{
       const d=JSON.parse(e.target.result);
       if(d.xp!==undefined) estado.xp=d.xp;
+      if(d.moedas!==undefined) estado.moedas=d.moedas;
+      if(d.frases) estado.frases=d.frases;
+      if(d.itens) estado.itens=d.itens;
       if(d.selos) estado.selos=d.selos;
-      if(d.reliquias) estado.reliquias=d.reliquias;
-      if(d.coroas) estado.coroas=d.coroas;
       if(d.metaSemanal) estado.metaSemanal=d.metaSemanal;
       if(d.metaMensal) estado.metaMensal=d.metaMensal;
+      if(d.metasPremiadas) estado.metasPremiadas=d.metasPremiadas;
       if(d.tema) estado.tema=d.tema;
       estado.aulasFeitas={};
       if(d.aulasFeitas){
@@ -1780,10 +1520,7 @@ function importarBackup(ev){
           else if(typeof v==="number") estado.aulasFeitas[k]=v;
         }
       }
-      salvar();
-      aplicarTema();
-      render();
-      renderColecao();
+      salvar(); aplicarTema(); render(); renderColecao(); renderVitrine();
       mostrarToast("📥 Backup importado!");
     }catch(err){ alert("Arquivo inválido."); }
   };
@@ -1792,39 +1529,33 @@ function importarBackup(ev){
 function resetar(){
   if(confirm("⚠️ TODO o progresso será perdido. Continuar?") && confirm("Última confirmação?")){
     try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
-    estado.aulasFeitas={}; estado.selos={}; estado.reliquias={}; estado.coroas={};
-    estado.xp=0; estado.metaSemanal=10; estado.metaMensal=40;
-    /* mantém tema atual */
-    salvar();
-    render();
-    renderColecao();
+    estado.aulasFeitas={}; estado.frases={}; estado.itens={}; estado.selos={};
+    estado.xp=0; estado.moedas=0; estado.metaSemanal=10; estado.metaMensal=40;
+    estado.metasPremiadas={semana:"",mes:""};
+    salvar(); render(); renderColecao(); renderVitrine();
     mostrarToast("🗑️ Progresso resetado.");
   }
 }
 
 /* ============================================================
-   TEMA CLARO / ESCURO
+   TEMA
    ============================================================ */
 function aplicarTema(){
   const dark = estado.tema === "dark";
   document.body.classList.toggle("dark", dark);
   const icon=document.getElementById("theme-icon");
   if(icon) icon.textContent = dark ? "☀️" : "🌙";
-  /* atualiza gráficos se a aba está visível */
   const painelAtivo=document.querySelector(".painel.ativo");
-  if(painelAtivo && painelAtivo.id==="painel" && charts.pizza){
-    renderGraficos();
-  }
+  if(painelAtivo && painelAtivo.id==="painel" && charts.pizza) renderGraficos();
 }
 function toggleTema(){
   estado.tema = estado.tema === "dark" ? "light" : "dark";
-  salvar();
-  aplicarTema();
+  salvar(); aplicarTema();
   mostrarToast(estado.tema==="dark" ? "🌙 Modo escuro ativado" : "☀️ Modo claro ativado");
 }
 
 /* ============================================================
-   UI GERAL
+   UI
    ============================================================ */
 function abrirModal(t,txt){
   document.getElementById("modal-titulo").textContent=t;
@@ -1835,11 +1566,27 @@ function fecharModal(ev){
   if(!ev || ev.target.id==="modal" || ev.target.classList.contains("fechar"))
     document.getElementById("modal").classList.remove("ativo");
 }
+function mostrarFrase(idx){
+  const f = FRASES[idx];
+  if(!f){ mostrarToast("✓ Aula concluída  ·  +10 XP"); return; }
+  document.getElementById("frase-en").textContent = f[0];
+  document.getElementById("frase-pt").textContent = f[1];
+  document.getElementById("modal-frase").classList.add("ativo");
+}
+function fecharFraseModal(ev){
+  if(!ev || ev.target.id==="modal-frase"){
+    document.getElementById("modal-frase").classList.remove("ativo");
+    mostrarToast("✓ Aula concluída  ·  +10 XP");
+  } else {
+    document.getElementById("modal-frase").classList.remove("ativo");
+    mostrarToast("✓ Aula concluída  ·  +10 XP");
+  }
+}
+
 let toastTimer=null;
 function mostrarToast(m){
   const t=document.getElementById("toast");
-  t.textContent=m;
-  t.classList.add("ativo");
+  t.textContent=m; t.classList.add("ativo");
   clearTimeout(toastTimer);
   toastTimer=setTimeout(function(){ t.classList.remove("ativo"); },2400);
 }
@@ -1859,6 +1606,7 @@ function inicializarTabs(){
       if(btn.dataset.tab==="painel") renderGraficos();
       if(btn.dataset.tab==="colecao") renderColecao();
       if(btn.dataset.tab==="metas") atualizarMetas();
+      if(btn.dataset.tab==="vitrine") renderVitrine();
     });
   });
 
@@ -1882,6 +1630,7 @@ function inicializarTabs(){
   inicializarTabs();
   render();
   renderColecao();
+  renderVitrine();
 })();
 </script>
 </body>
